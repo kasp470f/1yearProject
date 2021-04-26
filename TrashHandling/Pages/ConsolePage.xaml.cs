@@ -2,9 +2,9 @@
 
 namespace TrashHandling.Pages
 {
-    public partial class Console : Page
+    public partial class ConsolePage : Page
     {
-        public Console()
+        public ConsolePage()
         {
             InitializeComponent();
         }
