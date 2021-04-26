@@ -8,7 +8,7 @@ namespace TrashHandling
         public MainWindow()
         {
             InitializeComponent();
-            viewingWindow.Navigate(new Console());
+            viewingWindow.Navigate(new RegisterTrash());
         }
     }
 }
