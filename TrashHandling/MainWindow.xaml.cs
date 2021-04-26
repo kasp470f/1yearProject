@@ -14,6 +14,7 @@ namespace TrashHandling
         ConsolePage ConsolePage = new ConsolePage();
         Statistics StatisticsPage = new Statistics();
         DisplayData DisplayDataPage = new DisplayData();
+        RegisterTrash RegisterPage = new RegisterTrash();
 
         /// <summary>
         /// The MainWindow class
@@ -62,7 +63,7 @@ namespace TrashHandling
                         // Not Implemented
                         break;
                     case "Registér affald":
-                        // Not Implemented
+                        viewingWindow.Navigate(RegisterPage);
                         break;
                     case "Display Data":
                         viewingWindow.Navigate(DisplayDataPage);
