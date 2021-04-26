@@ -25,7 +25,7 @@
 			</Grid.RowDefinitions>
 			
 			<!--The header of the form-->
-			<TextBlock Text="Registrér dit affald" Grid.Column="0" Grid.Row="0" Style="{StaticResource HeaderTextBlock}"/>
+			<TextBlock Text="Registrér dit affald" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Style="{StaticResource HeaderTextBlock}"/>
 
 			<!--Area to input category of the trash-->
 			<TextBlock Text="Vælg affaldskategori:" Grid.Column="0" Grid.Row="1"/>
