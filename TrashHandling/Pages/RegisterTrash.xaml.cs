@@ -23,6 +23,7 @@ namespace TrashHandling.Pages
 		public RegisterTrash()
 		{
 			InitializeComponent();
+			DatePickField.SelectedDate = DateTime.Now;
 		}
 	}
 }
