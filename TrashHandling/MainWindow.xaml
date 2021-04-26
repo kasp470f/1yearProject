@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrashHandling"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Home" Height="450" Width="800">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,11 +14,11 @@
         </Grid.RowDefinitions>
         <!--Navigation Bar-->
         <DockPanel Background="Gray" Height="20" VerticalAlignment="Top" Grid.Row="0">
-            <Menu>
+            <Menu x:Name="Topbar">
                 <MenuItem Header="Home"/>
                 <MenuItem Header="Affald">
+                    <MenuItem Header="Display Data"/>
                     <MenuItem Header="Registér affald"/>
-                    <MenuItem Header="Ændring af data"/>
                     <MenuItem Header="Import fra .csv"/>
                     <MenuItem Header="Export til .csv"/>
                 </MenuItem>
