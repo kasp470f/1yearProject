@@ -5,11 +5,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d" 
       Style="{StaticResource PageStyle}"
-	  d:DesignHeight="450" d:DesignWidth="800"
-      Title="Registrér affald">
+	  d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 		<!--The grid to contain our form-->
-		<Grid HorizontalAlignment="Center" Width="400" Height="330">
+		<Grid HorizontalAlignment="Center" Width="410" Height="330">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 				<ColumnDefinition/>
@@ -24,6 +23,7 @@
 				<RowDefinition/>
 				<RowDefinition/>
 			</Grid.RowDefinitions>
+			
 			<!--The header of the form-->
 			<TextBlock Text="Registrér dit affald" Grid.Column="0" Grid.Row="0" Style="{StaticResource HeaderTextBlock}"/>
 
@@ -35,14 +35,16 @@
 			<TextBlock Text="Mængde:" Grid.Column="0" Grid.Row="2"/>
 			<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
 				<TextBox Name="Amount" Style="{StaticResource StandardTextBox}" Width="150"/>
-				<ComboBox Name="UnitPicker" Background="#FAFAFA" Width="50">
+				<ComboBox Name="UnitPicker" Background="#FAFAFA" Width="50" Margin="5">
 					<ComboBoxItem Content="colli"/>
+					<ComboBoxItem Content="stk"/>
+					<ComboBoxItem Content="kg"/>					
 				</ComboBox>
 			</StackPanel>
 
 			<!--Area to input a description-->
 			<TextBlock Text="Beskrivelse:" Grid.Column="0" Grid.Row="3"/>
-			<TextBox Name="Description" Grid.Column="1" Grid.Row="3" Background="#FAFAFA"/>
+			<TextBox Name="Description" Grid.Column="1" Grid.Row="3" Background="#FAFAFA" Margin="0,5"/>
 
 			<!--Area to input who has registered the trash-->
 			<TextBlock Text="Registreret af:" Grid.Column="0" Grid.Row="4"/>
@@ -54,7 +56,7 @@
 
 			<!--Area to select a date of registry-->
 			<TextBlock Text="Dato:" Grid.Column="0" Grid.Row="6"/>
-			<DatePicker Name="DatePickField" Grid.Column="1" Grid.Row="6" Style="{StaticResource DatePickBox}"/>
+			<DatePicker Name="DatePickField" Grid.Column="1" Grid.Row="6" Style="{StaticResource DatePickBox}" Focusable="False"/>
 			
 			<!--Button to submit the form-->
 			<Button Name="AddTrash" Content="Registrér" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA"/>
