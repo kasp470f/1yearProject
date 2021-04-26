@@ -6,11 +6,28 @@
         xmlns:local="clr-namespace:TrashHandling"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
-        <DockPanel Background="Gray" Height="20" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Navigation Bar-->
+        <DockPanel Background="Gray" Height="20" VerticalAlignment="Top" Grid.Row="0">
             <Menu>
-                <MenuItem Header="File"/>
+                <MenuItem Header="Home"/>
+                <MenuItem Header="Affald">
+                    <MenuItem Header="Registér affald"/>
+                    <MenuItem Header="Ændring af data"/>
+                    <MenuItem Header="Import fra .csv"/>
+                    <MenuItem Header="Export til .csv"/>
+                </MenuItem>
+                <MenuItem Header="Statistik"/>
+                <MenuItem Header="Console"/>
             </Menu>
         </DockPanel>
+        
+        <!--Viewing Window-->
+        <Frame x:Name="viewingWindow" NavigationUIVisibility="Hidden" Panel.ZIndex="1" Grid.Row="1"/>
     </Grid>
 </Window>
