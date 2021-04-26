@@ -11,10 +11,12 @@ namespace TrashHandling
     public partial class MainWindow : Window
     {
         // Pages List
+        HomePage HomePage = new HomePage();
         ConsolePage ConsolePage = new ConsolePage();
         Statistics StatisticsPage = new Statistics();
         DisplayData DisplayDataPage = new DisplayData();
         RegisterTrash RegisterPage = new RegisterTrash();
+        ImportPage ImportPage = new ImportPage();
 
         /// <summary>
         /// The MainWindow class
@@ -23,7 +25,7 @@ namespace TrashHandling
         public MainWindow()
         {
             InitializeComponent();
-            viewingWindow.Navigate(StatisticsPage);
+            viewingWindow.Navigate(HomePage);
 
 
             // Add event to all menu items (including children)
@@ -60,16 +62,16 @@ namespace TrashHandling
                 switch (header)
                 {
                     case "Home":
-                        // Not Implemented
+                        viewingWindow.Navigate(HomePage);
                         break;
-                    case "Registér affald":
+                    case "Registrér affald":
                         viewingWindow.Navigate(RegisterPage);
                         break;
                     case "Display Data":
                         viewingWindow.Navigate(DisplayDataPage);
                         break;
                     case "Import fra .csv":
-                        // Not Implemented
+                        viewingWindow.Navigate(ImportPage);
                         break;
                     case "Export til .csv":
                         // Not Implemented
