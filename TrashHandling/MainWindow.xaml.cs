@@ -13,17 +13,19 @@ namespace TrashHandling
     {
         // Pages Directory
         /// Pages under the Directory 
+        static HomePage HomePage = new HomePage();
         static ConsolePage ConsolePage = new ConsolePage();
         static Statistics StatisticsPage = new Statistics();
         static DisplayData DisplayDataPage = new DisplayData();
         static RegisterTrash RegisterPage = new RegisterTrash();
+        static ImportPage ImportPage = new ImportPage();
         /// The Directory itself
         Dictionary<string, Page> PageDirectory = new Dictionary<string, Page>()
         {
-            { "Home", null},
+            { "Home", HomePage},
             { "Registér affald", RegisterPage },
             { "Display Data", DisplayDataPage },
-            { "Import fra .csv", null },
+            { "Import fra .csv", ImportPage},
             { "Statistik", StatisticsPage },
             { "Console",  ConsolePage }
 
@@ -36,7 +38,7 @@ namespace TrashHandling
         public MainWindow()
         {
             InitializeComponent();
-            viewingWindow.Navigate(null);
+            viewingWindow.Navigate(HomePage);
 
 
             // Add event to all menu items (including children)
