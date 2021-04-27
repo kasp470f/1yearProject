@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TrashHandling.Pages
 {
@@ -23,7 +12,33 @@ namespace TrashHandling.Pages
 		public RegisterTrash()
 		{
 			InitializeComponent();
+			
+		List<string> Categories = new()
+			{
+				"Batterier",
+				"Biler",
+				"Elektronikaffald",
+				"Imprægneret træ",
+				"Inventar",
+				"Organisk affald",
+				"Pap og papir",
+				"Plastemballager",
+				"PVC"
+			};
+			TrashPicker.ItemsSource = Categories;
+
+			UnitPicker.Items.Add(U.colli);
+			UnitPicker.Items.Add(U.kg);
+			UnitPicker.Items.Add(U.stk);
+
 			DatePickField.SelectedDate = DateTime.Now;
 		}
+
+		public enum U
+		{
+			colli,
+			kg,
+			stk
+		};
 	}
 }
