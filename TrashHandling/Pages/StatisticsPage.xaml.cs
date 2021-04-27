@@ -18,9 +18,9 @@ namespace TrashHandling.Pages
     /// <summary>
     /// Interaction logic for Statistics.xaml
     /// </summary>
-    public partial class Statistics : Page
+    public partial class StatisticsPage : Page
     {
-        public Statistics()
+        public StatisticsPage()
         {
             InitializeComponent();
         }

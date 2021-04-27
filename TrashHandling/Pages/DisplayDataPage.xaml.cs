@@ -3,11 +3,11 @@
 namespace TrashHandling.Pages
 {
     /// <summary>
-    /// Interaction logic for DisplayData.xaml
+    /// Interaction logic for DisplayDataPage.xaml
     /// </summary>
-    public partial class DisplayData : Page
+    public partial class DisplayDataPage : Page
     {
-        public DisplayData()
+        public DisplayDataPage()
         {
             InitializeComponent();
         }

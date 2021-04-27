@@ -6,6 +6,7 @@
       mc:Ignorable="d"
 	  Style="{StaticResource PageStyle}"
 	  d:DesignHeight="450" d:DesignWidth="1000">
+    
     <Grid>
 		<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" >
 			<TextBlock Text="Importér fra .csv" Style="{StaticResource HeaderTextBlock}" Margin="0,0,0,20"/>
@@ -21,17 +22,18 @@
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<DataGrid Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True">
 					<DataGrid.Columns>
-						<DataGridTextColumn Width="*" Header="Id" HeaderStyle="{StaticResource StandardGridHeaderStyle}"/>
-						<DataGridTextColumn Width="*" Header="Mængde" HeaderStyle="{StaticResource StandardGridHeaderStyle}"/>
-						<DataGridTextColumn Width="*" Header="Måleenhed" HeaderStyle="{StaticResource StandardGridHeaderStyle}"/>
-						<DataGridTextColumn Width="*" Header="Affaldskategori" HeaderStyle="{StaticResource StandardGridHeaderStyle}"/>
-						<DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" HeaderStyle="{StaticResource StandardGridHeaderStyle}"/>
-						<DataGridTextColumn Width="*" Header="Ansvarlig" HeaderStyle="{StaticResource StandardGridHeaderStyle}"/>
-						<DataGridTextColumn Width="*" Header="VirksomhedsId" HeaderStyle="{StaticResource StandardGridHeaderStyle}"/>
-						<DataGridTextColumn Width="*" Header="Dato" HeaderStyle="{StaticResource StandardGridHeaderStyle}"/>
+						<DataGridTextColumn Width="*" Header="Id" />
+						<DataGridTextColumn Width="*" Header="Mængde" />
+						<DataGridTextColumn Width="*" Header="Måleenhed" />
+						<DataGridTextColumn Width="*" Header="Affaldskategori" />
+						<DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" />
+						<DataGridTextColumn Width="*" Header="Ansvarlig" />
+						<DataGridTextColumn Width="*" Header="VirksomhedsId" />
+						<DataGridTextColumn Width="*" Header="Dato" />
 					</DataGrid.Columns>
 				</DataGrid>
 			</StackPanel>
-		</StackPanel>		
+            <Button Margin="0,10" Content="Tilføj til database" Width="120"/>
+        </StackPanel>		
 	</Grid>
 </Page>
