@@ -5,9 +5,9 @@ namespace TrashHandling.Windows
 	/// <summary>
 	/// Interaction logic for ChangeDataPopup.xaml
 	/// </summary>
-	public partial class ChangeData : Window
+	public partial class ChangeDataWindow : Window
 	{
-		public ChangeData()
+		public ChangeDataWindow()
 		{
 			InitializeComponent();
 		}

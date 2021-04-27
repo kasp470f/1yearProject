@@ -15,15 +15,15 @@ namespace TrashHandling
         /// Pages under the Directory 
         static HomePage HomePage = new HomePage();
         static ConsolePage ConsolePage = new ConsolePage();
-        static Statistics StatisticsPage = new Statistics();
-        static DisplayData DisplayDataPage = new DisplayData();
-        static RegisterTrash RegisterPage = new RegisterTrash();
+        static StatisticsPage StatisticsPage = new StatisticsPage();
+        static DisplayDataPage DisplayDataPage = new DisplayDataPage();
+        static RegisterTrashPage RegisterPage = new RegisterTrashPage();
         static ImportPage ImportPage = new ImportPage();
         /// The Directory itself
         Dictionary<string, Page> PageDirectory = new Dictionary<string, Page>()
         {
             { "Home", HomePage},
-            { "Registér affald", RegisterPage },
+            { "Registrér affald", RegisterPage },
             { "Display Data", DisplayDataPage },
             { "Import fra .csv", ImportPage},
             { "Statistik", StatisticsPage },

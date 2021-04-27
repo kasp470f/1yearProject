@@ -1,4 +1,4 @@
-﻿<Page x:Class="TrashHandling.Pages.RegisterTrash"
+﻿<Page x:Class="TrashHandling.Pages.RegisterTrashPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,6 +6,7 @@
       mc:Ignorable="d" 
       Style="{StaticResource PageStyle}"
 	  d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid>
 		<!--The grid to contain our form-->
 		<Grid HorizontalAlignment="Center" Width="410" Height="330">

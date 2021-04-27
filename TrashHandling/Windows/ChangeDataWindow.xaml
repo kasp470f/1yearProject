@@ -1,0 +1,25 @@
+﻿<Window x:Class="TrashHandling.Windows.ChangeDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrashHandling.Windows"
+        mc:Ignorable="d"
+        Title="Datatilpasning" Height="450" Width="1000" Background="#F5F5F5" WindowStartupLocation="CenterScreen">
+    
+    <Grid>
+        <TextBlock Text="Change Data" Style="{StaticResource HeaderTextBlock}" Margin="10"/>
+		<DataGrid Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="True" CanUserSortColumns="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Id" />
+				<DataGridTextColumn Width="*" Header="Mængde" />
+				<DataGridTextColumn Width="*" Header="Måleenhed" />
+				<DataGridTextColumn Width="*" Header="Affaldskategori" />
+				<DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" />
+				<DataGridTextColumn Width="*" Header="Ansvarlig" />
+				<DataGridTextColumn Width="*" Header="VirksomhedsId" />
+				<DataGridTextColumn Width="*" Header="Dato" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</Window>
