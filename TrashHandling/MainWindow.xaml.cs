@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using TrashHandling.Pages;
+using TrashHandling.Windows;
 
 namespace TrashHandling
 {
@@ -9,7 +10,7 @@ namespace TrashHandling
     /// <para> Created by Kasper</para>
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {   
         // Pages List
         HomePage HomePage = new HomePage();
         ConsolePage ConsolePage = new ConsolePage();
@@ -17,7 +18,7 @@ namespace TrashHandling
         DisplayData DisplayDataPage = new DisplayData();
         RegisterTrash RegisterPage = new RegisterTrash();
         ImportPage ImportPage = new ImportPage();
-
+        
         /// <summary>
         /// The MainWindow class
         /// <para>Created by Kasper</para>
@@ -72,9 +73,6 @@ namespace TrashHandling
                         break;
                     case "Import fra .csv":
                         viewingWindow.Navigate(ImportPage);
-                        break;
-                    case "Export til .csv":
-                        // Not Implemented
                         break;
                     case "Statistik":
                         viewingWindow.Navigate(StatisticsPage);
