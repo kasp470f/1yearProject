@@ -8,6 +8,6 @@
         Title="Exporter til .csv" Height="450" Width="800" Background="#F5F5F5"
 		WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <TextBlock Text="Export til .csv" Style="{StaticResource HeaderTextBlock}" Margin="10"/>
     </Grid>
 </Window>

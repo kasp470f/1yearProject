@@ -8,6 +8,7 @@
         Title="Datatilpasning" Height="450" Width="1000" Background="#F5F5F5" WindowStartupLocation="CenterScreen">
     
     <Grid>
+        <TextBlock Text="Change Data" Style="{StaticResource HeaderTextBlock}" Margin="10"/>
 		<DataGrid Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="True" CanUserSortColumns="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Id" />
