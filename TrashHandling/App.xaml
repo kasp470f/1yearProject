@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:TrashHandling"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-		
-		<Style x:Key="PageStyle" TargetType="Page">
+
+     <Style x:Key="PageStyle" TargetType="Page">
 			<Setter Property="Background" Value="#F5F5F5"/>
 		</Style>
 		
@@ -24,7 +24,7 @@
 			<Setter Property="Background" Value="#FAFAFA"/>
 			<Setter Property="Margin" Value="0,5"/>
 		</Style>
-		
+      
 		<Style x:Key="StandardComboBox" TargetType="ComboBox">
 			<Setter Property="Background" Value="#FAFAFA"/>
 			<Setter Property="Margin" Value="0,5"/>
