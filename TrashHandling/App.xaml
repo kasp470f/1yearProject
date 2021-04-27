@@ -4,11 +4,7 @@
              xmlns:local="clr-namespace:TrashHandling"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-		<Style x:Key="WindowStyle" TargetType="Window">
-			<Setter Property="Background" Value="#F5F5F5"/>
-		</Style>
-		
-		<Style x:Key="PageStyle" TargetType="Page">
+        <Style x:Key="PageStyle" TargetType="Page">
 			<Setter Property="Background" Value="#F5F5F5"/>
 		</Style>
 		
@@ -24,8 +20,8 @@
 		</Style>
 		
 		<Style x:Key="DatePickBox" TargetType="DatePicker">
-			<Setter Property="Background" Value="#FAFAFA"/>
-		</Style>
+            <Setter Property="Background" Value="#FAFAFA"/>
+        </Style>
 		<Style x:Key="StandardComboBox" TargetType="ComboBox">
 			<Setter Property="Background" Value="#FAFAFA"/>
 		</Style>

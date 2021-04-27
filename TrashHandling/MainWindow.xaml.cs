@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using TrashHandling.Pages;
+using System.Collections.Generic;
 
 namespace TrashHandling
 {
@@ -10,10 +11,23 @@ namespace TrashHandling
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Pages List
-        ConsolePage ConsolePage = new ConsolePage();
-        Statistics StatisticsPage = new Statistics();
-        DisplayData DisplayDataPage = new DisplayData();
+        // Pages Directory
+        /// Pages under the Directory 
+        static ConsolePage ConsolePage = new ConsolePage();
+        static Statistics StatisticsPage = new Statistics();
+        static DisplayData DisplayDataPage = new DisplayData();
+        static RegisterTrash RegisterPage = new RegisterTrash();
+        /// The Directory itself
+        Dictionary<string, Page> PageDirectory = new Dictionary<string, Page>()
+        {
+            { "Home", null},
+            { "Registér affald", RegisterPage },
+            { "Display Data", DisplayDataPage },
+            { "Import fra .csv", null },
+            { "Statistik", StatisticsPage },
+            { "Console",  ConsolePage }
+
+        };
 
         /// <summary>
         /// The MainWindow class
@@ -22,7 +36,7 @@ namespace TrashHandling
         public MainWindow()
         {
             InitializeComponent();
-            viewingWindow.Navigate(StatisticsPage);
+            viewingWindow.Navigate(null);
 
 
             // Add event to all menu items (including children)
@@ -56,30 +70,7 @@ namespace TrashHandling
             this.Title = header;
             try
             {
-                switch (header)
-                {
-                    case "Home":
-                        // Not Implemented
-                        break;
-                    case "Registér affald":
-                        // Not Implemented
-                        break;
-                    case "Display Data":
-                        viewingWindow.Navigate(DisplayDataPage);
-                        break;
-                    case "Import fra .csv":
-                        // Not Implemented
-                        break;
-                    case "Export til .csv":
-                        // Not Implemented
-                        break;
-                    case "Statistik":
-                        viewingWindow.Navigate(StatisticsPage);
-                        break;
-                    case "Console":
-                        viewingWindow.Navigate(ConsolePage);
-                        break;
-                }
+                viewingWindow.Navigate(PageDirectory[header]);
             }
             catch (System.Exception err)
             {
