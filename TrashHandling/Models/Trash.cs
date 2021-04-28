@@ -14,7 +14,7 @@ namespace TrashHandling.Models
 	{
 		public int Id { get; set; }
 		public decimal Amount { get; set; }
-		public string Units { get; set; }
+		public int Units { get; set; }
 		public string Category { get; set; }
 		public string Description { get; set; }
 		public string ResponsiblePerson { get; set; }

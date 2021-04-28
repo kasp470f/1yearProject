@@ -24,7 +24,7 @@ namespace TrashHandling.Models
 					@"INSERT INTO TrashTable (amount,units,category,trashDescription,responsiblePerson,companyId,registerTimestamp)
 					VALUES(@Amount, @Units, @Category, @Description, @ResponsiblePerson, @CompanyId, @Timestamp)", connectionString);
 				insert.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
-				insert.Parameters.Add("@Units", SqlDbType.NVarChar).Value = trash.Units;
+				insert.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Units;
 				insert.Parameters.Add("@Category", SqlDbType.NVarChar).Value = trash.Category;
 				insert.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
 				insert.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
