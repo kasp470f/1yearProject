@@ -8,6 +8,19 @@
 		<Style x:Key="PageStyle" TargetType="Page">
 			<Setter Property="Background" Value="#F5F5F5"/>
 		</Style>
+		<Style x:Key="CenteredVerticalStack" TargetType="StackPanel">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="Orientation" Value="Vertical"/>
+			<Style.Resources>
+				<Style TargetType="TextBlock">
+					<Setter Property="FontSize" Value="24"/>
+					<Setter Property="TextAlignment" Value="Center"/>
+					<Setter Property="HorizontalAlignment" Value="Center"/>
+				</Style>
+			</Style.Resources>
+		</Style>
+		
 		
 		<Style x:Key="HeaderTextBlock" TargetType="TextBlock">
 			<Setter Property="FontSize" Value="24"/>
@@ -15,33 +28,74 @@
 			<Setter Property="HorizontalAlignment" Value="Center"/>
 		</Style>
 		
-		<Style x:Key="StandardTextBox" TargetType="TextBox">
+		<!--<Style x:Key="StandardTextBox" TargetType="TextBox">
 			<Setter Property="Background" Value="#FAFAFA"/>
 			<Setter Property="Margin" Value="0,5"/>
-		</Style>
+		</Style>-->
 		
-		<Style x:Key="DatePickBox" TargetType="DatePicker">
+		<!--<Style x:Key="DatePickBox" TargetType="DatePicker">
 			<Setter Property="Background" Value="#FAFAFA"/>
 			<Setter Property="Margin" Value="0,5"/>
-		</Style>
+		</Style>-->
       
-		<Style x:Key="StandardComboBox" TargetType="ComboBox">
+		<!--<Style x:Key="StandardComboBox" TargetType="ComboBox">
 			<Setter Property="Background" Value="#FAFAFA"/>
 			<Setter Property="Margin" Value="0,5"/>
-		</Style>
+		</Style>-->
 
         <Style x:Key="StandardDataGrid" TargetType="DataGrid">
             <Setter Property="Height" Value="300"/>
             <Setter Property="Width" Value="900"/>
             <Setter Property="Margin" Value="0,20,0,0"/>
             <Setter Property="Background" Value="#FAFAFA"/>
-
             <Style.Resources>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
             </Style.Resources>
         </Style>
+		
+		<Style x:Key="FormGrid" TargetType="Grid">			
+			<Setter Property="Height" Value="330"/>
+			<Setter Property="Width" Value="550"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Style.Resources>
+				<Style TargetType="TextBlock">
+					<Setter Property="FontSize" Value="12"/>
+					<Setter Property="TextAlignment" Value="Left"/>
+					<Setter Property="HorizontalAlignment" Value="Left"/>					
+					<Setter Property="Grid.Column" Value="0"/>
+				</Style>
+				<Style TargetType="TextBox">
+					<Setter Property="FontSize" Value="12"/>
+					<Setter Property="Background" Value="#FAFAFA"/>
+					<Setter Property="Margin" Value="0,5"/>
+					<Setter Property="Grid.Column" Value="1"/>
+				</Style>
+				<Style TargetType="ComboBox">
+					<Setter Property="FontSize" Value="12"/>
+					
+					<Setter Property="Margin" Value="0,5"/>
+					<Setter Property="Grid.Column" Value="1"/>					
+					<!--NOT WORKING PROPERLY!!-->
+					<Setter Property="Background" Value="#FAFAFA"/>
+				</Style>
+				<Style TargetType="DatePicker">
+					<Setter Property="HorizontalAlignment" Value="Left"/>
+					<Setter Property="FontSize" Value="12"/>
+					<Setter Property="Width" Value="165"/>
+					<Setter Property="Focusable" Value="False"/>
+					<Setter Property="Margin" Value="0,5,0,5"/>
+					<Setter Property="Background" Value="#FAFAFA"/>
+				</Style>				
+			</Style.Resources>
+		</Style>
 
-    </Application.Resources>
+		<Style x:Key="SmallPicker" TargetType="ComboBox">
+			<Setter Property="FontSize" Value="12"/>
+			<Setter Property="Width" Value="50"/>
+			<Setter Property="Margin" Value="5,5,0,5"/>
+			<Setter Property="Background" Value="#FAFAFA"/>
+		</Style>
+	</Application.Resources>
 </Application>
