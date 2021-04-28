@@ -7,11 +7,19 @@ using System.Collections.Generic;
 
 namespace TrashHandling.Pages
 {
+	
 	public partial class ImportPage : Page
 	{
+		public static string dirPath = @"C:\Dropzone";
+
 		public ImportPage()
 		{
 			InitializeComponent();
+			if (!Directory.Exists(dirPath))
+			{
+				Directory.CreateDirectory(dirPath);
+			}
+			MonitorDirectory(dirPath);
 		}
 
 		//Created by Martin Nørholm
@@ -27,7 +35,7 @@ namespace TrashHandling.Pages
 			OpenFileDialog selector = new OpenFileDialog()
 			{
 				Title = "Open .csv-file",
-				InitialDirectory = @"C:\Dropzone",
+				InitialDirectory = dirPath,
 				Filter = "CSV files (*.csv)|*csv",
 				CheckPathExists = true
 			};			
@@ -40,6 +48,20 @@ namespace TrashHandling.Pages
 				//TODO: What to do after file is opened?
 				MessageBox.Show("Succes!!");
 			}
+		}
+		
+
+		private static void MonitorDirectory(string path)
+		{
+			FileSystemWatcher fileSystemWatcher = new (path);
+			fileSystemWatcher.Filter = "*.csv";
+			fileSystemWatcher.Created += File_Added;
+			fileSystemWatcher.EnableRaisingEvents = true;
+		}
+
+		private static void File_Added(object sender, FileSystemEventArgs e)
+		{
+			MessageBox.Show(e.Name);
 		}
 	}
 }
