@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrashHandling.Models
 {
-	class ComboBoxSources
+	public static class ComboBoxSources
 	{
 		//enum for the unitpicker
 		public enum Unit

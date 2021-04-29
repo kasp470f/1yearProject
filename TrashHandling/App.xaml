@@ -59,9 +59,8 @@
 					<Setter Property="Grid.Column" Value="1"/>
 				</Style>
 				<Style TargetType="ComboBox">
-					<Setter Property="FontSize" Value="12"/>
-					
-					<Setter Property="Margin" Value="0,5"/>
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="Margin" Value="0,5"/>
 					<Setter Property="Grid.Column" Value="1"/>					
 					<!--NOT WORKING PROPERLY!!-->
 					<Setter Property="Background" Value="#FAFAFA"/>
@@ -69,7 +68,7 @@
 				<Style TargetType="xctk:DateTimePicker">
 					<Setter Property="HorizontalAlignment" Value="Left"/>
 					<Setter Property="FontSize" Value="12"/>
-					<Setter Property="Width" Value="165"/>
+					<Setter Property="Width" Value="240"/>
 					<Setter Property="Margin" Value="0,5,0,5"/>
 					<Setter Property="Background" Value="#FAFAFA"/>
 				</Style>				

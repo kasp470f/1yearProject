@@ -7,55 +7,56 @@
       mc:Ignorable="d" 
       Style="{StaticResource PageStyle}"
 	  d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Grid>		
-		<StackPanel Style="{StaticResource CenteredVerticalStack}">
-			<!--The header of the form-->
-			<TextBlock Text="Registrér dit affald" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
-			<!--The grid to contain our form-->
-			<Grid Style="{StaticResource FormGrid}">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition Height="80"/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-				</Grid.RowDefinitions>
-				<!--Area to input category of the trash-->
-				<TextBlock Text="Affaldskategori:" Grid.Row="0"/>
-				<ComboBox Name="TrashPicker" Grid.Column="1" Grid.Row="0"/>
 
-				<!--Area to input amount of trash-->
-				<TextBlock Text="Mængde:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
-				<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch">
-					<TextBox Name="Amount" Width="220"/>
-					<ComboBox Name="UnitPicker" Style="{StaticResource SmallPicker}"/>
-				</StackPanel>
+    <Grid>
+        <StackPanel Style="{StaticResource CenteredVerticalStack}">
+            <!--The header of the form-->
+            <TextBlock Text="Registrér dit affald" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
+            <!--The grid to contain our form-->
+            <Grid Style="{StaticResource FormGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--Area to input category of the trash-->
+                <TextBlock Text="Affaldskategori:" Grid.Row="0"/>
+                <ComboBox Name="TrashPicker" Grid.Column="1" Grid.Row="0"/>
 
-				<!--Area to input a description-->
-				<TextBlock Text="Beskrivelse:" Grid.Column="0" Grid.Row="2"/>
-				<TextBox Name="Description" Grid.Column="1" Grid.Row="2" Margin="0,5"/>
+                <!--Area to input amount of trash-->
+                <TextBlock Text="Mængde:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch">
+                    <TextBox Name="Amount" Width="220"/>
+                    <ComboBox Name="UnitPicker" Style="{StaticResource SmallPicker}"/>
+                </StackPanel>
 
-				<!--Area to input who has registered the trash-->
-				<TextBlock Text="Registreret af:" Grid.Row="3"/>
-				<TextBox Name="Registrator" Grid.Row="3"/>
+                <!--Area to input a description-->
+                <TextBlock Text="Beskrivelse:" Grid.Column="0" Grid.Row="2"/>
+                <TextBox Name="Description" Grid.Column="1" Grid.Row="2" Margin="0,5"/>
 
-				<!--Area to input the company-->
-				<TextBlock Text="VirksomhedsID:" Grid.Row="4"/>
-				<TextBox Name="CompanyID" Grid.Row="4"/>
+                <!--Area to input who has registered the trash-->
+                <TextBlock Text="Registreret af:" Grid.Row="3"/>
+                <TextBox Name="Registrator" Grid.Row="3"/>
 
-			<!--Area to select a date of registry-->
-            <TextBlock Text="Dato:" Grid.Column="0" Grid.Row="6" VerticalAlignment="Center"/>
-            <xctk:DateTimePicker Name="DatePickField" Style="{StaticResource DateTimePickBox}" Grid.Column="1" Grid.Row="6" AllowTextInput="False" ShowButtonSpinner="False" Format="Custom" FormatString="dd-MM-yyyy HH:mm" Margin="0,5"/>
-			
-			<!--Button to submit the form-->
-			<Button Name="AddTrash" Content="Registrér" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA"/>
-		</Grid>		
-	</Grid>
+                <!--Area to input the company-->
+                <TextBlock Text="VirksomhedsID:" Grid.Row="4"/>
+                <TextBox Name="CompanyID" Grid.Row="4"/>
+
+                <!--Area to select a date of registry-->
+                <TextBlock Text="Dato:" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"/>
+                <xctk:DateTimePicker Name="DatePickField" Grid.Column="1" Grid.Row="5" AllowTextInput="False" ShowButtonSpinner="False" Format="Custom" FormatString="dd-MM-yyyy HH:mm" Margin="0,5"/>
+
+                <!--Button to submit the form-->
+                <Button Name="AddTrash" Content="Registrér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA" Click="AddData_Click"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
 </Page>

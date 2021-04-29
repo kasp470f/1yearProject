@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Controls.DataVisualization.Charting;
+using TrashHandling.Models;
 
 namespace TrashHandling.Pages
 {
@@ -15,6 +16,7 @@ namespace TrashHandling.Pages
         public StatisticsPage()
         {
             InitializeComponent();
+            LoadComboBoxes();
             LoadBarChartData();
         }
 
@@ -26,6 +28,11 @@ namespace TrashHandling.Pages
                 list.Add(new KeyValuePair<string, int>(i.ToString(), random.Next(1, 10)));
             }
             ((ColumnSeries)TrashChart.Series[0]).ItemsSource = list;
+        }
+
+        private void LoadComboBoxes()
+        {
+            TrashCategoryComboBox.ItemsSource = ComboBoxSources.Categories;
         }
     }
 }
