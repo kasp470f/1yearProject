@@ -34,12 +34,8 @@ namespace TrashHandling.Pages
 		{
 			InitializeComponent();
 			TrashPicker.ItemsSource = Categories;
-
-			UnitPicker.Items.Add(Unit.colli);
-			UnitPicker.Items.Add(Unit.kg);
-			UnitPicker.Items.Add(Unit.stk);
-
-			DatePickField.SelectedDate = DateTime.Now;
+			// Adds all enum values through the GetValues() method.
+			UnitPicker.ItemsSource = Enum.GetValues(typeof(Unit));
 		}
 	}
 }
