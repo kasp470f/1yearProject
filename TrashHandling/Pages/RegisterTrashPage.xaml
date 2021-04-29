@@ -51,11 +51,7 @@
 
 				<!--Area to select a date of registry-->
 				<TextBlock Text="Dato:" Grid.Row="5"/>
-				<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Stretch">
-					<DatePicker Name="DatePickField"/>
-					<ComboBox Name="HourPicker" Style="{StaticResource SmallPicker}"/>
-					<ComboBox Name="MinutePicker" Style="{StaticResource SmallPicker}"/>
-				</StackPanel>				
+				
 
 				<!--Button to submit the form-->
 				<Button Name="AddTrash" Content="Registrér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5,5,0,5" Background="#FAFAFA" Click="AddData_Click"/>

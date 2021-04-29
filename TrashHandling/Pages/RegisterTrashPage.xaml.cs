@@ -12,59 +12,17 @@ namespace TrashHandling.Pages
 	/// </summary>
 	public partial class RegisterTrashPage : Page
 	{
-		//enum for the unitpicker
-		private enum Unit
-		{			
-			Kg = 1,
-			Meter = 2,
-			Colli = 3
-		};
-
-		//list for the category picker
-		private List<string> Categories = new()
-		{	
-			"Batterier",
-			"Biler",
-			"Elektronikaffald",
-			"Imprægneret træ",
-			"Inventar",
-			"Organisk affald",
-			"Pap og papir",
-			"Plastemballager",
-			"PVC"
-		};
-
-		//list for the hour picker
-		private List<string> RegisterHour = new()
-		{
-			"00","01","02","03","04","05","06","07","08","09","10","11",
-			"12","13","14","15","16","17","18","19","20","21","22","23"
-		};
-
-		//list for the hour picker
-		private List<string> RegisterMinute = new()
-		{
-			"00","05","10","15","20","25","30","35","40","45","50","55"
-		};
-
 		public RegisterTrashPage()
 		{
 			InitializeComponent();
-			TrashPicker.ItemsSource = Categories;
-			TrashPicker.SelectedItem = Categories[0];
+			TrashPicker.ItemsSource = ComboBoxSources.Categories;
+			TrashPicker.SelectedItem = ComboBoxSources.Categories[0];
 
-			UnitPicker.Items.Add(Unit.Kg);
-			UnitPicker.Items.Add(Unit.Meter);
-			UnitPicker.Items.Add(Unit.Colli);
-
-			HourPicker.ItemsSource = RegisterHour;
-			HourPicker.SelectedItem = DateTime.Now.ToString("HH");
-
-			MinutePicker.ItemsSource = RegisterMinute;
+			UnitPicker.Items.Add(ComboBoxSources.Unit.Kg);
+			UnitPicker.Items.Add(ComboBoxSources.Unit.Meter);
+			UnitPicker.Items.Add(ComboBoxSources.Unit.Colli);
 			
-			MinutePicker.SelectedItem = RegisterMinute[0];
-
-			DatePickField.SelectedDate = DateTime.Now;
+			
 		}
 
 		private void AddData_Click(object sender, RoutedEventArgs e)
@@ -79,7 +37,7 @@ namespace TrashHandling.Pages
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
 				CompanyId = int.Parse(CompanyID.Text),
-				RegisterTimeStamp = $"{DatePickField.SelectedDate.Value:yyyy:MM:dd} {HourPicker.SelectedItem}:{MinutePicker.SelectedItem}"
+				//RegisterTimeStamp = $"{DatePickField.SelectedDate.Value:yyyy:MM:dd HH:mm}"
 			};
 
 			//Call the method to add to the db
