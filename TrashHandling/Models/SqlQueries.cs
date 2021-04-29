@@ -34,9 +34,9 @@ namespace TrashHandling.Models
 				connectionString.Open();
 				insert.ExecuteNonQuery();
 			}
-			catch (Exception dbInsertException)
+			catch (Exception e)
 			{
-				MessageBox.Show(dbInsertException.Message);
+				MessageBox.Show(e.Message);
 			}
 			finally
 			{
