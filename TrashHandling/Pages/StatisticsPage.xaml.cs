@@ -1,28 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls.DataVisualization.Charting;
 
 namespace TrashHandling.Pages
 {
     /// <summary>
     /// Interaction logic for Statistics.xaml
+    /// <para>Created by Kasper</para>
     /// </summary>
     public partial class StatisticsPage : Page
     {
+        public List<KeyValuePair<string, int>> list = new List<KeyValuePair<string, int>>();
         public StatisticsPage()
         {
             InitializeComponent();
+            LoadBarChartData();
+        }
+
+        private void LoadBarChartData()
+        {
+            Random random = new();
+            for (int i = 0; i <= 60; i++)
+            {
+                list.Add(new KeyValuePair<string, int>(i.ToString(), random.Next(1, 10)));
+            }
+            ((ColumnSeries)TrashChart.Series[0]).ItemsSource = list;
         }
     }
 }
