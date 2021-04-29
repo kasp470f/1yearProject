@@ -8,7 +8,7 @@ namespace TrashHandling.Pages
 {
 	/// <summary>
 	/// Interaction logic for RegisterTrashPage.xaml
-	/// <para>Created by Martin Nørholm</para>
+	/// <para>Created by Martin</para>
 	/// </summary>
 	public partial class RegisterTrashPage : Page
 	{
@@ -18,9 +18,11 @@ namespace TrashHandling.Pages
 			TrashPicker.ItemsSource = ComboBoxSources.Categories;
 			TrashPicker.SelectedItem = ComboBoxSources.Categories[0];
 
-			UnitPicker.Items.Add(ComboBoxSources.Unit.Kg);
-			UnitPicker.Items.Add(ComboBoxSources.Unit.Meter);
-			UnitPicker.Items.Add(ComboBoxSources.Unit.Colli);
+      // Adds all enum values through the GetValues() method.
+			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
+			//UnitPicker.Items.Add(ComboBoxSources.Unit.Kg);
+			//UnitPicker.Items.Add(ComboBoxSources.Unit.Meter);
+			//UnitPicker.Items.Add(ComboBoxSources.Unit.Colli);
 			
 			
 		}
