@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Controls.DataVisualization.Charting;
+using TrashHandling.Models;
 
 namespace TrashHandling.Pages
 {
@@ -15,9 +16,14 @@ namespace TrashHandling.Pages
         public StatisticsPage()
         {
             InitializeComponent();
+            LoadComboBoxes();
             LoadBarChartData();
         }
 
+        /// <summary>
+        /// Loads a random chart
+        /// <para>Created by Kasper</para>
+        /// </summary>
         private void LoadBarChartData()
         {
             Random random = new();
@@ -26,6 +32,15 @@ namespace TrashHandling.Pages
                 list.Add(new KeyValuePair<string, int>(i.ToString(), random.Next(1, 10)));
             }
             ((ColumnSeries)TrashChart.Series[0]).ItemsSource = list;
+        }
+
+        /// <summary>
+        /// Just adds the Categories to the ComboBox
+        /// <para>Created by Kasper</para>
+        /// </summary>
+        private void LoadComboBoxes()
+        {
+            TrashCategoryComboBox.ItemsSource = ComboBoxSources.Categories;
         }
     }
 }

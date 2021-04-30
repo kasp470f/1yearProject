@@ -18,15 +18,15 @@ namespace TrashHandling.Pages
 			TrashPicker.ItemsSource = ComboBoxSources.Categories;
 			TrashPicker.SelectedItem = ComboBoxSources.Categories[0];
 
-      // Adds all enum values through the GetValues() method.
+			// Adds all enum values through the GetValues() method.
 			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
-			//UnitPicker.Items.Add(ComboBoxSources.Unit.Kg);
-			//UnitPicker.Items.Add(ComboBoxSources.Unit.Meter);
-			//UnitPicker.Items.Add(ComboBoxSources.Unit.Colli);
-			
 			
 		}
 
+		/// <summary>
+		/// Adds data to the Database
+		/// <para>Created by Martin</para>
+		/// </summary>
 		private void AddData_Click(object sender, RoutedEventArgs e)
 		{
 			//Makes a new Trash object and adds the content from the textboxes and comboboxes on RegisterTrashPage.
@@ -39,7 +39,7 @@ namespace TrashHandling.Pages
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
 				CompanyId = int.Parse(CompanyID.Text),
-				//RegisterTimeStamp = $"{DatePickField.SelectedDate.Value:yyyy:MM:dd HH:mm}"
+				RegisterTimeStamp = $"{DatePickField.Value:yyyy:MM:dd HH:mm}"
 			};
 
 			//Call the method to add to the db
