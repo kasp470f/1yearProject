@@ -20,6 +20,10 @@ namespace TrashHandling.Pages
             LoadBarChartData();
         }
 
+        /// <summary>
+        /// Loads a random chart
+        /// <para>Created by Kasper</para>
+        /// </summary>
         private void LoadBarChartData()
         {
             Random random = new();
@@ -30,6 +34,10 @@ namespace TrashHandling.Pages
             ((ColumnSeries)TrashChart.Series[0]).ItemsSource = list;
         }
 
+        /// <summary>
+        /// Just adds the Categories to the ComboBox
+        /// <para>Created by Kasper</para>
+        /// </summary>
         private void LoadComboBoxes()
         {
             TrashCategoryComboBox.ItemsSource = ComboBoxSources.Categories;
