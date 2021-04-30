@@ -9,8 +9,8 @@
       d:DesignHeight="450" d:DesignWidth="1000">
 
     <Grid>
-        <StackPanel>
-            <TextBlock Text="Display Data" Style="{StaticResource HeaderTextBlock}" Margin="10"/>
+        <StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
+            <TextBlock Text="Display Data"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <DataGrid Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>

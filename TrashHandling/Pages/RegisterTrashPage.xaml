@@ -9,7 +9,7 @@
 	  d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <StackPanel Style="{StaticResource CenteredVerticalStack}">
+        <StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
             <!--The header of the form-->
             <TextBlock Text="Registrér dit affald" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
             <!--The grid to contain our form-->
