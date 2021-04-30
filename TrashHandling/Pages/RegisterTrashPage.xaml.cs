@@ -15,12 +15,7 @@ namespace TrashHandling.Pages
 		public RegisterTrashPage()
 		{
 			InitializeComponent();
-			TrashPicker.ItemsSource = ComboBoxSources.Categories;
-			TrashPicker.SelectedItem = ComboBoxSources.Categories[0];
-
-			// Adds all enum values through the GetValues() method.
-			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
-			
+			LoadComboBoxes();			
 		}
 
 		/// <summary>
@@ -47,6 +42,14 @@ namespace TrashHandling.Pages
 
 			MessageBox.Show($"{trash.Amount} - {trash.Units} - {trash.Category}\n{trash.Description}\n" +
 				$"{trash.ResponsiblePerson}\n{trash.CompanyId}\n{trash.RegisterTimeStamp}");			
+		}
+
+		private void LoadComboBoxes()
+		{
+			TrashPicker.ItemsSource = ComboBoxSources.Categories;
+			TrashPicker.SelectedItem = ComboBoxSources.Categories[0];
+			// Adds all enum values through the GetValues() method.
+			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
 		}
 	}
 }

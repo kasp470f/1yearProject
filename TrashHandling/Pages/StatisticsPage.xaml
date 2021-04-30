@@ -11,7 +11,10 @@
 
     <Grid>
         <StackPanel>
-            <TextBlock Text="Statistik" Style="{StaticResource HeaderTextBlock}" Margin="10"/>
+			<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
+				<TextBlock Text="Statistik"/>
+			</StackPanel>
+            
             <Grid Width="600" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

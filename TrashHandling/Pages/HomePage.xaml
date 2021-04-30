@@ -8,9 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-		<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-			<TextBlock Text="Velkommen til Trashhandling." Style="{StaticResource HeaderTextBlock}"/>
-			<TextBlock Text="Vælg hvad du ønsker at gøre i top-menuen." Style="{StaticResource HeaderTextBlock}"/>
+		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
+			<TextBlock Text="Velkommen til Trashhandling."/>
+			<TextBlock Text="Vælg hvad du ønsker at gøre i top-menuen."/>
 		</StackPanel>
 		
 	</Grid>
