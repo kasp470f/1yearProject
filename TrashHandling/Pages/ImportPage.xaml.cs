@@ -7,7 +7,10 @@ using System.Collections.Generic;
 
 namespace TrashHandling.Pages
 {
-	
+	/// <summary>
+	/// Interaction logic for ImportPage.xaml
+	/// <para>Created by Martin</para>
+	/// </summary>
 	public partial class ImportPage : Page
 	{
 		public static string dirPath = @"C:\Dropzone";
@@ -22,12 +25,11 @@ namespace TrashHandling.Pages
 			MonitorDirectory(dirPath);
 		}
 
-		//Created by Martin Nørholm
-
 		///<Summary>
 		///Opens a window to pick a .csv file from a specific directory: C:\Dropzone which is defined in the project assignment as our predefined folder
 		///Window shows .csv-files only
 		///After file is accepted, a preview of the data in it will be shown
+		///<para>Created by Martin</para>
 		///</Summary>
 		private void PickFile_Click(object sender, RoutedEventArgs e)
 		{
@@ -49,8 +51,12 @@ namespace TrashHandling.Pages
 				MessageBox.Show("Succes!!");
 			}
 		}
-		
 
+		/// <summary>
+		/// Monitors a directory for additions of files that are csv format.
+		/// <para>Created by Kasper</para>
+		/// </summary>
+		/// <param name="path">The path to monitor</param>
 		private static void MonitorDirectory(string path)
 		{
 			FileSystemWatcher fileSystemWatcher = new (path);
@@ -59,6 +65,9 @@ namespace TrashHandling.Pages
 			fileSystemWatcher.EnableRaisingEvents = true;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private static void File_Added(object sender, FileSystemEventArgs e)
 		{
 			MessageBox.Show(e.Name);

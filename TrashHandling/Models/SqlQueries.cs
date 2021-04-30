@@ -5,7 +5,11 @@ using System.Data.SqlClient;
 using System.Windows;
 
 namespace TrashHandling.Models
-{	
+{
+	/// <summary>
+	/// The class for SQL Queries
+	/// <para>Created by Martin</para>
+	/// </summary>
 	public class SqlQueries
 	{		
 		//Connectionstring to database is fetched from App.config which is ignored by GitHub
@@ -14,7 +18,7 @@ namespace TrashHandling.Models
 		
 		/// <summary>
 		/// Logic to insert a Trash object into the db.
-		/// <para>Created by Martin Nørholm</para>
+		/// <para>Created by Martin</para>
 		/// </summary>
 		public static void InsertTrashToDb(Trash trash)
 		{

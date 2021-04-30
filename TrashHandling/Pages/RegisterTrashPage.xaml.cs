@@ -23,6 +23,10 @@ namespace TrashHandling.Pages
 			
 		}
 
+		/// <summary>
+		/// Adds data to the Database
+		/// <para>Created by Martin</para>
+		/// </summary>
 		private void AddData_Click(object sender, RoutedEventArgs e)
 		{
 			//Makes a new Trash object and adds the content from the textboxes and comboboxes on RegisterTrashPage.

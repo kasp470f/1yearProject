@@ -8,7 +8,7 @@ namespace TrashHandling.Models
 {
 	/// <summary>
 	/// The class containing the properties to handle trash
-	/// <para>Created by Martin Nørholm</para>
+	/// <para>Created by Martin</para>
 	/// </summary>
 	public class Trash
 	{
