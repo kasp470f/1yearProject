@@ -9,15 +9,18 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-		<TextBlock Text="Log (Console)" Style="{StaticResource HeaderTextBlock}" Margin="0,0,0,20" />
-		        
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="40"/>
-            </Grid.RowDefinitions>
-            <TextBox x:Name="consoleBox" IsReadOnly="true" Margin="10,55,10,5" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="ScrollToEnd_Changed"/>
-            <Button Content="Export til txt" Click="ExportLog_Click" Height="20" Width="100" Grid.Row="1"/>
-        </Grid>
-    </Grid>
+		
+		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
+			<TextBlock Text="Log (Console)" Style="{StaticResource HeaderTextBlock}"/>			
+		</StackPanel>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="40"/>
+			</Grid.RowDefinitions>
+			<TextBox x:Name="consoleBox" IsReadOnly="true" Margin="10,55,10,5" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="ScrollToEnd_Changed"/>
+			<Button Content="Export til txt" Click="ExportLog_Click" Height="20" Width="100" Grid.Row="1"/>
+		</Grid>
+
+	</Grid>
 </Page>
