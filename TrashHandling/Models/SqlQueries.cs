@@ -15,11 +15,12 @@ namespace TrashHandling.Models
 		//Connectionstring to database is fetched from App.config which is ignored by GitHub
 		private static SqlConnection connectionString = 
 			new(ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
-		
+
 		/// <summary>
 		/// Logic to insert a Trash object into the db.
 		/// <para>Created by Martin</para>
 		/// </summary>
+		/// <param name="trash">The trash element that will be put into the database</param>
 		public static void InsertTrashToDb(Trash trash)
 		{
 			try
