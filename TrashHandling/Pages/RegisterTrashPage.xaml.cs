@@ -40,10 +40,14 @@ namespace TrashHandling.Pages
 			//Call the method to add to the db
 			SqlQueries.InsertTrashToDb(trash);
 
-			MessageBox.Show($"{trash.Amount} - {trash.Units} - {trash.Category}\n{trash.Description}\n" +
-				$"{trash.ResponsiblePerson}\n{trash.CompanyId}\n{trash.RegisterTimeStamp}");			
+			Console.Log($"A trash element has been added: {trash.Amount} - {trash.Units} - {trash.Category}\n{trash.Description}\n" +
+				$"{trash.ResponsiblePerson}\n{trash.CompanyId}\n{trash.RegisterTimeStamp}");		
 		}
 
+		/// <summary>
+		/// The Method that will load the comboboxes.
+		/// <para>Created by Martin</para>
+		/// </summary>
 		private void LoadComboBoxes()
 		{
 			TrashPicker.ItemsSource = ComboBoxSources.Categories;
