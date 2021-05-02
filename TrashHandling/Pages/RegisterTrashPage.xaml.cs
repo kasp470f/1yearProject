@@ -15,7 +15,7 @@ namespace TrashHandling.Pages
 		public RegisterTrashPage()
 		{
 			InitializeComponent();
-			LoadComboBoxes();			
+			LoadComboBoxes();
 		}
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace TrashHandling.Pages
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
 				CompanyId = int.Parse(CompanyID.Text),
-				RegisterTimeStamp = $"{DatePickField.Value:yyyy:MM:dd HH:mm}"
+				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
 
 			//Call the method to add to the db
@@ -55,5 +55,8 @@ namespace TrashHandling.Pages
 			// Adds all enum values through the GetValues() method.
 			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
 		}
+
+		// Opens the DateTimePicker upon click
+        private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
 	}
 }
