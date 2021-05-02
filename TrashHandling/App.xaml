@@ -33,7 +33,22 @@
 				<Setter Property="Margin" Value="0,10,0,20"/>
 			</Style>
 
-			<Style x:Key="StandardDataGrid" TargetType="DataGrid">
+            <Style TargetType="DatePicker">
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Margin" Value="10,0,0,0"/>
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="FirstDayOfWeek" Value="Monday"/>
+                <EventSetter Event="MouseLeftButtonUp" Handler="DatePicker_Click"/>
+                <Style.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="IsReadOnly" Value="True"/>
+                        <Setter Property="Cursor" Value="Arrow"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <Style x:Key="StandardDataGrid" TargetType="DataGrid">
                 <Setter Property="Height" Value="300"/>
                 <Setter Property="Width" Value="900"/>
                 <Setter Property="Margin" Value="0,20,0,0"/>
