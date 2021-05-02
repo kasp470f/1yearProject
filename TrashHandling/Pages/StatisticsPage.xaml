@@ -15,14 +15,17 @@
 				<TextBlock Text="Statistik"/>
 			</StackPanel>
             
-            <Grid Width="600" Height="50">
+            <Grid Width="700" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" >
                     <TextBlock Text="Vælg tidsperiode:" HorizontalAlignment="Center" FontSize="14" Margin="2"/>
-                    <ComboBox x:Name="timePeriodeComboBox" Width="180"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <DatePicker x:Name="timeStart"/>
+                        <DatePicker x:Name="timeEnd"/>
+                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -31,8 +34,10 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <Grid Margin="50, 60, 50, 40">
-            <chartingToolKit:Chart x:Name="TrashChart" Width="auto" Height="auto" Title="Trash between ? and ?" Background="LightSteelBlue" Margin="50" FontWeight="DemiBold">
+        
+        <!--Chart-->
+        <Grid Margin="100, 120, 100, 40">
+            <chartingToolKit:Chart x:Name="TrashChart" Width="auto" Height="auto" Title="Trash between ? and ?" Background="LightSteelBlue"  FontWeight="DemiBold">
                 <!--Axes-->
                 <chartingToolKit:Chart.Axes>
                     <chartingToolKit:CategoryAxis Orientation="X" Title="Date">
