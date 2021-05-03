@@ -6,25 +6,24 @@
       xmlns:local="clr-namespace:TrashHandling.Pages"
       mc:Ignorable="d"
       Style="{StaticResource PageStyle}"
-      d:DesignHeight="450" d:DesignWidth="1000">
+      d:DesignHeight="450" d:DesignWidth="1000" Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
             <TextBlock Text="Display Data"/>
-            
-				<DataGrid x:Name="DbDisplayer" Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" Header="Id" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Width="*" Header="Mængde" Binding="{Binding Amount}"/>
-                        <DataGridTextColumn Width="*" Header="Måleenhed" Binding="{Binding Units}"/>
-                        <DataGridTextColumn Width="*" Header="Affaldskategori" Binding="{Binding Category}"/>
-                        <DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" Binding="{Binding Description}"/>
-                        <DataGridTextColumn Width="*" Header="Ansvarlig" Binding="{Binding ResponsiblePerson}"/>
-                        <DataGridTextColumn Width="*" Header="VirksomhedsId" Binding="{Binding CompanyId}"/>
-                        <DataGridTextColumn Width="*" Header="Dato" Binding="{Binding RegisterTimeStamp}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            
         </StackPanel>
+        
+        <DataGrid x:Name="DbDisplayer" Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True" AutoGenerateColumns="False" CanUserResizeColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="*" Header="Mængde" Binding="{Binding Amount}"/>
+                <DataGridTextColumn Width="*" Header="Måleenhed" Binding="{Binding Units}" MaxWidth="100"/>
+                <DataGridTextColumn Width="*" Header="Affaldskategori" Binding="{Binding Category}" MaxWidth="125"/>
+                <DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" Binding="{Binding Description}"/>
+                <DataGridTextColumn Width="*" Header="Ansvarlig" Binding="{Binding ResponsiblePerson}"/>
+                <DataGridTextColumn Width="*" Header="VirksomhedsId" Binding="{Binding CompanyId}"/>
+                <DataGridTextColumn Width="*" Header="Dato" Binding="{Binding RegisterTimeStamp}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
