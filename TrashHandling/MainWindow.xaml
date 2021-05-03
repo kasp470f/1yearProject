@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrashHandling"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Home" Height="600" Width="1200" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -13,20 +13,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--Navigation Bar-->
-        <DockPanel Background="Gray" Height="20" VerticalAlignment="Top" Grid.Row="0">
-            <Menu>
-                <MenuItem Header="Home"/>
-                <MenuItem Header="Affald">
-                    <MenuItem Header="Registér affald"/>
-                    <MenuItem Header="Ændring af data"/>
-                    <MenuItem Header="Import fra .csv"/>
-                    <MenuItem Header="Export til .csv"/>
-                </MenuItem>
-                <MenuItem Header="Statistik"/>
-                <MenuItem Header="Console"/>
-            </Menu>
-        </DockPanel>
-        
+        <Border BorderBrush="#999999" BorderThickness="0,0,0,1">
+            <DockPanel Background="Gray" Height="20" VerticalAlignment="Top" Grid.Row="0">
+                <Menu x:Name="Topbar">
+                    <MenuItem Header="Home"/>
+                    <MenuItem Header="Affald">
+                        <MenuItem Header="Display Data"/>
+                        <MenuItem Header="Registrér affald"/>
+                        <MenuItem Header="Import fra .csv"/>
+                    </MenuItem>
+                    <MenuItem Header="Statistik"/>
+                    <MenuItem Header="Console"/>
+                </Menu>
+            </DockPanel>
+        </Border>
+
         <!--Viewing Window-->
         <Frame x:Name="viewingWindow" NavigationUIVisibility="Hidden" Panel.ZIndex="1" Grid.Row="1"/>
     </Grid>
