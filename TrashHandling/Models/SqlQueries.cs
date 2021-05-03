@@ -51,6 +51,11 @@ namespace TrashHandling.Models
 			}
 		}
 
+		/// <summary>
+		/// Retrieves all the data from the database.
+		/// <para>Created by Martin</para>
+		/// </summary>
+		/// <returns>A list with database information</returns>
 		public static List<Trash> GetTrashFromDb()
 		{
 			List<Trash> trash = new();
