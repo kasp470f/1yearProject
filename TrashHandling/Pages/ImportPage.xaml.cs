@@ -66,7 +66,8 @@ namespace TrashHandling.Pages
 		}
 
 		/// <summary>
-		/// 
+		/// The Method that is sent when a file is added to the monitored folder
+		/// <para>Created by Kasper</para>
 		/// </summary>
 		private static void File_Added(object sender, FileSystemEventArgs e)
 		{

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TrashHandling.Models
+﻿namespace TrashHandling.Models
 {
-	/// <summary>
-	/// The class containing the properties to handle trash
-	/// <para>Created by Martin</para>
-	/// </summary>
-	public class Trash
+    /// <summary>
+    /// The class object containing the properties to handle trash
+    /// <para>Created by Martin</para>
+    /// </summary>
+    public class Trash
 	{
 		public int Id { get; set; }
 		public decimal Amount { get; set; }
