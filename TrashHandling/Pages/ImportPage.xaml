@@ -18,23 +18,19 @@
 				<!--Opens a file dialog to choose a .csv-file-->
 				<Button Name="FileChoser" Content="Vælg fil" Margin="10,5,0,5" Width="50" Background="#FAFAFA" Click="PickFile_Click"/>
 			</StackPanel>
-			
-			<!--DataGrid shows a preview of the data from the selected file-->
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<DataGrid Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True">
-					<DataGrid.Columns>
-						<DataGridTextColumn Width="*" Header="Id" />
-						<DataGridTextColumn Width="*" Header="Mængde" />
-						<DataGridTextColumn Width="*" Header="Måleenhed" />
-						<DataGridTextColumn Width="*" Header="Affaldskategori" />
-						<DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" />
-						<DataGridTextColumn Width="*" Header="Ansvarlig" />
-						<DataGridTextColumn Width="*" Header="VirksomhedsId" />
-						<DataGridTextColumn Width="*" Header="Dato" />
-					</DataGrid.Columns>
-				</DataGrid>
-			</StackPanel>
-            <Button Margin="0,10" Content="Tilføj til database" Width="120"/>
-        </StackPanel>		
-	</Grid>
+        </StackPanel>
+        <!--DataGrid shows a preview of the data from the selected file-->
+            <DataGrid Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True" Margin="50,120,50,40">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="*" Header="Mængde" Binding="{Binding Amount}"/>
+                <DataGridTextColumn Width="*" Header="Måleenhed" Binding="{Binding Units}" MaxWidth="100"/>
+                <DataGridTextColumn Width="*" Header="Affaldskategori" Binding="{Binding Category}" MaxWidth="125"/>
+                <DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" Binding="{Binding Description}"/>
+                <DataGridTextColumn Width="*" Header="Ansvarlig" Binding="{Binding ResponsiblePerson}"/>
+                <DataGridTextColumn Width="*" Header="VirksomhedsId" Binding="{Binding CompanyId}"/>
+                <DataGridTextColumn Width="*" Header="Dato" Binding="{Binding RegisterTimeStamp}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </Page>
