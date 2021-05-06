@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Controls;
 using TrashHandling.Models;
 
@@ -18,6 +20,7 @@ namespace TrashHandling.Pages
 
         // List with the data that will be shown through the datagrid
         private List<Trash> Database;
+        private List<Trash> LocalFiles;
 
 
         public DisplayDataPage()
@@ -28,7 +31,31 @@ namespace TrashHandling.Pages
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
 
+        /// <summary>
+        /// The logic behind the button that allows for export of CSV
+        /// <para>Created by Kasper</para>
+        /// </summary>
+        private void ExportDB_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SaveFileDialog selector = new() {
+                Title = "Choose the location of the Database Content",
+                Filter = "CSV (Comma Delimited) (*.csv)|*.csv|Text file (*.txt)|*.txt",
+                InitialDirectory = @"C:\Dropzone",
+            };
+            if (selector.ShowDialog() == true)
+            {
+                string databaseText = string.Empty;
+                foreach (Trash element in Database)
+                {
+                    databaseText += $"{element.ToString()}\n";
+                }
+                File.WriteAllText(selector.FileName, databaseText);
+            }
+        }
 
+
+
+        #region Background Worker
         /// <summary>
         /// The work the worker has to do async
         /// <para>Created by Kasper</para>
@@ -46,7 +73,8 @@ namespace TrashHandling.Pages
         /// <para>Created by Kasper</para>
         /// </summary>
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e) => worker.RunWorkerAsync();
+        #endregion
     }
 
-    
+
 }
