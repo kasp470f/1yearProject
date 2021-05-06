@@ -30,7 +30,7 @@ namespace TrashHandling.Pages
 				//Id autogenerates in database...
 				Amount = decimal.Parse(Amount.Text),
 				Units = UnitPicker.SelectedIndex + 1,
-				Category = TrashPicker.SelectedItem.ToString(),
+				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
 				CompanyId = int.Parse(CompanyID.Text),
@@ -38,7 +38,7 @@ namespace TrashHandling.Pages
 			};
 
 			//Call the method to add to the db
-			SqlQueries.InsertTrashToDb(trash);
+			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
 
 			Console.Log($"A trash element has been added: {trash.Amount} - {trash.Units} - {trash.Category}\n{trash.Description}\n" +
 				$"{trash.ResponsiblePerson}\n{trash.CompanyId}\n{trash.RegisterTimeStamp}");		

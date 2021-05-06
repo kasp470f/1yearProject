@@ -52,7 +52,8 @@
 
                 <!--Area to select a date of registry-->
                 <TextBlock Text="Dato:" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"/>
-				<xctk:DateTimePicker Name="DateTimePickField" Grid.Column="1" Grid.Row="5" AllowTextInput="False" ShowButtonSpinner="False" Format="Custom" FormatString="yyyy:MM:dd HH:mm" TextBoxBase.SelectionChanged="DateTimePickField_Click"/>
+				<xctk:DateTimePicker Name="DateTimePickField" Grid.Column="1" Grid.Row="5" AllowTextInput="False" ShowButtonSpinner="False" Format="Custom" FormatString="yyyy:MM:dd HH:mm"
+									 TextBoxBase.SelectionChanged="DateTimePickField_Click"/>
 
                 <!--Button to submit the form-->
                 <Button Name="AddTrash" Content="Registrér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA" Click="AddData_Click"/>
