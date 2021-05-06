@@ -40,8 +40,7 @@ namespace TrashHandling.Pages
 			//Call the method to add to the db
 			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
 
-			Console.Log($"A trash element has been added: {trash.Amount} - {trash.Units} - {trash.Category}\n{trash.Description}\n" +
-				$"{trash.ResponsiblePerson}\n{trash.CompanyId}\n{trash.RegisterTimeStamp}");		
+			Console.Log($"A trash element has been added: {trash.ToString()}");		
 		}
 
 		/// <summary>
@@ -50,8 +49,8 @@ namespace TrashHandling.Pages
 		/// </summary>
 		private void LoadComboBoxes()
 		{
-			TrashPicker.ItemsSource = ComboBoxSources.Categories;
-			TrashPicker.SelectedItem = ComboBoxSources.Categories[0];
+			TrashPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Categories));
+			TrashPicker.SelectedItem = (ComboBoxSources.Categories)1;
 			// Adds all enum values through the GetValues() method.
 			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
 		}

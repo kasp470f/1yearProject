@@ -65,7 +65,7 @@ namespace TrashHandling.Pages
 					LocalID = $"{fileName} / {element[0]}",
 					Amount = int.Parse(element[1]),
 					Units = int.Parse(element[2]),
-					Category = element[3],
+					Category = int.Parse(element[3]),
 					Description = element[4],
 					ResponsiblePerson = element[5],
 					CompanyId  = int.Parse(element[6]),

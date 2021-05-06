@@ -15,13 +15,15 @@ namespace TrashHandling.Windows
 		public ChangeDataWindow(Trash openedObject)
 		{
 			InitializeComponent();
-			TrashPicker.ItemsSource = ComboBoxSources.Categories;
-			TrashPicker.SelectedItem = openedObject.Category;
+			TrashPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Categories));
+			TrashPicker.SelectedIndex = openedObject.Category - 1;
+			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
+			UnitPicker.SelectedIndex = openedObject.Units - 1;
 			Amount.Text = openedObject.Amount.ToString();
 			Description.Text = openedObject.Description;
 			Registrator.Text = openedObject.ResponsiblePerson;
 			CompanyID.Text = openedObject.CompanyId.ToString();
-			DateTimePickField.Value = DateTime.Parse(openedObject.RegisterTimeStamp.ToString());
+			DateTimePickField.Text = openedObject.RegisterTimeStamp.ToString();
 
 			//SqlQueries.EditTrashInDb(Id);
 		}

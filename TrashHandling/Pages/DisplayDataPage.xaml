@@ -22,8 +22,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Width="*" Header="Mængde" Binding="{Binding Amount}"/>
-                    <DataGridTextColumn Width="*" Header="Måleenhed" Binding="{Binding Units}" MaxWidth="100"/>
-                    <DataGridTextColumn Width="*" Header="Affaldskategori" Binding="{Binding Category}" MaxWidth="125"/>
+                    <DataGridTextColumn Width="*" Header="Måleenhed" Binding="{Binding UnitsText}" MaxWidth="100"/>
+                    <DataGridTextColumn Width="*" Header="Affaldskategori" Binding="{Binding CategoryText}" MaxWidth="125"/>
                     <DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" Binding="{Binding Description}"/>
                     <DataGridTextColumn Width="*" Header="Ansvarlig" Binding="{Binding ResponsiblePerson}"/>
                     <DataGridTextColumn Width="*" Header="VirksomhedsId" Binding="{Binding CompanyId}"/>
