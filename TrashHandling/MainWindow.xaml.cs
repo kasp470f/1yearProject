@@ -14,13 +14,14 @@ namespace TrashHandling
         // Pages Directory
         /// Pages under the Directory 
         static HomePage HomePage = new();
-        static ConsolePage ConsolePage = new();
-        static StatisticsPage StatisticsPage = new();
-        static DisplayDataPage DisplayDataPage = new();
         static RegisterTrashPage RegisterPage = new();
+        static DisplayDataPage DisplayDataPage = new();
         static ImportPage ImportPage = new();
+        static StatisticsPage StatisticsPage = new();
+        static ConsolePage ConsolePage = new();
+
         /// The Directory itself
-        Dictionary<string, Page> PageDirectory = new()
+        private readonly Dictionary<string, Page> PageDirectory = new()
         {
             { "Home", HomePage},
             { "Registrér affald", RegisterPage },
