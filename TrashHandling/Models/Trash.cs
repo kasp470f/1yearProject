@@ -11,15 +11,17 @@ namespace TrashHandling.Models
 	{
         public string LocalID { get; set; }
         public int Id { get; set; }
-		    public decimal Amount { get; set; }
-		    public int Units { get; set; }
-        public string UnitsText { get => Enum.GetName(typeof(Unit), Units); }
-		    public int Category { get; set; }
+        public decimal Amount { get; set; }
+		public int Units { get; set; }
+		public int Category { get; set; }
         public string Description { get; set; }
-		    public string ResponsiblePerson { get; set; }
-		    public int CompanyId { get; set; }
-		    public string RegisterTimeStamp { get; set; }
+		public string ResponsiblePerson { get; set; }
+		public int CompanyId { get; set; }
+		public string RegisterTimeStamp { get; set; }
 
+        //Display Text
+        public string CategoryText { get => Enum.GetName(typeof(Categories), Category); }
+        public string UnitsText { get => Enum.GetName(typeof(Unit), Units); }
 
         /// <summary>
         /// A overriden function to write out the element.

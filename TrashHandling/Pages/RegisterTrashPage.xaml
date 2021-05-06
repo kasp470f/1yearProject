@@ -34,8 +34,8 @@
                 <!--Area to input amount of trash-->
                 <TextBlock Text="Mængde:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch">
-                    <TextBox Name="Amount" Width="210"/>
-                    <ComboBox Name="UnitPicker" Style="{DynamicResource ComboBoxStyle}" Width="60" Margin="5,5,0,5" FontSize="12" VerticalContentAlignment="Center"/>
+                    <TextBox Name="Amount" Width="190"/>
+                    <ComboBox Name="UnitPicker" Style="{DynamicResource ComboBoxStyle}" Width="80" Margin="5,5,0,5" FontSize="12" VerticalContentAlignment="Center"/>
                 </StackPanel>
 
                 <!--Area to input a description-->
