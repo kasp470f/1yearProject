@@ -9,10 +9,9 @@ namespace TrashHandling.Models
     /// </summary>
     public class Trash
 	{
-        public string LocalID { get; set; }
         public int Id { get; set; }
         public decimal Amount { get; set; }
-		public int Units { get; set; }
+		public int Unit { get; set; }
 		public int Category { get; set; }
         public string Description { get; set; }
 		public string ResponsiblePerson { get; set; }
@@ -20,8 +19,9 @@ namespace TrashHandling.Models
 		public string RegisterTimeStamp { get; set; }
 
         //Display Text
-        public string CategoryText { get => Enum.GetName(typeof(Categories), Category); }
-        public string UnitsText { get => Enum.GetName(typeof(Unit), Units); }
+        public string CategoryText { get => ComboBoxSources.Categories[Category]; }
+        public string UnitsText { get => Enum.GetName(typeof(Units), Unit); }
+        public string IdText { get; set; }
 
         /// <summary>
         /// A overriden function to write out the element.
@@ -30,7 +30,7 @@ namespace TrashHandling.Models
         /// <returns>A string with all the properties</returns>
         public override string ToString()
         {
-            return $"{Id},{Amount},{Units},{Category},{Description},{ResponsiblePerson},{CompanyId},{RegisterTimeStamp}";
+            return $"{Id},{Amount},{Unit},{Category},{Description},{ResponsiblePerson},{CompanyId},{RegisterTimeStamp}";
         }
     }
 }
