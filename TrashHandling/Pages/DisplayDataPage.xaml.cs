@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Controls;
 using TrashHandling.Models;
+using TrashHandling.Windows;
 
 namespace TrashHandling.Pages
 {
@@ -30,6 +31,17 @@ namespace TrashHandling.Pages
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
+        
+        private void OpenEditableData_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		    {
+			    if (sender != null)
+			    {
+				      DataGridRow row = sender as DataGridRow;
+				      Trash trash = (Trash)row.Item;
+				      ChangeDataWindow changeData = new(trash);
+				      changeData.Show();
+			    }
+		    }
 
         /// <summary>
         /// The logic behind the button that allows for export of CSV
@@ -75,6 +87,4 @@ namespace TrashHandling.Pages
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e) => worker.RunWorkerAsync();
         #endregion
     }
-
-
 }

@@ -22,7 +22,7 @@ namespace TrashHandling.Models
 		/// <para>Created by Martin</para>
 		/// </summary>
 		/// <param name="trash">The trash element that will be put into the database</param>
-		public static void InsertTrashToDb(Trash trash)
+		public static void InsertTrashToDb(Trash trash, DateTime dateTimePickerValue)
 		{
 			try
 			{
@@ -31,15 +31,14 @@ namespace TrashHandling.Models
 					VALUES(@Amount, @Units, @Category, @Description, @ResponsiblePerson, @CompanyId, @Timestamp)", connectionString);
 				insert.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
 				insert.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Units;
-				insert.Parameters.Add("@Category", SqlDbType.NVarChar).Value = trash.Category;
+				insert.Parameters.Add("@Category", SqlDbType.Int).Value = trash.Category;
 				insert.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
 				insert.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
 				insert.Parameters.Add("@CompanyId", SqlDbType.Int).Value = trash.CompanyId;
-				insert.Parameters.Add("@Timestamp", SqlDbType.NVarChar).Value = trash.RegisterTimeStamp;
+				insert.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = dateTimePickerValue;
 
 				connectionString.Open();
 				insert.ExecuteNonQuery();
-
 			}
 			catch (Exception e)
 			{
@@ -52,10 +51,10 @@ namespace TrashHandling.Models
 		}
 
 		/// <summary>
-		/// Retrieves all the data from the database.
+		/// Logic to pull the data from our db.
 		/// <para>Created by Martin</para>
 		/// </summary>
-		/// <returns>A list with database information</returns>
+		/// <param name="trash">The trash element that will be shown as a row in our datagrid</param>
 		public static List<Trash> GetTrashFromDb()
 		{
 			List<Trash> trash = new();
@@ -66,18 +65,19 @@ namespace TrashHandling.Models
 				SqlDataReader dbReader = selectAll.ExecuteReader();
 
 				while (dbReader.Read())
-				{
-
+				{					
 					trash.Add(new Trash
 					{
 						Id = int.Parse(dbReader[0].ToString()),
 						Amount = decimal.Parse(dbReader[1].ToString()),
 						Units = int.Parse(dbReader[2].ToString()),
-						Category = dbReader[3].ToString(),
+						Category = int.Parse(dbReader[3].ToString()),
 						Description = dbReader[4].ToString(),
 						ResponsiblePerson = dbReader[5].ToString(),
 						CompanyId = int.Parse(dbReader[6].ToString()),
-						RegisterTimeStamp = string.Format("{0:yyyy:MM:dd HH:mm}", dbReader[7])
+
+						//Date must according to project be in format YYYY:MM:DD HH:mm
+						RegisterTimeStamp = $"{(DateTime)dbReader[7]:yyyy:MM:dd HH:mm}"
 					});
 				}
 
@@ -87,7 +87,6 @@ namespace TrashHandling.Models
 			catch (Exception e)
 			{
 				MessageBox.Show(e.Message);
-				trash.Clear();
 				return trash;
 			}
 			finally
@@ -95,6 +94,68 @@ namespace TrashHandling.Models
 				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
 			}
 
+		}
+
+		/// <summary>
+		/// Logic to pull data between 2 dates
+		/// <para>Created by Martin</para>
+		/// </summary>
+		/// <param name="trash">The trash element that will be shown as a row in our datagrid</param>
+		public static List<Trash> GetTrashFromDb(DateTime dateFrom, DateTime dateTo)
+		{
+			List<Trash> trash = new();
+			try
+			{
+				SqlCommand selectAll = new(@"SELECT * FROM TrashTable
+					WHERE registerTimestamp BETWEEN @DateFrom AND @DateTo", connectionString);
+				selectAll.Parameters.Add("@DateFrom", SqlDbType.DateTime).Value = dateFrom;
+				selectAll.Parameters.Add("@DateTo", SqlDbType.DateTime).Value = dateTo;
+				connectionString.Open();
+				SqlDataReader dbReader = selectAll.ExecuteReader();
+
+				while (dbReader.Read())
+				{
+					trash.Add(new Trash
+					{
+						Id = int.Parse(dbReader[0].ToString()),
+						Amount = decimal.Parse(dbReader[1].ToString()),
+						Units = int.Parse(dbReader[2].ToString()),
+						Category = int.Parse(dbReader[3].ToString()),
+						Description = dbReader[4].ToString(),
+						ResponsiblePerson = dbReader[5].ToString(),
+						CompanyId = int.Parse(dbReader[6].ToString()),
+
+						//Date must according to project be in format YYYY:MM:DD HH:mm
+						RegisterTimeStamp = $"{(DateTime)dbReader[7]:yyyy:MM:dd HH:mm}"
+					});
+				}
+
+				dbReader.Close();
+				return trash;
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.Message);
+				return trash;
+			}
+			finally
+			{
+				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
+			}
+		}
+
+		public static void EditTrashInDb(Trash trash, DateTime dateTimePickerValue)
+		{
+			SqlCommand updateElement = new(@"UPDATE TrashTable SET amount=@Amount,units=@Units,category=@Category,trashDescription=@Description,
+				responsiblePerson=@ResponsiblePerson,companyId=@CompanyId,registerTimestamp=@Timestamp WHERE Id=@Id", connectionString);
+			updateElement.Parameters.Add("@Id", SqlDbType.Int).Value = trash.Id;
+			updateElement.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
+			updateElement.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Units;
+			updateElement.Parameters.Add("@Category", SqlDbType.Int).Value = trash.Category;
+			updateElement.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
+			updateElement.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
+			updateElement.Parameters.Add("@CompanyId", SqlDbType.Int).Value = trash.CompanyId;
+			updateElement.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = dateTimePickerValue;
 		}
 	}
 }
