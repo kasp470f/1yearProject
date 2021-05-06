@@ -18,8 +18,8 @@
                 <Menu x:Name="Topbar">
                     <MenuItem Header="Home"/>
                     <MenuItem Header="Affald">
-                        <MenuItem Header="Display Data"/>
                         <MenuItem Header="Registrér affald"/>
+                        <MenuItem Header="Display Data"/>
                         <MenuItem Header="Import fra .csv"/>
                     </MenuItem>
                     <MenuItem Header="Statistik"/>

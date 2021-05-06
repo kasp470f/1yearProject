@@ -49,10 +49,8 @@
             </Style>
 
             <Style x:Key="StandardDataGrid" TargetType="DataGrid">
-                <Setter Property="Height" Value="300"/>
-                <Setter Property="Width" Value="900"/>
-                <Setter Property="Margin" Value="0,20,0,0"/>
                 <Setter Property="Background" Value="#FAFAFA"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Style.Resources>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -83,14 +81,14 @@
                         <Setter Property="Margin" Value="0,5"/>
                         <Setter Property="Grid.Column" Value="1"/>
                     </Style>
-					<Style TargetType="xctk:DateTimePicker">
-						<Setter Property="HorizontalAlignment" Value="Left"/>
-						<Setter Property="FontSize" Value="12"/>
-						<Setter Property="Width" Value="275"/>
-						<Setter Property="Margin" Value="0,5"/>
-						<Setter Property="Background" Value="#FAFAFA"/>
-					</Style>
-				</Style.Resources>
+                    <Style TargetType="xctk:DateTimePicker">
+                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="Width" Value="275"/>
+                        <Setter Property="Margin" Value="0,5"/>
+                        <Setter Property="Background" Value="#FAFAFA"/>
+                    </Style>
+                </Style.Resources>
             </Style>
 
             <!--Directories-->

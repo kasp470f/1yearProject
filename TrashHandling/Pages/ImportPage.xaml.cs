@@ -4,6 +4,7 @@ using System.IO;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using TrashHandling.Models;
 
 namespace TrashHandling.Pages
 {
@@ -14,6 +15,7 @@ namespace TrashHandling.Pages
 	public partial class ImportPage : Page
 	{
 		public static string dirPath = @"C:\Dropzone";
+		private List<Trash> localFiles = new();
 
 		public ImportPage()
 		{
@@ -22,7 +24,7 @@ namespace TrashHandling.Pages
 			{
 				Directory.CreateDirectory(dirPath);
 			}
-			MonitorDirectory(dirPath);
+			//MonitorDirectory(dirPath);
 		}
 
 		///<Summary>
@@ -38,26 +40,50 @@ namespace TrashHandling.Pages
 			{
 				Title = "Open .csv-file",
 				InitialDirectory = dirPath,
-				Filter = "CSV files (*.csv)|*csv",
+				Filter = "CSV (Comma Delimited) (*.csv)|*.csv",
 				CheckPathExists = true
-			};			
-			bool? fileOk = selector.ShowDialog();
-
-			if (fileOk == true)
+			};		
+			
+			if(selector.ShowDialog()  == true)
 			{
-				FileNameField.Text = selector.FileName.ToString();
+				string path = selector.FileName;
+				FileNameField.Text = path;
+				FormatLocalFile(path, selector.SafeFileName);
 
-				//TODO: What to do after file is opened?
-				MessageBox.Show("Succes!!");
 			}
 		}
 
-		/// <summary>
-		/// Monitors a directory for additions of files that are csv format.
-		/// <para>Created by Kasper</para>
-		/// </summary>
-		/// <param name="path">The path to monitor</param>
-		private static void MonitorDirectory(string path)
+
+		private void FormatLocalFile(string path, string fileName)
+        {
+			string[] content = File.ReadAllLines(path);
+            foreach (string line in content)
+            {
+				string[] element = line.Split(',');
+				localFiles.Add(new Trash()
+				{
+					LocalID = $"{fileName} / {element[0]}",
+					Amount = int.Parse(element[1]),
+					Units = int.Parse(element[2]),
+					Category = int.Parse(element[3]),
+					Description = element[4],
+					ResponsiblePerson = element[5],
+					CompanyId  = int.Parse(element[6]),
+					RegisterTimeStamp = element[7],
+				});
+            }
+			ImportDisplay.ItemsSource = localFiles;
+
+		}
+
+
+        #region Not Working
+        /// <summary>
+        /// Monitors a directory for additions of files that are csv format.
+        /// <para>Created by Kasper</para>
+        /// </summary>
+        /// <param name="path">The path to monitor</param>
+        private static void MonitorDirectory(string path)
 		{
 			FileSystemWatcher fileSystemWatcher = new (path);
 			fileSystemWatcher.Filter = "*.csv";
@@ -73,5 +99,6 @@ namespace TrashHandling.Pages
 		{
 			MessageBox.Show(e.Name);
 		}
-	}
+        #endregion
+    }
 }

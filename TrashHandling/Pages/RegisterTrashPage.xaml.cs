@@ -30,7 +30,7 @@ namespace TrashHandling.Pages
 				//Id autogenerates in database...
 				Amount = decimal.Parse(Amount.Text),
 				Units = UnitPicker.SelectedIndex + 1,
-				Category = TrashPicker.SelectedItem.ToString(),
+				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
 				CompanyId = int.Parse(CompanyID.Text),
@@ -38,10 +38,9 @@ namespace TrashHandling.Pages
 			};
 
 			//Call the method to add to the db
-			SqlQueries.InsertTrashToDb(trash);
+			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
 
-			Console.Log($"A trash element has been added: {trash.Amount} - {trash.Units} - {trash.Category}\n{trash.Description}\n" +
-				$"{trash.ResponsiblePerson}\n{trash.CompanyId}\n{trash.RegisterTimeStamp}");		
+			Console.Log($"A trash element has been added: {trash.ToString()}");		
 		}
 
 		/// <summary>
@@ -50,13 +49,16 @@ namespace TrashHandling.Pages
 		/// </summary>
 		private void LoadComboBoxes()
 		{
-			TrashPicker.ItemsSource = ComboBoxSources.Categories;
-			TrashPicker.SelectedItem = ComboBoxSources.Categories[0];
+			TrashPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Categories));
+			TrashPicker.SelectedItem = (ComboBoxSources.Categories)1;
 			// Adds all enum values through the GetValues() method.
 			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
 		}
 
-		// Opens the DateTimePicker upon click
-        private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
+		/// <summary>
+		/// Opens the DateTimePicker upon click
+		/// <para>Created by Kasper</para>
+		/// </summary>
+		private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
 	}
 }

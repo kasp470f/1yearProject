@@ -40,7 +40,7 @@ namespace TrashHandling.Pages
         /// </summary>
         private void LoadComboBoxes()
         {
-            TrashCategoryComboBox.ItemsSource = ComboBoxSources.Categories;
+            TrashCategoryComboBox.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Categories));
         }
     }
 }
