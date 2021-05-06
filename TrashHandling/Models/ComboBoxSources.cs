@@ -11,9 +11,14 @@ namespace TrashHandling.Models
 		// Enum for the unitpicker
 		public enum Unit
 		{
-			Kg = 1,
-			Meter = 2,
-			Colli = 3
+			Colli = 1,
+			Stk = 2,
+			Ton = 3,
+            Kilogram = 4,
+            Gram = 5,
+            M3 = 6,
+            Liter = 7,
+            Hektoliter = 8
 		};
 
         // List for the category picker
