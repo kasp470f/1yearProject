@@ -12,7 +12,8 @@
         <StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
             <TextBlock Text="Display Data"/>
             
-				<DataGrid x:Name="DbDisplayer" Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True" AutoGenerateColumns="False">
+				<DataGrid x:Name="DbDisplayer" Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" 
+						  CanUserSortColumns="False" IsReadOnly="True" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Header="Id" Binding="{Binding Id}"/>
                         <DataGridTextColumn Width="*" Header="Mængde" Binding="{Binding Amount}"/>
@@ -23,6 +24,11 @@
                         <DataGridTextColumn Width="*" Header="VirksomhedsId" Binding="{Binding CompanyId}"/>
                         <DataGridTextColumn Width="*" Header="Dato" Binding="{Binding RegisterTimeStamp}"/>
                     </DataGrid.Columns>
+				<DataGrid.RowStyle>
+					<Style TargetType="DataGridRow">
+						<EventSetter Event="MouseDoubleClick" Handler="OpenEditableData_Click"/>
+					</Style>
+				</DataGrid.RowStyle>
                 </DataGrid>
             
         </StackPanel>
