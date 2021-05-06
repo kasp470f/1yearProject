@@ -29,7 +29,7 @@ namespace TrashHandling.Pages
 			{
 				//Id autogenerates in database...
 				Amount = decimal.Parse(Amount.Text),
-				Units = UnitPicker.SelectedIndex + 1,
+				Unit = UnitPicker.SelectedIndex + 1,
 				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
@@ -49,10 +49,10 @@ namespace TrashHandling.Pages
 		/// </summary>
 		private void LoadComboBoxes()
 		{
-			TrashPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Categories));
-			TrashPicker.SelectedItem = (ComboBoxSources.Categories)1;
+			TrashPicker.ItemsSource = ComboBoxSources.CategoriesValues;
+			TrashPicker.SelectedItem = ComboBoxSources.Categories[1];
 			// Adds all enum values through the GetValues() method.
-			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
+			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Units));
 		}
 
 		/// <summary>
@@ -60,5 +60,5 @@ namespace TrashHandling.Pages
 		/// <para>Created by Kasper</para>
 		/// </summary>
 		private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
-	}
+    }
 }
