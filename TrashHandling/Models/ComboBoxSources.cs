@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TrashHandling.Models
 {
@@ -9,7 +10,7 @@ namespace TrashHandling.Models
     public static class ComboBoxSources
 	{
 		// Enum for the unitpicker
-		public enum Unit
+		public enum Units
 		{
 			Colli = 1,
 			Stk = 2,
@@ -21,18 +22,20 @@ namespace TrashHandling.Models
             Hektoliter = 8
 		};
 
-        // Enum for the category picker
-        public enum Categories
+        // Dictionary for the category picker
+        public static Dictionary<int, string> Categories { get => categories; }
+        public static List<string> CategoriesValues { get => categories.Values.ToList(); }
+        private static Dictionary<int, string> categories = new Dictionary<int, string>()
         {
-            Batterier  = 1,
-            Biler = 2,
-            Elektronikaffald = 3,
-            Imprægneret_træ = 4,
-            Inventar = 5,
-            Organisk_affald = 6,
-            Pap_og_papir = 7,
-            Plastemballager = 8,
-            PVC = 9
-        }
+            { 1, "Batterier" },
+            { 2, "Biler" },
+            { 3, "Elektronikaffald" },
+            { 4, "Imprægneret træ" },
+            { 5, "Inventar" },
+            { 6, "Organisk affald" },
+            { 7, "Pap og papir" },
+            { 8, "Plastemballager"},
+            { 9, "PVC" },
+        };
     }
 }
