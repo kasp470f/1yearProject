@@ -30,7 +30,7 @@
 
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="Affaldskategori:" HorizontalAlignment="Center" FontSize="14"/>
-                    <ComboBox x:Name="TrashCategoryComboBox" Width="180"/>
+                    <ComboBox Style="{DynamicResource ComboBoxStyle}" x:Name="TrashPicker" Width="180"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

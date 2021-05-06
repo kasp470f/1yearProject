@@ -15,7 +15,6 @@ namespace TrashHandling.Pages
 		public RegisterTrashPage()
 		{
 			InitializeComponent();
-			LoadComboBoxes();
 		}
 
 		/// <summary>
@@ -34,25 +33,13 @@ namespace TrashHandling.Pages
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
 				CompanyId = int.Parse(CompanyID.Text),
-				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
+                RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
 
 			//Call the method to add to the db
 			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
 
 			Console.Log($"A trash element has been added: {trash.ToString()}");		
-		}
-
-		/// <summary>
-		/// The Method that will load the comboboxes.
-		/// <para>Created by Martin</para>
-		/// </summary>
-		private void LoadComboBoxes()
-		{
-			TrashPicker.ItemsSource = ComboBoxSources.CategoriesValues;
-			TrashPicker.SelectedItem = ComboBoxSources.Categories[1];
-			// Adds all enum values through the GetValues() method.
-			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Units));
 		}
 
 		/// <summary>
