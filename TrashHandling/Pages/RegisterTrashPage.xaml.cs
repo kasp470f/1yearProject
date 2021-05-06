@@ -56,7 +56,10 @@ namespace TrashHandling.Pages
 			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
 		}
 
-		// Opens the DateTimePicker upon click
-        private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
+		/// <summary>
+		/// Opens the DateTimePicker upon click
+		/// <para>Created by Kasper</para>
+		/// </summary>
+		private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
 	}
 }
