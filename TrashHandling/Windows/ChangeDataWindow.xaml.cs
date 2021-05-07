@@ -12,18 +12,11 @@ namespace TrashHandling.Windows
 	/// </summary>
 	public partial class ChangeDataWindow : Window
 	{
+		private Trash openedObject { get; set; }
 		public ChangeDataWindow(Trash openedObject)
 		{
 			InitializeComponent();
-			TrashPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Categories));
-			TrashPicker.SelectedIndex = openedObject.Category - 1;
-			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
-			UnitPicker.SelectedIndex = openedObject.Units - 1;
-			Amount.Text = openedObject.Amount.ToString();
-			Description.Text = openedObject.Description;
-			Registrator.Text = openedObject.ResponsiblePerson;
-			CompanyID.Text = openedObject.CompanyId.ToString();
-			DateTimePickField.Text = openedObject.RegisterTimeStamp.ToString();
+			this.openedObject = openedObject;
 
 			//SqlQueries.EditTrashInDb(Id);
 		}
@@ -35,5 +28,18 @@ namespace TrashHandling.Windows
 		{
 
 		}
-	}
+
+        private void DataRendered(object sender, EventArgs e)
+        {
+			TrashPicker.SelectedIndex = openedObject.Category - 1;
+			UnitPicker.SelectedIndex = openedObject.Unit - 1;
+
+
+			Amount.Text = openedObject.Amount.ToString();
+			Description.Text = openedObject.Description;
+			Registrator.Text = openedObject.ResponsiblePerson;
+			CompanyID.Text = openedObject.CompanyId.ToString();
+			DateTimePickField.Text = openedObject.RegisterTimeStamp.ToString();
+        }
+    }
 }

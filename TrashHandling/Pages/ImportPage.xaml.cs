@@ -41,37 +41,46 @@ namespace TrashHandling.Pages
 				Title = "Open .csv-file",
 				InitialDirectory = dirPath,
 				Filter = "CSV (Comma Delimited) (*.csv)|*.csv",
-				CheckPathExists = true
+				CheckPathExists = true,
+				Multiselect = true,
 			};		
 			
 			if(selector.ShowDialog()  == true)
 			{
-				string path = selector.FileName;
-				FileNameField.Text = path;
-				FormatLocalFile(path, selector.SafeFileName);
+				string[] paths = selector.FileNames;
+				string[] pathsNames = selector.SafeFileNames;
+				FileNameField.Text = string.Join(", ", paths);
+				FormatLocalFiles(paths, pathsNames);
 
 			}
 		}
 
 
-		private void FormatLocalFile(string path, string fileName)
+		private void FormatLocalFiles(string[] paths, string[] fileNames)
         {
-			string[] content = File.ReadAllLines(path);
-            foreach (string line in content)
+			localFiles = new();
+			for (int i = 0; i < paths.Length; i++)
             {
-				string[] element = line.Split(',');
-				localFiles.Add(new Trash()
+				string[] content = File.ReadAllLines(paths[i]);
+				foreach (string line in content)
 				{
-					LocalID = $"{fileName} / {element[0]}",
-					Amount = int.Parse(element[1]),
-					Units = int.Parse(element[2]),
-					Category = int.Parse(element[3]),
-					Description = element[4],
-					ResponsiblePerson = element[5],
-					CompanyId  = int.Parse(element[6]),
-					RegisterTimeStamp = element[7],
-				});
-            }
+					string[] element = line.Split(',');
+					localFiles.Add(new Trash()
+					{
+						IdText = $"{fileNames[i]} / {element[0]}",
+						Amount = int.Parse(element[1]),
+						Unit = int.Parse(element[2]),
+						Category = int.Parse(element[3]),
+						Description = element[4],
+						ResponsiblePerson = element[5],
+						CompanyId = int.Parse(element[6]),
+						RegisterTimeStamp = element[7],
+					});
+				}
+			}
+
+			ImportDisplay.ItemsSource = null;
+			ImportDisplay.Items.Clear();
 			ImportDisplay.ItemsSource = localFiles;
 
 		}

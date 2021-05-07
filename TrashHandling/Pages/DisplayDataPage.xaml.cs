@@ -21,7 +21,7 @@ namespace TrashHandling.Pages
 
         // List with the data that will be shown through the datagrid
         private List<Trash> Database;
-        private List<Trash> LocalFiles;
+        //private List<Trash> LocalFiles;
 
 
         public DisplayDataPage()

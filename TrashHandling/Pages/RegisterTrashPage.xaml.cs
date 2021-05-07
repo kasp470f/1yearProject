@@ -15,7 +15,6 @@ namespace TrashHandling.Pages
 		public RegisterTrashPage()
 		{
 			InitializeComponent();
-			LoadComboBoxes();
 		}
 
 		/// <summary>
@@ -29,12 +28,12 @@ namespace TrashHandling.Pages
 			{
 				//Id autogenerates in database...
 				Amount = decimal.Parse(Amount.Text),
-				Units = UnitPicker.SelectedIndex + 1,
+				Unit = UnitPicker.SelectedIndex + 1,
 				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
 				CompanyId = int.Parse(CompanyID.Text),
-				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
+                RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
 
 			//Call the method to add to the db
@@ -44,21 +43,9 @@ namespace TrashHandling.Pages
 		}
 
 		/// <summary>
-		/// The Method that will load the comboboxes.
-		/// <para>Created by Martin</para>
-		/// </summary>
-		private void LoadComboBoxes()
-		{
-			TrashPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Categories));
-			TrashPicker.SelectedItem = (ComboBoxSources.Categories)1;
-			// Adds all enum values through the GetValues() method.
-			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
-		}
-
-		/// <summary>
 		/// Opens the DateTimePicker upon click
 		/// <para>Created by Kasper</para>
 		/// </summary>
 		private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
-	}
+    }
 }

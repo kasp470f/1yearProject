@@ -30,7 +30,7 @@ namespace TrashHandling.Models
 					@"INSERT INTO TrashTable (amount,units,category,trashDescription,responsiblePerson,companyId,registerTimestamp)
 					VALUES(@Amount, @Units, @Category, @Description, @ResponsiblePerson, @CompanyId, @Timestamp)", connectionString);
 				insert.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
-				insert.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Units;
+				insert.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Unit;
 				insert.Parameters.Add("@Category", SqlDbType.Int).Value = trash.Category;
 				insert.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
 				insert.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
@@ -70,7 +70,7 @@ namespace TrashHandling.Models
 					{
 						Id = int.Parse(dbReader[0].ToString()),
 						Amount = decimal.Parse(dbReader[1].ToString()),
-						Units = int.Parse(dbReader[2].ToString()),
+						Unit = int.Parse(dbReader[2].ToString()),
 						Category = int.Parse(dbReader[3].ToString()),
 						Description = dbReader[4].ToString(),
 						ResponsiblePerson = dbReader[5].ToString(),
@@ -119,7 +119,7 @@ namespace TrashHandling.Models
 					{
 						Id = int.Parse(dbReader[0].ToString()),
 						Amount = decimal.Parse(dbReader[1].ToString()),
-						Units = int.Parse(dbReader[2].ToString()),
+						Unit = int.Parse(dbReader[2].ToString()),
 						Category = int.Parse(dbReader[3].ToString()),
 						Description = dbReader[4].ToString(),
 						ResponsiblePerson = dbReader[5].ToString(),
@@ -150,7 +150,7 @@ namespace TrashHandling.Models
 				responsiblePerson=@ResponsiblePerson,companyId=@CompanyId,registerTimestamp=@Timestamp WHERE Id=@Id", connectionString);
 			updateElement.Parameters.Add("@Id", SqlDbType.Int).Value = trash.Id;
 			updateElement.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
-			updateElement.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Units;
+			updateElement.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Unit;
 			updateElement.Parameters.Add("@Category", SqlDbType.Int).Value = trash.Category;
 			updateElement.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
 			updateElement.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
