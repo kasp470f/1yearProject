@@ -10,6 +10,7 @@ namespace TrashHandling.Windows
 	/// <summary>
 	/// Interaction logic for ChangeDataWindow.xaml
 	/// </summary>
+	/// <param name="openedObject">The Trash object selected in the DataGrid on DisplayDataPage</param>
 	public partial class ChangeDataWindow : Window
 	{
 		private Trash openedObject { get; set; }
@@ -22,8 +23,12 @@ namespace TrashHandling.Windows
 		// Opens the DateTimePicker upon click
 		private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
 
+		/// <summary>
+		/// Calls the Sql-query to update the openedObject
+		/// <para>Created by Martin</para>		
+		/// </summary>
 		private void ChangeData_Click(object sender, RoutedEventArgs e)
-		{
+		{			
 			openedObject = new()
 			{
 				Id = openedObject.Id,
@@ -35,14 +40,7 @@ namespace TrashHandling.Windows
 				CompanyId = int.Parse(CompanyID.Text),
 				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
-			SqlQueries.EditTrashInDb(openedObject);
-			System.Threading.Thread.Sleep(3000);
-			DisplayDataPage pg = new();
-			pg.DbDisplayer.ItemsSource = null;
-			pg.DbDisplayer.Items.Clear();
-			List<Trash> db = SqlQueries.GetTrashFromDb();
-			pg.DbDisplayer.ItemsSource = db;
-			pg.DbDisplayer.Items.Refresh();
+			SqlQueries.EditTrashInDb(openedObject);			
 			
 			this.Close();
 		}
