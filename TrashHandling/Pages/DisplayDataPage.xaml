@@ -29,11 +29,11 @@
                     <DataGridTextColumn Width="*" Header="VirksomhedsId" Binding="{Binding CompanyId}"/>
                     <DataGridTextColumn Width="*" Header="Dato" Binding="{Binding RegisterTimeStamp}"/>
                 </DataGrid.Columns>
-              <DataGrid.RowStyle>
-					      <Style TargetType="DataGridRow">
-						      <EventSetter Event="MouseDoubleClick" Handler="OpenEditableData_Click"/>
-					      </Style>
-				      </DataGrid.RowStyle>
+                <DataGrid.RowStyle>
+					          <Style TargetType="DataGridRow">
+						          <EventSetter Event="MouseDoubleClick" Handler="OpenEditableData_Click"/>
+					          </Style>
+			     </DataGrid.RowStyle>
             </DataGrid>
         </DockPanel>
     </Grid>
