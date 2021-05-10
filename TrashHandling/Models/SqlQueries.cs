@@ -144,6 +144,11 @@ namespace TrashHandling.Models
 			}
 		}
 
+		/// <summary>
+		/// Logic to change a post in the db with the Id of the passed Trash object.
+		/// <para>Created by Martin</para>
+		/// </summary>
+		/// <param name="trash">The trash element that was edited</param>
 		public static void EditTrashInDb(Trash trash)
 		{
 			try
