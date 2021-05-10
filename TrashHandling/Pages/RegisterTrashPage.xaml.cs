@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using TrashHandling.Models;
@@ -33,13 +34,13 @@ namespace TrashHandling.Pages
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,
 				CompanyId = int.Parse(CompanyID.Text),
-                RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
+				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
 
 			//Call the method to add to the db
 			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
 
-			Console.Log($"A trash element has been added: {trash.ToString()}");		
+			Console.Log($"A trash element has been added: {trash}");		
 		}
 
 		/// <summary>

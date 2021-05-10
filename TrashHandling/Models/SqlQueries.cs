@@ -133,9 +133,9 @@ namespace TrashHandling.Models
 				dbReader.Close();
 				return trash;
 			}
-			catch (Exception e)
+			catch (Exception selectBetweenDatesEx)
 			{
-				MessageBox.Show(e.Message);
+				MessageBox.Show(selectBetweenDatesEx.Message);
 				return trash;
 			}
 			finally
@@ -144,18 +144,34 @@ namespace TrashHandling.Models
 			}
 		}
 
-		public static void EditTrashInDb(Trash trash, DateTime dateTimePickerValue)
+		public static void EditTrashInDb(Trash trash)
 		{
-			SqlCommand updateElement = new(@"UPDATE TrashTable SET amount=@Amount,units=@Units,category=@Category,trashDescription=@Description,
+			try
+			{
+				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
+				SqlCommand updateElement = new(@"UPDATE TrashTable SET amount=@Amount,units=@Units,category=@Category,trashDescription=@Description,
 				responsiblePerson=@ResponsiblePerson,companyId=@CompanyId,registerTimestamp=@Timestamp WHERE Id=@Id", connectionString);
-			updateElement.Parameters.Add("@Id", SqlDbType.Int).Value = trash.Id;
-			updateElement.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
-			updateElement.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Unit;
-			updateElement.Parameters.Add("@Category", SqlDbType.Int).Value = trash.Category;
-			updateElement.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
-			updateElement.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
-			updateElement.Parameters.Add("@CompanyId", SqlDbType.Int).Value = trash.CompanyId;
-			updateElement.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = dateTimePickerValue;
+				updateElement.Parameters.Add("@Id", SqlDbType.Int).Value = trash.Id;
+				updateElement.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
+				updateElement.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Unit;
+				updateElement.Parameters.Add("@Category", SqlDbType.Int).Value = trash.Category;
+				updateElement.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
+				updateElement.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
+				updateElement.Parameters.Add("@CompanyId", SqlDbType.Int).Value = trash.CompanyId;
+				updateElement.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = DateTime.Parse(trash.DateTimePickerValue);
+
+				connectionString.Open();
+				updateElement.ExecuteNonQuery();
+				connectionString.Close();
+			}
+			catch (Exception updateEx)
+			{
+				MessageBox.Show(updateEx.Message);
+			}
+			finally
+			{
+				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
+			}
 		}
 	}
 }

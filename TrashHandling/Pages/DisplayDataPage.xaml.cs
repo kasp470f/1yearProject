@@ -75,7 +75,7 @@ namespace TrashHandling.Pages
         private void worker_DoWork(object sender, DoWorkEventArgs e) => Database = SqlQueries.GetTrashFromDb();
 
         /// <summary>
-        /// The workers final task after finshing the first
+        /// The workers final task after finishing the first
         /// <para>Created by Kasper</para>
         /// </summary>
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => DbDisplayer.ItemsSource = Database;

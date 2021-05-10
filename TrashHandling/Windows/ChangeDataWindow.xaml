@@ -53,7 +53,7 @@
 				<xctk:DateTimePicker Name="DateTimePickField" Grid.Column="1" Grid.Row="5" AllowTextInput="False" ShowButtonSpinner="False" Format="Custom" FormatString="yyyy:MM:dd HH:mm" TextBoxBase.SelectionChanged="DateTimePickField_Click"/>
 
 				<!--Button to submit the form-->
-				<Button Name="UpdateTrash" Content="Opdater" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA" Click="ChangeData_Click"/>
+				<Button Name="UpdateTrash" Content="Opdatér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA" Click="ChangeData_Click"/>
 			</Grid>
 		</StackPanel>
 	</Grid>
