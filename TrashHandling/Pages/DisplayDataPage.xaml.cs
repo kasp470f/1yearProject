@@ -31,8 +31,8 @@ namespace TrashHandling.Pages
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
-        
-        private void OpenEditableData_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+
+		private void OpenEditableData_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
 		    {
 			    if (sender != null)
 			    {
