@@ -59,25 +59,32 @@ namespace TrashHandling.Pages
 		private void FormatLocalFiles(string[] paths, string[] fileNames)
         {
 			localFiles = new();
-			for (int i = 0; i < paths.Length; i++)
+            try
             {
-				string[] content = File.ReadAllLines(paths[i]);
-				foreach (string line in content)
+				for (int i = 0; i < paths.Length; i++)
 				{
-					string[] element = line.Split(',');
-					localFiles.Add(new Trash()
+					string[] content = File.ReadAllLines(paths[i]);
+					foreach (string line in content)
 					{
-						IdText = $"{fileNames[i]} / {element[0]}",
-						Amount = int.Parse(element[1]),
-						Unit = int.Parse(element[2]),
-						Category = int.Parse(element[3]),
-						Description = element[4],
-						ResponsiblePerson = element[5],
-						CompanyId = int.Parse(element[6]),
-						RegisterTimeStamp = element[7],
-					});
+						string[] element = line.Split("\",\"");
+						localFiles.Add(new Trash()
+						{
+							IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
+							Amount = int.Parse(element[1]),
+							Unit = int.Parse(element[2]),
+							Category = int.Parse(element[3]),
+							Description = element[4],
+							ResponsiblePerson = element[5],
+							CompanyId = int.Parse(element[6]),
+							RegisterTimeStamp = element[7].Trim('\"'),
+						});
+					}
 				}
 			}
+            catch (Exception ex)
+            {
+				MessageBox.Show(ex.Message);
+            }
 
 			ImportDisplay.ItemsSource = null;
 			ImportDisplay.Items.Clear();

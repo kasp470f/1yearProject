@@ -23,57 +23,30 @@
                 <StackPanel Grid.Column="0" >
                     <TextBlock Text="Vælg tidsperiode:" HorizontalAlignment="Center" FontSize="14" Margin="2"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <DatePicker x:Name="timeStart"/>
-                        <DatePicker x:Name="timeEnd"/>
+                        <ComboBox Style="{DynamicResource ComboBoxStyle}" x:Name="yearPicked" Width="120"/>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="Affaldskategori:" HorizontalAlignment="Center" FontSize="14"/>
-                    <ComboBox Style="{DynamicResource ComboBoxStyle}" x:Name="TrashPicker" Width="180"/>
+                    <ComboBox Style="{DynamicResource ComboBoxStyle}" x:Name="TrashPicker" Width="180" SelectionChanged="TrashPicker_SelectionChanged"/>
                 </StackPanel>
             </Grid>
         </StackPanel>
         
         <!--Chart-->
         <Grid Margin="100, 120, 100, 40">
-            <chartingToolKit:Chart x:Name="TrashChart" Width="auto" Height="auto" Title="Trash between ? and ?" Background="LightSteelBlue"  FontWeight="DemiBold">
+            <chartingToolKit:Chart x:Name="TrashChart" Width="auto" Height="auto" Background="LightSteelBlue" FontWeight="DemiBold">
                 <!--Axes-->
                 <chartingToolKit:Chart.Axes>
-                    <chartingToolKit:CategoryAxis Orientation="X" Title="Date">
-                        <chartingToolKit:CategoryAxis.AxisLabelStyle>
-                            <Style TargetType="Control">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </Style>
-                        </chartingToolKit:CategoryAxis.AxisLabelStyle>
-                    </chartingToolKit:CategoryAxis>
-                    <chartingToolKit:CategoryAxis Orientation="Y" Title="Amount (?)" />
+                    <chartingToolKit:CategoryAxis Orientation="X" Title="Months"/>
+
+                    <chartingToolKit:CategoryAxis Orientation="Y" Title="Amount" />
                 </chartingToolKit:Chart.Axes>
 
                 <!--The Chart itself-->
                 <chartingToolKit:Chart.Series>
-                    <chartingToolKit:ColumnSeries IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
-                        <!--Style for the data point-->
-                        <chartingToolKit:ColumnSeries.DataPointStyle>
-                            <Style TargetType="chartingToolKit:ColumnDataPoint">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="chartingToolKit:ColumnDataPoint">
-                                            <Grid x:Name="Root" Opacity="1">
-                                                <ToolTipService.ToolTip>
-                                                    <StackPanel>
-                                                        <ContentControl Content="{TemplateBinding DependentValue}" ContentStringFormat="Count : {0}"/>
-                                                        <ContentControl Content="{TemplateBinding IndependentValue}" ContentStringFormat="Date : {0}"/>
-                                                    </StackPanel>
-                                                </ToolTipService.ToolTip>
-                                                <Rectangle StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding Background}" Fill="{TemplateBinding Background}"/>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </chartingToolKit:ColumnSeries.DataPointStyle>
-                    </chartingToolKit:ColumnSeries>
+                    <chartingToolKit:ColumnSeries IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}"/>
                 </chartingToolKit:Chart.Series>
 
 

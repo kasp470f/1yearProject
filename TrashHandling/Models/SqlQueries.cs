@@ -97,65 +97,38 @@ namespace TrashHandling.Models
 		}
 
 		/// <summary>
-		/// Logic to pull data between 2 dates
+		/// Logic to change a post in the db with the Id of the passed Trash object.
 		/// <para>Created by Martin</para>
 		/// </summary>
-		/// <param name="trash">The trash element that will be shown as a row in our datagrid</param>
-		public static List<Trash> GetTrashFromDb(DateTime dateFrom, DateTime dateTo)
+		/// <param name="trash">The trash element that was edited</param>
+		public static void EditTrashInDb(Trash trash)
 		{
-			List<Trash> trash = new();
 			try
 			{
-				SqlCommand selectAll = new(@"SELECT * FROM TrashTable
-					WHERE registerTimestamp BETWEEN @DateFrom AND @DateTo", connectionString);
-				selectAll.Parameters.Add("@DateFrom", SqlDbType.DateTime).Value = dateFrom;
-				selectAll.Parameters.Add("@DateTo", SqlDbType.DateTime).Value = dateTo;
+				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
+				SqlCommand updateElement = new(@"UPDATE TrashTable SET amount=@Amount,units=@Units,category=@Category,trashDescription=@Description,
+				responsiblePerson=@ResponsiblePerson,companyId=@CompanyId,registerTimestamp=@Timestamp WHERE Id=@Id", connectionString);
+				updateElement.Parameters.Add("@Id", SqlDbType.Int).Value = trash.Id;
+				updateElement.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
+				updateElement.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Unit;
+				updateElement.Parameters.Add("@Category", SqlDbType.Int).Value = trash.Category;
+				updateElement.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
+				updateElement.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
+				updateElement.Parameters.Add("@CompanyId", SqlDbType.Int).Value = trash.CompanyId;
+				updateElement.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = DateTime.Parse(trash.DateTimePickerValue);
+
 				connectionString.Open();
-				SqlDataReader dbReader = selectAll.ExecuteReader();
-
-				while (dbReader.Read())
-				{
-					trash.Add(new Trash
-					{
-						Id = int.Parse(dbReader[0].ToString()),
-						Amount = decimal.Parse(dbReader[1].ToString()),
-						Unit = int.Parse(dbReader[2].ToString()),
-						Category = int.Parse(dbReader[3].ToString()),
-						Description = dbReader[4].ToString(),
-						ResponsiblePerson = dbReader[5].ToString(),
-						CompanyId = int.Parse(dbReader[6].ToString()),
-
-						//Date must according to project be in format YYYY:MM:DD HH:mm
-						RegisterTimeStamp = $"{(DateTime)dbReader[7]:yyyy:MM:dd HH:mm}"
-					});
-				}
-
-				dbReader.Close();
-				return trash;
+				updateElement.ExecuteNonQuery();
+				connectionString.Close();
 			}
-			catch (Exception e)
+			catch (Exception updateEx)
 			{
-				MessageBox.Show(e.Message);
-				return trash;
+				MessageBox.Show(updateEx.Message);
 			}
 			finally
 			{
 				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
 			}
-		}
-
-		public static void EditTrashInDb(Trash trash, DateTime dateTimePickerValue)
-		{
-			SqlCommand updateElement = new(@"UPDATE TrashTable SET amount=@Amount,units=@Units,category=@Category,trashDescription=@Description,
-				responsiblePerson=@ResponsiblePerson,companyId=@CompanyId,registerTimestamp=@Timestamp WHERE Id=@Id", connectionString);
-			updateElement.Parameters.Add("@Id", SqlDbType.Int).Value = trash.Id;
-			updateElement.Parameters.Add("@Amount", SqlDbType.Decimal).Value = trash.Amount;
-			updateElement.Parameters.Add("@Units", SqlDbType.Int).Value = trash.Unit;
-			updateElement.Parameters.Add("@Category", SqlDbType.Int).Value = trash.Category;
-			updateElement.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
-			updateElement.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
-			updateElement.Parameters.Add("@CompanyId", SqlDbType.Int).Value = trash.CompanyId;
-			updateElement.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = dateTimePickerValue;
 		}
 	}
 }
