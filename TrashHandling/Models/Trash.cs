@@ -21,10 +21,10 @@ namespace TrashHandling.Models
 		public string RegisterTimeStamp { get; set; }        
         
         public string DateTimePickerValue { 
-            get {
-                string[] spaceSplit = RegisterTimeStamp.Split(' ');
-                string[] colonSplit = new string[5] { spaceSplit[0].Split(':')[0], spaceSplit[0].Split(':')[1], spaceSplit[0].Split(':')[2], spaceSplit[1].Split(':')[0], spaceSplit[1].Split(':')[1] };
-                return $"{colonSplit[0]}-{colonSplit[1]}-{colonSplit[2]} {colonSplit[3]}:{colonSplit[4]}";
+            get 
+            {
+                DateTime date = DateTime.ParseExact(RegisterTimeStamp, "yyyy:MM:dd HH:mm", CultureInfo.InvariantCulture);
+                return date.ToString("yyyy-MM-dd HH:mm");
             }
         }
 
@@ -40,7 +40,7 @@ namespace TrashHandling.Models
         /// <returns>A string with all the properties</returns>
         public override string ToString()
         {
-            return $"{Id},{Amount},{Unit},{Category},{Description},{ResponsiblePerson},{CompanyId},{RegisterTimeStamp}";
+            return $"\"{Id}\",\"{Amount}\",\"{Unit}\",\"{Category}\",\"{Description}\",\"{ResponsiblePerson}\",\"{CompanyId}\",\"{RegisterTimeStamp}\"";
         }
     }
 }
