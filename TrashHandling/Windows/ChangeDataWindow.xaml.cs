@@ -40,9 +40,11 @@ namespace TrashHandling.Windows
 				CompanyId = int.Parse(CompanyID.Text),
 				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
-			SqlQueries.EditTrashInDb(openedObject);			
-			
+			SqlQueries.EditTrashInDb(openedObject);
+
+			DisplayDataPage.DisplayWindow.RefreshDataGrid();
 			this.Close();
+
 		}
 
         private void DataRendered(object sender, EventArgs e)
