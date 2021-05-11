@@ -40,7 +40,23 @@ namespace TrashHandling.Pages
 			//Call the method to add to the db
 			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
 
+			// Refresh page
+			DisplayDataPage.DisplayWindow.RefreshDataGrid();
+			ResetFields();
+
 			Console.Log($"A trash element has been added: {trash}");		
+		}
+
+
+		private void ResetFields()
+        {
+			Amount.Text = string.Empty;
+			UnitPicker.SelectedItem = string.Empty;
+			TrashPicker.SelectedIndex = 0;
+			Description.Text = string.Empty;
+			Registrator.Text = string.Empty;
+			CompanyID.Text = string.Empty;
+			DateTimePickField.Text = string.Empty;
 		}
 
 		/// <summary>
