@@ -97,54 +97,6 @@ namespace TrashHandling.Models
 		}
 
 		/// <summary>
-		/// Logic to pull data between 2 dates
-		/// <para>Created by Martin</para>
-		/// </summary>
-		/// <param name="trash">The trash element that will be shown as a row in our datagrid</param>
-		public static List<Trash> GetTrashFromDb(DateTime dateFrom, DateTime dateTo)
-		{
-			List<Trash> trash = new();
-			try
-			{
-				SqlCommand selectAll = new(@"SELECT * FROM TrashTable
-					WHERE registerTimestamp BETWEEN @DateFrom AND @DateTo", connectionString);
-				selectAll.Parameters.Add("@DateFrom", SqlDbType.DateTime).Value = dateFrom;
-				selectAll.Parameters.Add("@DateTo", SqlDbType.DateTime).Value = dateTo;
-				connectionString.Open();
-				SqlDataReader dbReader = selectAll.ExecuteReader();
-
-				while (dbReader.Read())
-				{
-					trash.Add(new Trash
-					{
-						Id = int.Parse(dbReader[0].ToString()),
-						Amount = decimal.Parse(dbReader[1].ToString()),
-						Unit = int.Parse(dbReader[2].ToString()),
-						Category = int.Parse(dbReader[3].ToString()),
-						Description = dbReader[4].ToString(),
-						ResponsiblePerson = dbReader[5].ToString(),
-						CompanyId = int.Parse(dbReader[6].ToString()),
-
-						//Date must according to project be in format YYYY:MM:DD HH:mm
-						RegisterTimeStamp = $"{(DateTime)dbReader[7]:yyyy:MM:dd HH:mm}"
-					});
-				}
-
-				dbReader.Close();
-				return trash;
-			}
-			catch (Exception selectBetweenDatesEx)
-			{
-				MessageBox.Show(selectBetweenDatesEx.Message);
-				return trash;
-			}
-			finally
-			{
-				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
-			}
-		}
-
-		/// <summary>
 		/// Logic to change a post in the db with the Id of the passed Trash object.
 		/// <para>Created by Martin</para>
 		/// </summary>
