@@ -70,7 +70,7 @@ namespace TrashHandling.Pages
 						localFiles.Add(new Trash()
 						{
 							IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
-							Amount = int.Parse(element[1]),
+							Amount = decimal.Parse(element[1]),
 							Unit = int.Parse(element[2]),
 							Category = int.Parse(element[3]),
 							Description = element[4],
