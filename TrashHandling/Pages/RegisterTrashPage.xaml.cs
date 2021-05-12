@@ -32,7 +32,7 @@ namespace TrashHandling.Pages
 				Unit = UnitPicker.SelectedIndex + 1,
 				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
-				ResponsiblePerson = Registrator.Text,
+				ResponsiblePerson = Responsible.Text,
 				CompanyId = int.Parse(CompanyID.Text),
 				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
@@ -54,7 +54,7 @@ namespace TrashHandling.Pages
 			UnitPicker.SelectedItem = string.Empty;
 			TrashPicker.SelectedIndex = 0;
 			Description.Text = string.Empty;
-			Registrator.Text = string.Empty;
+			Responsible.Text = string.Empty;
 			CompanyID.Text = string.Empty;
 			DateTimePickField.Text = string.Empty;
 		}
