@@ -11,7 +11,8 @@
 		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
 			<TextBlock Text="Velkommen til Trashhandling."/>
 			<TextBlock Text="Vælg hvad du ønsker at gøre i top-menuen."/>
-		</StackPanel>
+            <Button Content="Logout" Width="150" Click="Logout_Click"/>
+        </StackPanel>
 		
 	</Grid>
 </Page>
