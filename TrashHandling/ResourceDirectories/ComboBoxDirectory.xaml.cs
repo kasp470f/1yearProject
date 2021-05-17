@@ -7,6 +7,10 @@ namespace TrashHandling.ResourceDirectories
 {
     public partial class ComboBoxDirectory : ResourceDictionary
     {
+        /// <summary>
+        /// Loads the comboboxes with the correct itemsource.
+        /// <para>Created by Kasper</para>
+        /// </summary>
         private void LoadComboBoxes(object sender, RoutedEventArgs e)
         {
             ComboBox box = e.Source as ComboBox;

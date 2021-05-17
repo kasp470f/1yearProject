@@ -3,14 +3,13 @@ using System.Linq;
 
 namespace TrashHandling.Models
 {
-    /// <summary>
-    /// A directory for Units and categories
-    /// <para>Created by Martin</para>
-    /// </summary>
     public static class ComboBoxSources
 	{
-		// Enum for the unitpicker
-		public enum Units
+        /// <summary>
+        /// Enum for the unitpicker
+        /// <para>Created by Martin</para>
+        /// </summary>
+        public enum Units
 		{
 			Colli = 1,
 			Stk = 2,
@@ -22,7 +21,10 @@ namespace TrashHandling.Models
             Hektoliter = 8
 		};
 
-        // Dictionary for the category picker
+        /// <summary>
+        /// Dictionary for the category picker
+        /// <para>Created by Kasper</para>
+        /// </summary>
         public static Dictionary<int, string> Categories { get => categories; }
         public static List<string> CategoriesValues { get => categories.Values.ToList(); }
         private static Dictionary<int, string> categories = new()
