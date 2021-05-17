@@ -58,5 +58,26 @@ namespace TrashHandling.Windows
 			CompanyID.Text = openedObject.CompanyId.ToString();
 			DateTimePickField.Text = openedObject.RegisterTimeStamp.ToString();
         }
-    }
+
+		/// <summary>
+		/// Calls the Sql-query to delete the openedObject
+		/// <para>Created by Martin</para>		
+		/// </summary>
+		private void DeleteData_Click(object sender, RoutedEventArgs e)
+		{
+			//An alert will be shown to ask user to be sure
+			MessageBoxResult result = MessageBox.Show("Denne post vil blive slettet.\nEr det korrekt?","Advarsel!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			if (result == MessageBoxResult.Yes)
+			{
+				openedObject = new()
+				{
+					Id = openedObject.Id
+				};
+				SqlQueries.DeleteTrashFromDb(openedObject);
+
+				DisplayDataPage.DisplayWindow.RefreshDataGrid();
+				this.Close();
+			}			
+		}
+	}
 }
