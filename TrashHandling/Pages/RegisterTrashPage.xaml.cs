@@ -47,7 +47,9 @@ namespace TrashHandling.Pages
 			Console.Log($"A trash element has been added: {trash}");		
 		}
 
-
+		/// <summary>
+		/// Resets the fields of the registration page.
+		/// </summary>
 		private void ResetFields()
         {
 			Amount.Text = string.Empty;
@@ -64,5 +66,14 @@ namespace TrashHandling.Pages
 		/// <para>Created by Kasper</para>
 		/// </summary>
 		private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
+
+		/// <summary>
+		/// Loads the CompanyID and Responsible person
+		/// </summary>
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+			Responsible.Text = Company.Instance.Name;
+			CompanyID.Text = Company.Instance.Id.ToString();
+		}
     }
 }

@@ -24,7 +24,6 @@ namespace TrashHandling.Pages
 			{
 				Directory.CreateDirectory(dirPath);
 			}
-			//MonitorDirectory(dirPath);
 		}
 
 		///<Summary>
@@ -55,7 +54,12 @@ namespace TrashHandling.Pages
 			}
 		}
 
-
+		/// <summary>
+		/// The method that makes the files, into trash elements.
+		/// <para>Created by Kasper</para>
+		/// </summary>
+		/// <param name="paths">The different files path.</param>
+		/// <param name="fileNames">The names of the different files.</param>
 		private void FormatLocalFiles(string[] paths, string[] fileNames)
         {
 			localFiles = new();
@@ -70,7 +74,7 @@ namespace TrashHandling.Pages
 						localFiles.Add(new Trash()
 						{
 							IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
-							Amount = int.Parse(element[1]),
+							Amount = decimal.Parse(element[1]),
 							Unit = int.Parse(element[2]),
 							Category = int.Parse(element[3]),
 							Description = element[4],
@@ -88,33 +92,7 @@ namespace TrashHandling.Pages
 
 			ImportDisplay.ItemsSource = null;
 			ImportDisplay.Items.Clear();
-			ImportDisplay.ItemsSource = localFiles;
-
+			ImportDisplay.ItemsSource = localFiles; 
 		}
-
-
-        #region Not Working
-        /// <summary>
-        /// Monitors a directory for additions of files that are csv format.
-        /// <para>Created by Kasper</para>
-        /// </summary>
-        /// <param name="path">The path to monitor</param>
-        private static void MonitorDirectory(string path)
-		{
-			FileSystemWatcher fileSystemWatcher = new (path);
-			fileSystemWatcher.Filter = "*.csv";
-			fileSystemWatcher.Created += File_Added;
-			fileSystemWatcher.EnableRaisingEvents = true;
-		}
-
-		/// <summary>
-		/// The Method that is sent when a file is added to the monitored folder
-		/// <para>Created by Kasper</para>
-		/// </summary>
-		private static void File_Added(object sender, FileSystemEventArgs e)
-		{
-			MessageBox.Show(e.Name);
-		}
-        #endregion
     }
 }

@@ -15,7 +15,7 @@
         <!--Navigation Bar-->
         <Border BorderBrush="#999999" BorderThickness="0,0,0,1">
             <DockPanel Background="Gray" Height="20" VerticalAlignment="Top" Grid.Row="0">
-                <Menu x:Name="Topbar">
+                <Menu x:Name="Topbar" IsEnabled="false">
                     <MenuItem Header="Home"/>
                     <MenuItem Header="Affald">
                         <MenuItem Header="Registrér affald"/>

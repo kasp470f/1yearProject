@@ -10,23 +10,26 @@
 
     <Grid>
 		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
-			<TextBlock Text="Login page"/>
-		</StackPanel>
-			<Grid Height="200" Width="400">
+            <TextBlock Text="Login page"/>
+            <Grid Height="150" Width="300">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition/>
-					<ColumnDefinition/>
+					<ColumnDefinition Width="110"/>
+					<ColumnDefinition Width="190"/>
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
 				</Grid.RowDefinitions>
-				<TextBlock Text="Navn:" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+				<TextBlock Text="Navn:" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Left"/>
 				<TextBox x:Name="UserName"  Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Background="#FAFAFA"/>
-				<TextBlock Text="Vælg virksomhed:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
-				<TextBox x:Name="UserCompany" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#FAFAFA"/>
-				<Button Content="Validér" Width="100" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#FAFAFA" Click="ValidateLogin_Click"/>
-			</Grid>		
-	</Grid>
+
+                <TextBlock Text="Company ID:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Left"/>
+                <TextBox x:Name="UserCompany" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#FAFAFA" Text="Skriv CVR ID"  GotFocus="UserCompany_GotFocus"/>
+
+                <Button Content="Login" Width="100" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FAFAFA" Click="Login_Click"/>
+			</Grid>
+        </StackPanel>
+    </Grid>
+
 </Page>

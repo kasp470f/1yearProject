@@ -11,7 +11,8 @@ namespace TrashHandling
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Pages Directory
+        public static MainWindow Main;
+
         /// Pages under the Directory 
         static HomePage HomePage = new();
         static RegisterTrashPage RegisterPage = new();
@@ -39,7 +40,8 @@ namespace TrashHandling
         public MainWindow()
         {
             InitializeComponent();
-            viewingWindow.Navigate(HomePage);
+            Main = this;
+            viewingWindow.Navigate(new LoginPage());
 
 
             // Add event to all menu items (including children)
@@ -80,5 +82,7 @@ namespace TrashHandling
                 MessageBox.Show($"Seems that the page you are trying to reach, could not be reached!\nError: {err.Message}");
             }
         }
+
+
     }
 }
