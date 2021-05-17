@@ -2,6 +2,7 @@
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using TrashHandling.Models;
 
 namespace TrashHandling.Pages
@@ -24,42 +25,22 @@ namespace TrashHandling.Pages
 		{
             try
             {
-                if (UserName.Text != string.Empty && ValidCompanyInfo(int.Parse(UserCompany.Text)) == true)
+                if (UserName.Text != string.Empty && int.TryParse(UserCompany.Text, out int id) == true)
                 {
-                    new Company(UserName.Text, int.Parse(UserCompany.Text));
+                    if (Models.Validation.ValidCompanyInfo(id) == true)
+                    {
+                        new Company(UserName.Text, id);
+                        Console.Log($"User logged in: {UserName.Text}, {UserCompany.Text}");
+                        MainWindow.Main.Topbar.IsEnabled = true;
+                        MainWindow.Main.viewingWindow.Navigate(new HomePage());
+                    }
                 }
-                MainWindow.Main.Topbar.IsEnabled = true;
-                MainWindow.Main.viewingWindow.Navigate(new HomePage());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 		}
-
-        /// <summary>
-        /// Checks the company id against a API and sees if it is real.
-        /// <para>Created by Kasper</para>
-        /// </summary>
-        /// <param name="id">The company id</param>
-        /// <returns>true if company is found in the API</returns>
-        public static bool ValidCompanyInfo(int id)
-        {
-            try
-            {
-                string resultContent;
-                using (var webClient = new WebClient())
-                {
-                    webClient.Headers["User-Agent"] = "Uddanelses Projekt";
-                    resultContent = webClient.DownloadString(string.Format("http://cvrapi.dk/api?search={0}&country=dk", id));
-                }
-                return !resultContent.Contains("error");
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
 
         /// <summary>
         /// The method to remove placeholder text
