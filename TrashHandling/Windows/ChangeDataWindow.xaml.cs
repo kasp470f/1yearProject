@@ -20,7 +20,10 @@ namespace TrashHandling.Windows
 			this.openedObject = openedObject;			
 		}
 
-		// Opens the DateTimePicker upon click
+		/// <summary>
+		/// Opens the DateTimePicker upon click
+		/// <para>Created by Kasper</para>
+		/// </summary>
 		private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
 
 		/// <summary>
@@ -47,7 +50,11 @@ namespace TrashHandling.Windows
 
 		}
 
-        private void DataRendered(object sender, EventArgs e)
+		/// <summary>
+		/// Adds the date after the page is rendered in order to work with the loaded comboboxes.
+		/// <para>Created by Kasper</para>	
+		/// </summary>
+		private void DataRendered(object sender, EventArgs e)
         {
 			TrashPicker.SelectedIndex = openedObject.Category - 1;
 			UnitPicker.SelectedIndex = openedObject.Unit - 1;

@@ -31,8 +31,12 @@ namespace TrashHandling.Pages
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
-
-		private void OpenEditableData_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        
+        /// <summary>
+        /// Allows to open the selected row
+        /// <para>Created by Martin</para>
+        /// </summary>
+        private void OpenEditableData_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (sender != null)
 			{
@@ -85,6 +89,10 @@ namespace TrashHandling.Pages
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e) => worker.RunWorkerAsync();
         #endregion
 
+        /// <summary>
+        /// Refresh the datagrid to update with new info
+        /// <para>Created by Kasper</para>
+        /// </summary>
         public void RefreshDataGrid()
         {
             DbDisplayer.ItemsSource = null;

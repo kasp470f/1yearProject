@@ -49,6 +49,7 @@ namespace TrashHandling.Pages
 
 		/// <summary>
 		/// Resets the fields of the registration page.
+		/// <para>Created by Kasper</para>
 		/// </summary>
 		private void ResetFields()
         {
@@ -69,8 +70,9 @@ namespace TrashHandling.Pages
 
 		/// <summary>
 		/// Loads the CompanyID and Responsible person
+		/// <para>Created by Kasper</para>
 		/// </summary>
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+		private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 			Responsible.Text = Company.Instance.Name;
 			CompanyID.Text = Company.Instance.Id.ToString();
