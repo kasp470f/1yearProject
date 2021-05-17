@@ -27,7 +27,7 @@ namespace TrashHandling.Models
         /// </summary>
         public static Dictionary<int, string> Categories { get => categories; }
         public static List<string> CategoriesValues { get => categories.Values.ToList(); }
-        private static Dictionary<int, string> categories = new()
+        private static readonly Dictionary<int, string> categories = new()
         {
             { 1, "Batterier" },
             { 2, "Biler" },
