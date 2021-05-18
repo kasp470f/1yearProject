@@ -69,7 +69,7 @@ namespace TrashHandling.Windows
         }
 
 		/// <summary>
-		/// Calls the Sql-query to delete the openedObject
+		/// Shows a Messagebox for delete-confirmation and if yes, calls the Sql-query to delete the openedObject
 		/// <para>Created by Martin</para>		
 		/// </summary>
 		private void DeleteData_Click(object sender, RoutedEventArgs e)
