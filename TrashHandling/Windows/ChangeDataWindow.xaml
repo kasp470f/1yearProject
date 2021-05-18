@@ -1,12 +1,11 @@
 ﻿<Window x:Class="TrashHandling.Windows.ChangeDataWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:local="clr-namespace:TrashHandling.Windows"
-        mc:Ignorable="d"
-        Title="Datatilpasning" Height="450" Width="600" Background="#F5F5F5" WindowStartupLocation="CenterScreen">
+		mc:Ignorable="d"
+        Title="Datatilpasning" Height="450" Width="600" Background="#F5F5F5" WindowStartupLocation="CenterScreen" ContentRendered="DataRendered">
     
     <Grid>
 		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
@@ -53,7 +52,10 @@
 				<xctk:DateTimePicker Name="DateTimePickField" Grid.Column="1" Grid.Row="5" AllowTextInput="False" ShowButtonSpinner="False" Format="Custom" FormatString="yyyy:MM:dd HH:mm" TextBoxBase.SelectionChanged="DateTimePickField_Click"/>
 
 				<!--Button to submit the form-->
-				<Button Name="UpdateTrash" Content="Opdater" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA" Click="ChangeData_Click"/>
+				<Button Name="UpdateTrash" Content="Opdatér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Width="100" Margin="5" Background="#FAFAFA" Click="ChangeData_Click"/>
+				
+				<!--Button to delete the selected element-->
+				<Button Name="DeleteTrash" Content="Slet posten" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA" Click="DeleteData_Click"/>
 			</Grid>
 		</StackPanel>
 	</Grid>

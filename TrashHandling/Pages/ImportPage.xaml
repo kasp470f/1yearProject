@@ -21,15 +21,16 @@
         <!--DataGrid shows a preview of the data from the selected file-->
         <DataGrid x:Name="ImportDisplay" Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Margin="50,120,50,40">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="100" Header="Id" Binding="{Binding LocalID}"/>
+                <DataGridTextColumn MinWidth="120" Width="auto" Header="Id" Binding="{Binding IdText}"/>
                 <DataGridTextColumn Width="*" Header="Mængde" Binding="{Binding Amount}"/>
                 <DataGridTextColumn Width="*" Header="Måleenhed" Binding="{Binding UnitsText}" MaxWidth="100"/>
                 <DataGridTextColumn Width="*" Header="Affaldskategori" Binding="{Binding CategoryText}" MaxWidth="125"/>
                 <DataGridTextColumn Width="*" Header="Affaldsbeskrivelse" Binding="{Binding Description}"/>
                 <DataGridTextColumn Width="*" Header="Ansvarlig" Binding="{Binding ResponsiblePerson}"/>
                 <DataGridTextColumn Width="*" Header="VirksomhedsId" Binding="{Binding CompanyId}"/>
-                <DataGridTextColumn Width="*" Header="Dato" Binding="{Binding RegisterTimeStamp}"/>
+                <DataGridTextColumn Width="100" Header="Dato" Binding="{Binding RegisterTimeStamp}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Add to Database" Width="100" Height="20" VerticalAlignment="Bottom" Margin="0,10"/>
     </Grid>
 </Page>

@@ -20,11 +20,12 @@ namespace TrashHandling.Pages
 		public ImportPage()
 		{
 			InitializeComponent();
+
+			// Create Directory if not found
 			if (!Directory.Exists(dirPath))
 			{
 				Directory.CreateDirectory(dirPath);
 			}
-			//MonitorDirectory(dirPath);
 		}
 
 		///<Summary>
@@ -36,69 +37,65 @@ namespace TrashHandling.Pages
 		private void PickFile_Click(object sender, RoutedEventArgs e)
 		{
 			FileNameField.Text = "";
-			OpenFileDialog selector = new OpenFileDialog()
+			OpenFileDialog selector = new()
 			{
 				Title = "Open .csv-file",
 				InitialDirectory = dirPath,
 				Filter = "CSV (Comma Delimited) (*.csv)|*.csv",
-				CheckPathExists = true
+				CheckPathExists = true,
+				Multiselect = true,
 			};		
 			
 			if(selector.ShowDialog()  == true)
 			{
-				string path = selector.FileName;
-				FileNameField.Text = path;
-				FormatLocalFile(path, selector.SafeFileName);
+				string[] paths = selector.FileNames;
+				string[] pathsNames = selector.SafeFileNames;
+				FileNameField.Text = string.Join(", ", paths);
+				FormatLocalFiles(paths, pathsNames);
 
 			}
 		}
 
-
-		private void FormatLocalFile(string path, string fileName)
-        {
-			string[] content = File.ReadAllLines(path);
-            foreach (string line in content)
-            {
-				string[] element = line.Split(',');
-				localFiles.Add(new Trash()
-				{
-					LocalID = $"{fileName} / {element[0]}",
-					Amount = int.Parse(element[1]),
-					Units = int.Parse(element[2]),
-					Category = int.Parse(element[3]),
-					Description = element[4],
-					ResponsiblePerson = element[5],
-					CompanyId  = int.Parse(element[6]),
-					RegisterTimeStamp = element[7],
-				});
-            }
-			ImportDisplay.ItemsSource = localFiles;
-
-		}
-
-
-        #region Not Working
-        /// <summary>
-        /// Monitors a directory for additions of files that are csv format.
-        /// <para>Created by Kasper</para>
-        /// </summary>
-        /// <param name="path">The path to monitor</param>
-        private static void MonitorDirectory(string path)
-		{
-			FileSystemWatcher fileSystemWatcher = new (path);
-			fileSystemWatcher.Filter = "*.csv";
-			fileSystemWatcher.Created += File_Added;
-			fileSystemWatcher.EnableRaisingEvents = true;
-		}
-
 		/// <summary>
-		/// The Method that is sent when a file is added to the monitored folder
+		/// The method that makes the files, into trash elements.
 		/// <para>Created by Kasper</para>
 		/// </summary>
-		private static void File_Added(object sender, FileSystemEventArgs e)
-		{
-			MessageBox.Show(e.Name);
+		/// <param name="paths">The different files path.</param>
+		/// <param name="fileNames">The names of the different files.</param>
+		private void FormatLocalFiles(string[] paths, string[] fileNames)
+        {
+			localFiles = new();
+            try
+            {
+				for (int i = 0; i < paths.Length; i++)
+				{
+					string[] content = File.ReadAllLines(paths[i]);
+					foreach (string line in content)
+					{
+						string[] element = line.Split("\",\"");
+						localFiles.Add(new Trash()
+						{
+							IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
+							Amount = Math.Round(decimal.Parse(element[1]),3),
+							Unit = int.Parse(element[2]),
+							Category = int.Parse(element[3]),
+							Description = element[4],
+							ResponsiblePerson = element[5],
+							CompanyId = int.Parse(element[6]),
+							RegisterTimeStamp = element[7].Trim('\"'),
+						});
+					}
+					Console.Log($"A file has been added to import: {fileNames[i]}");
+				}
+			}
+            catch (Exception ex)
+            {
+				MessageBox.Show(ex.Message);
+            }
+
+			ImportDisplay.ItemsSource = null;
+			ImportDisplay.Items.Clear();
+			ImportDisplay.ItemsSource = localFiles; 
 		}
-        #endregion
     }
 }

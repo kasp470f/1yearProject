@@ -11,16 +11,18 @@ namespace TrashHandling
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Pages Directory
+        public static MainWindow Main;
+
         /// Pages under the Directory 
         static HomePage HomePage = new();
-        static ConsolePage ConsolePage = new();
-        static StatisticsPage StatisticsPage = new();
-        static DisplayDataPage DisplayDataPage = new();
         static RegisterTrashPage RegisterPage = new();
+        static DisplayDataPage DisplayDataPage = new();
         static ImportPage ImportPage = new();
+        static StatisticsPage StatisticsPage = new();
+        static ConsolePage ConsolePage = new();
+
         /// The Directory itself
-        Dictionary<string, Page> PageDirectory = new()
+        private readonly Dictionary<string, Page> PageDirectory = new()
         {
             { "Home", HomePage},
             { "Registrér affald", RegisterPage },
@@ -38,7 +40,8 @@ namespace TrashHandling
         public MainWindow()
         {
             InitializeComponent();
-            viewingWindow.Navigate(HomePage);
+            Main = this;
+            viewingWindow.Navigate(new LoginPage());
 
 
             // Add event to all menu items (including children)
@@ -79,5 +82,7 @@ namespace TrashHandling
                 MessageBox.Show($"Seems that the page you are trying to reach, could not be reached!\nError: {err.Message}");
             }
         }
+
+
     }
 }

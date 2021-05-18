@@ -15,33 +15,37 @@ namespace TrashHandling.Pages
 	/// </summary>
 	public partial class DisplayDataPage : Page
     {
+        public static DisplayDataPage DisplayWindow;
 
         //Background worker to load database
         private readonly BackgroundWorker worker = new();
 
         // List with the data that will be shown through the datagrid
         private List<Trash> Database;
-        private List<Trash> LocalFiles;
-
 
         public DisplayDataPage()
         {
             InitializeComponent();
+            DisplayWindow = this;
             // Assignning the different tasks
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
         }
         
+        /// <summary>
+        /// Allows to open the selected row
+        /// <para>Created by Martin</para>
+        /// </summary>
         private void OpenEditableData_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
-		    {
-			    if (sender != null)
-			    {
-				      DataGridRow row = sender as DataGridRow;
-				      Trash trash = (Trash)row.Item;
-				      ChangeDataWindow changeData = new(trash);
-				      changeData.Show();
-			    }
-		    }
+        {
+            if (sender != null)
+			{
+			    DataGridRow row = sender as DataGridRow;
+				Trash trash = (Trash)row.Item;
+				ChangeDataWindow changeData = new(trash);
+				changeData.Show();
+            }
+		}
 
         /// <summary>
         /// The logic behind the button that allows for export of CSV
@@ -65,8 +69,6 @@ namespace TrashHandling.Pages
             }
         }
 
-
-
         #region Background Worker
         /// <summary>
         /// The work the worker has to do async
@@ -75,7 +77,7 @@ namespace TrashHandling.Pages
         private void worker_DoWork(object sender, DoWorkEventArgs e) => Database = SqlQueries.GetTrashFromDb();
 
         /// <summary>
-        /// The workers final task after finshing the first
+        /// The workers final task after finishing the first
         /// <para>Created by Kasper</para>
         /// </summary>
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => DbDisplayer.ItemsSource = Database;
@@ -86,5 +88,17 @@ namespace TrashHandling.Pages
         /// </summary>
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e) => worker.RunWorkerAsync();
         #endregion
+
+        /// <summary>
+        /// Refresh the datagrid to update with new info
+        /// <para>Created by Kasper</para>
+        /// </summary>
+        public void RefreshDataGrid()
+        {
+            DbDisplayer.ItemsSource = null;
+            DbDisplayer.Items.Clear();
+            DbDisplayer.Items.Refresh();
+            worker.RunWorkerAsync();
+        }
     }
 }

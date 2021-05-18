@@ -87,9 +87,10 @@
                         <Setter Property="Width" Value="275"/>
                         <Setter Property="Margin" Value="0,5"/>
                         <Setter Property="Background" Value="#FAFAFA"/>
-                    </Style>
+                    </Style>					
                 </Style.Resources>
             </Style>
+			
 
             <!--Directories-->
             <ResourceDictionary.MergedDictionaries>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using TrashHandling.Models;
@@ -15,7 +16,6 @@ namespace TrashHandling.Pages
 		public RegisterTrashPage()
 		{
 			InitializeComponent();
-			LoadComboBoxes();
 		}
 
 		/// <summary>
@@ -29,10 +29,10 @@ namespace TrashHandling.Pages
 			{
 				//Id autogenerates in database...
 				Amount = decimal.Parse(Amount.Text),
-				Units = UnitPicker.SelectedIndex + 1,
+				Unit = UnitPicker.SelectedIndex + 1,
 				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
-				ResponsiblePerson = Registrator.Text,
+				ResponsiblePerson = Responsible.Text,
 				CompanyId = int.Parse(CompanyID.Text),
 				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
@@ -40,19 +40,26 @@ namespace TrashHandling.Pages
 			//Call the method to add to the db
 			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
 
-			Console.Log($"A trash element has been added: {trash.ToString()}");		
+			// Refresh page
+			DisplayDataPage.DisplayWindow.RefreshDataGrid();
+			ResetFields();
+
+			Console.Log($"A trash element has been added: {trash}");		
 		}
 
 		/// <summary>
-		/// The Method that will load the comboboxes.
-		/// <para>Created by Martin</para>
+		/// Resets the fields of the registration page.
+		/// <para>Created by Kasper</para>
 		/// </summary>
-		private void LoadComboBoxes()
-		{
-			TrashPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Categories));
-			TrashPicker.SelectedItem = (ComboBoxSources.Categories)1;
-			// Adds all enum values through the GetValues() method.
-			UnitPicker.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Unit));
+		private void ResetFields()
+        {
+			Amount.Text = string.Empty;
+			UnitPicker.SelectedItem = string.Empty;
+			TrashPicker.SelectedIndex = 0;
+			Description.Text = string.Empty;
+			Responsible.Text = string.Empty;
+			CompanyID.Text = string.Empty;
+			DateTimePickField.Text = string.Empty;
 		}
 
 		/// <summary>
@@ -60,5 +67,15 @@ namespace TrashHandling.Pages
 		/// <para>Created by Kasper</para>
 		/// </summary>
 		private void DateTimePickField_Click(object sender, RoutedEventArgs e) => DateTimePickField.IsOpen = true;
-	}
+
+		/// <summary>
+		/// Loads the CompanyID and Responsible person
+		/// <para>Created by Kasper</para>
+		/// </summary>
+		private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+			Responsible.Text = Company.Instance.Name;
+			CompanyID.Text = Company.Instance.Id.ToString();
+		}
+    }
 }
