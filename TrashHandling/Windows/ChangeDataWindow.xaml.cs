@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using TrashHandling.Models;
 using TrashHandling.Pages;
+using Console = TrashHandling.Pages.Console;
 
 namespace TrashHandling.Windows
 {
@@ -13,11 +14,11 @@ namespace TrashHandling.Windows
 	/// <param name="openedObject">The Trash object selected in the DataGrid on DisplayDataPage</param>
 	public partial class ChangeDataWindow : Window
 	{
-		private Trash openedObject { get; set; }
+		private Trash OpenedObject { get; set; }
 		public ChangeDataWindow(Trash openedObject)
 		{
 			InitializeComponent();
-			this.openedObject = openedObject;			
+			this.OpenedObject = openedObject;			
 		}
 
 		/// <summary>
@@ -31,10 +32,10 @@ namespace TrashHandling.Windows
 		/// <para>Created by Martin</para>		
 		/// </summary>
 		private void ChangeData_Click(object sender, RoutedEventArgs e)
-		{			
-			openedObject = new()
+		{
+			OpenedObject = new()
 			{
-				Id = openedObject.Id,
+				Id = OpenedObject.Id,
 				Amount = decimal.Parse(Amount.Text),
 				Unit = UnitPicker.SelectedIndex + 1,
 				Category = TrashPicker.SelectedIndex + 1,
@@ -43,8 +44,9 @@ namespace TrashHandling.Windows
 				CompanyId = int.Parse(CompanyID.Text),
 				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
-			SqlQueries.EditTrashInDb(openedObject);
+			SqlQueries.EditTrashInDb(OpenedObject);
 
+			Console.Log($"A trash element has been edited: {OpenedObject}");
 			DisplayDataPage.DisplayWindow.RefreshDataGrid();
 			this.Close();
 
@@ -56,14 +58,14 @@ namespace TrashHandling.Windows
 		/// </summary>
 		private void DataRendered(object sender, EventArgs e)
         {
-			TrashPicker.SelectedIndex = openedObject.Category - 1;
-			UnitPicker.SelectedIndex = openedObject.Unit - 1;
+			TrashPicker.SelectedIndex = OpenedObject.Category - 1;
+			UnitPicker.SelectedIndex = OpenedObject.Unit - 1;
 
-			Amount.Text = openedObject.Amount.ToString();
-			Description.Text = openedObject.Description;
-			Registrator.Text = openedObject.ResponsiblePerson;
-			CompanyID.Text = openedObject.CompanyId.ToString();
-			DateTimePickField.Text = openedObject.RegisterTimeStamp.ToString();
+			Amount.Text = OpenedObject.Amount.ToString();
+			Description.Text = OpenedObject.Description;
+			Registrator.Text = OpenedObject.ResponsiblePerson;
+			CompanyID.Text = OpenedObject.CompanyId.ToString();
+			DateTimePickField.Text = OpenedObject.RegisterTimeStamp.ToString();
         }
 
 		/// <summary>

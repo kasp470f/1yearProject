@@ -14,15 +14,18 @@ namespace TrashHandling.ResourceDirectories
         private void LoadComboBoxes(object sender, RoutedEventArgs e)
         {
             ComboBox box = e.Source as ComboBox;
-            switch (box.Name)
+            if (box.HasItems == false)
             {
-                case "TrashPicker":
-                    box.ItemsSource = ComboBoxSources.CategoriesValues;
-                    box.SelectedItem = ComboBoxSources.Categories[1];
-                    break;
-                case "UnitPicker":
-                    box.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Units));
-                    break;
+                switch (box.Name)
+                {
+                    case "TrashPicker":
+                        box.ItemsSource = ComboBoxSources.CategoriesValues;
+                        box.SelectedItem = ComboBoxSources.Categories[1];
+                        break;
+                    case "UnitPicker":
+                        box.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Units));
+                        break;
+                }
             }
         }
     }

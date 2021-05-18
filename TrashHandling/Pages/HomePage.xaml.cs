@@ -24,5 +24,14 @@ namespace TrashHandling.Pages
             MainWindow.Main.Topbar.IsEnabled = false;
             MainWindow.Main.viewingWindow.Navigate(new LoginPage());
         }
+
+        /// <summary>
+        /// User name will be displayed on home page.
+        /// <para>Created by Kasper</para>
+        /// </summary>
+        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            UserName.Text = Company.Instance.Name;
+        }
     }
 }

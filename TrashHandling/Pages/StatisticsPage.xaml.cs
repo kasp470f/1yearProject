@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -18,7 +19,6 @@ namespace TrashHandling.Pages
         public StatisticsPage()
         {
             InitializeComponent();
-            //LoadBarChartData();
 
             int year = DateTime.Now.Year;
             for (int i = year; i >= year - 100; i--) yearPicked.Items.Add(i);
@@ -59,7 +59,7 @@ namespace TrashHandling.Pages
         {
             // Format elements
             string format = "yyyy:MM:dd HH:mm";
-            CultureInfo dk = new CultureInfo("da-DK");
+            CultureInfo dk = new("da-DK");
 
             // Initializing the temp dictionary
             Dictionary<int, decimal> tempDictionary = new();

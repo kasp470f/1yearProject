@@ -20,6 +20,8 @@ namespace TrashHandling.Pages
 		public ImportPage()
 		{
 			InitializeComponent();
+
+			// Create Directory if not found
 			if (!Directory.Exists(dirPath))
 			{
 				Directory.CreateDirectory(dirPath);
@@ -35,7 +37,7 @@ namespace TrashHandling.Pages
 		private void PickFile_Click(object sender, RoutedEventArgs e)
 		{
 			FileNameField.Text = "";
-			OpenFileDialog selector = new OpenFileDialog()
+			OpenFileDialog selector = new()
 			{
 				Title = "Open .csv-file",
 				InitialDirectory = dirPath,
@@ -74,7 +76,7 @@ namespace TrashHandling.Pages
 						localFiles.Add(new Trash()
 						{
 							IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
-							Amount = decimal.Parse(element[1]),
+							Amount = Math.Round(decimal.Parse(element[1]),3),
 							Unit = int.Parse(element[2]),
 							Category = int.Parse(element[3]),
 							Description = element[4],
@@ -83,6 +85,7 @@ namespace TrashHandling.Pages
 							RegisterTimeStamp = element[7].Trim('\"'),
 						});
 					}
+					Console.Log($"A file has been added to import: {fileNames[i]}");
 				}
 			}
             catch (Exception ex)
