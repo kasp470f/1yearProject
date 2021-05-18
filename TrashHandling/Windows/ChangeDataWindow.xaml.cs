@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using TrashHandling.Models;
 using TrashHandling.Pages;
 using Console = TrashHandling.Pages.Console;
