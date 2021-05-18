@@ -12,7 +12,7 @@ namespace TrashHandling.Models
     public class Validation
     {
         /// <summary>
-        /// Checks the company id against a API and sees if it is real.
+        /// Checks the company id against an API and returns if it is real.
         /// <para>Created by Kasper</para>
         /// </summary>
         /// <param name="id">The company id</param>
@@ -24,7 +24,7 @@ namespace TrashHandling.Models
                 JObject json;
                 using (var webClient = new WebClient())
                 {
-                    webClient.Headers["User-Agent"] = "Uddanelses Projekt";
+                    webClient.Headers["User-Agent"] = "Uddannelses Projekt";
                     string content = webClient.DownloadString(string.Format("http://cvrapi.dk/api?search={0}&country=dk", id));
                     json = JObject.Parse(content);
                 }
