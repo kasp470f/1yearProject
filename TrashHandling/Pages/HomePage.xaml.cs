@@ -23,6 +23,7 @@ namespace TrashHandling.Pages
             Company.RemoveInstance = null;
             MainWindow.Main.Topbar.IsEnabled = false;
             MainWindow.Main.viewingWindow.Navigate(new LoginPage());
+            Filewatcher.watcher.EnableRaisingEvents = false;
         }
 
         /// <summary>

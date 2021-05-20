@@ -26,6 +26,8 @@ namespace TrashHandling.Pages
 			{
 				Directory.CreateDirectory(dirPath);
 			}
+
+            Filewatcher.Monitor(dirPath);
 		}
 
 		///<Summary>
