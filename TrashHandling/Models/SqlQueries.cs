@@ -22,8 +22,9 @@ namespace TrashHandling.Models
 		/// <para>Created by Martin</para>
 		/// </summary>
 		/// <param name="trash">The trash element that will be put into the database</param>
-		public static void InsertTrashToDb(Trash trash, DateTime dateTimePickerValue)
+		public static int InsertTrashToDb(Trash trash)
 		{
+			int rows = 0;
 			try
 			{
 				SqlCommand insert = new(
@@ -35,7 +36,7 @@ namespace TrashHandling.Models
 				insert.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
 				insert.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
 				insert.Parameters.Add("@CompanyId", SqlDbType.Int).Value = trash.CompanyId;
-				insert.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = dateTimePickerValue;
+				insert.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = trash.DateTimePickerValue;
 
 				connectionString.Open();
 				insert.ExecuteNonQuery();
@@ -48,6 +49,7 @@ namespace TrashHandling.Models
 			{
 				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
 			}
+			return rows;
 		}
 
 		/// <summary>

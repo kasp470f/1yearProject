@@ -97,5 +97,29 @@ namespace TrashHandling.Pages
 			ImportDisplay.Items.Clear();
 			ImportDisplay.ItemsSource = localFiles; 
 		}
-    }
+
+		private void SaveImported_Click(object sender, RoutedEventArgs e)
+		{
+			List<Trash> importList = new();
+			bool trashOk = false;
+
+			//TODO: Fill list here
+
+			//Add to the db
+			if (trashOk)
+			{
+				MessageBox.Show("Dine importerede data sendes til databasen. Vent venligst på at den bliver færdig.");
+				int rowsAdded = 0;
+
+				foreach (Trash importedElement in importList)
+					rowsAdded += SqlQueries.InsertTrashToDb(importedElement);
+
+				if (rowsAdded > 0)
+				{
+					Console.Log($"User imported {rowsAdded} row(s)");
+					MessageBox.Show($"Succes! {rowsAdded} rækker tilføjet.");					
+				}
+			}			
+		}
+	}
 }

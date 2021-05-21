@@ -36,7 +36,7 @@ namespace TrashHandling.Pages
 			};
 
 			//Call the method to add to the db
-			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
+			SqlQueries.InsertTrashToDb(trash);
 
 			// Refresh page
 			DisplayDataPage.DisplayWindow.RefreshDataGrid();
