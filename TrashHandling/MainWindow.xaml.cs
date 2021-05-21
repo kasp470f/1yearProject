@@ -1,15 +1,15 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using TrashHandling.Pages;
-using System.Collections.Generic;
 
 namespace TrashHandling
 {
-    /// <summary>
-    /// The main page's view. Connects to all the pages via a frame.
-    /// <para> Created by Kasper</para>
-    /// </summary>
-    public partial class MainWindow : Window
+	/// <summary>
+	/// The main page's view. Connects to all the pages via a frame.
+	/// <para> Created by Kasper</para>
+	/// </summary>
+	public partial class MainWindow : Window
     {
         public static MainWindow Main;
 

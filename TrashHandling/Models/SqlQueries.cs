@@ -130,5 +130,30 @@ namespace TrashHandling.Models
 				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
 			}
 		}
+
+		/// <summary>
+		/// Logic to delete a Trash object from the db.
+		/// <para>Created by Martin</para>
+		/// </summary>
+		/// <param name="trash">The trash element that will be deleted</param>
+		public static void DeleteTrashFromDb(Trash trash)
+		{
+			try
+			{
+				SqlCommand deleteElement = new(@"DELETE FROM TrashTable WHERE Id=@Id", connectionString);
+				deleteElement.Parameters.Add("@Id", SqlDbType.Int).Value = trash.Id;
+
+				connectionString.Open();
+				deleteElement.ExecuteNonQuery();
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.Message);
+			}
+			finally
+			{
+				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
+			}
+		}
 	}
 }

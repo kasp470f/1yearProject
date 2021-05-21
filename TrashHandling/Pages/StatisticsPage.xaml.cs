@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.DataVisualization.Charting;
 using TrashHandling.Models;
 
 namespace TrashHandling.Pages
 {
-    /// <summary>
-    /// Interaction logic for Statistics.xaml
-    /// <para>Created by Kasper</para>
-    /// </summary>
-    public partial class StatisticsPage : Page
+	/// <summary>
+	/// Interaction logic for Statistics.xaml
+	/// <para>Created by Kasper</para>
+	/// </summary>
+	public partial class StatisticsPage : Page
     {
         public StatisticsPage()
         {

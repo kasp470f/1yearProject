@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using TrashHandling.Models;
 using TrashHandling.Pages;
 using Console = TrashHandling.Pages.Console;
@@ -67,5 +65,26 @@ namespace TrashHandling.Windows
 			CompanyID.Text = OpenedObject.CompanyId.ToString();
 			DateTimePickField.Text = OpenedObject.RegisterTimeStamp.ToString();
         }
-    }
+
+		/// <summary>
+		/// Shows a Messagebox for delete-confirmation and if yes, calls the Sql-query to delete the openedObject
+		/// <para>Created by Martin</para>		
+		/// </summary>
+		private void DeleteData_Click(object sender, RoutedEventArgs e)
+		{
+			//An alert will be shown to ask user to be sure
+			MessageBoxResult result = MessageBox.Show("Denne post vil blive slettet.\nEr det korrekt?","Advarsel!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			if (result == MessageBoxResult.Yes)
+			{
+				OpenedObject = new()
+				{
+					Id = OpenedObject.Id
+				};
+				SqlQueries.DeleteTrashFromDb(OpenedObject);
+
+				DisplayDataPage.DisplayWindow.RefreshDataGrid();
+				this.Close();
+			}			
+		}
+	}
 }
