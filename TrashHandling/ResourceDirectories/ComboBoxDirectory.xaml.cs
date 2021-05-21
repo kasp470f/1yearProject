@@ -5,7 +5,7 @@ using TrashHandling.Models;
 
 namespace TrashHandling.ResourceDirectories
 {
-    public partial class ComboBoxDirectory : ResourceDictionary
+	public partial class ComboBoxDirectory : ResourceDictionary
     {
         /// <summary>
         /// Loads the comboboxes with the correct itemsource.

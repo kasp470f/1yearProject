@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows;
 
 namespace TrashHandling.Pages
 {
@@ -30,7 +31,7 @@ namespace TrashHandling.Pages
         /// Export the contents of the console box to a text file
         /// <para> Created by Kasper</para>
         /// </summary>
-        private void ExportLog_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ExportLog_Click(object sender, RoutedEventArgs e)
         {
             Console.Log("User has exported the logs to txt file format");
         }

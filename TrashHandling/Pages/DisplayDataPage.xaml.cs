@@ -1,9 +1,10 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using TrashHandling.Models;
 using TrashHandling.Windows;
 
@@ -36,7 +37,7 @@ namespace TrashHandling.Pages
         /// Allows to open the selected row
         /// <para>Created by Martin</para>
         /// </summary>
-        private void OpenEditableData_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void OpenEditableData_Click(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
 			{
@@ -51,7 +52,7 @@ namespace TrashHandling.Pages
         /// The logic behind the button that allows for export of CSV
         /// <para>Created by Kasper</para>
         /// </summary>
-        private void ExportDB_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ExportDB_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog selector = new() {
                 Title = "Choose the location of the Database Content",
@@ -86,7 +87,7 @@ namespace TrashHandling.Pages
         /// The worker being started and run async.
         /// <para>Created by Kasper</para>
         /// </summary>
-        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e) => worker.RunWorkerAsync();
+        private void Page_Loaded(object sender, RoutedEventArgs e) => worker.RunWorkerAsync();
         #endregion
 
         /// <summary>

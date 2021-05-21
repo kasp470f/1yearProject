@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Data.SqlTypes;
 using System.Globalization;
 using static TrashHandling.Models.ComboBoxSources;
 
 namespace TrashHandling.Models
 {
-    /// <summary>
-    /// The class object containing the properties to handle trash
-    /// <para>Created by Martin</para>
-    /// </summary>
-    public class Trash
+	/// <summary>
+	/// The class object containing the properties to handle trash
+	/// <para>Created by Martin</para>
+	/// </summary>
+	public class Trash
 	{
         public int Id { get; set; }
         public decimal Amount { get; set; }
