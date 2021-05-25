@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -43,8 +44,11 @@ namespace TrashHandling.Pages
 			{
 			    DataGridRow row = sender as DataGridRow;
 				Trash trash = (Trash)row.Item;
-				ChangeDataWindow changeData = new(trash);
-				changeData.Show();
+				if(trash.CompanyId == Company.Instance.Id)
+                {
+                    ChangeDataWindow changeData = new(trash);
+                    changeData.Show();
+                }
             }
 		}
 
@@ -59,15 +63,17 @@ namespace TrashHandling.Pages
                 Filter = "CSV (Comma Delimited) (*.csv)|*.csv|Text file (*.txt)|*.txt",
                 InitialDirectory = @"C:\Dropzone",
             };
+            Filewatcher.watcher.EnableRaisingEvents = false;
             if (selector.ShowDialog() == true)
             {
                 string databaseText = string.Empty;
-                foreach (Trash element in Database)
+                foreach (Trash element in DbDisplayer.ItemsSource)
                 {
                     databaseText += $"{element.ToString()}\n";
                 }
                 File.WriteAllText(selector.FileName, databaseText);
             }
+            Filewatcher.watcher.EnableRaisingEvents = true;
         }
 
         #region Background Worker
@@ -81,7 +87,11 @@ namespace TrashHandling.Pages
         /// The workers final task after finishing the first
         /// <para>Created by Kasper</para>
         /// </summary>
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => DbDisplayer.ItemsSource = Database;
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (ShowAllCheckbox.IsChecked == false) DbDisplayer.ItemsSource = Database.Where(x => x.CompanyId == Company.Instance.Id);
+            else DbDisplayer.ItemsSource = Database;
+        }
 
         /// <summary>
         /// The worker being started and run async.
@@ -101,5 +111,9 @@ namespace TrashHandling.Pages
             DbDisplayer.Items.Refresh();
             worker.RunWorkerAsync();
         }
+
+        private void ShowAllCheckbox_Checked(object sender, RoutedEventArgs e) => RefreshDataGrid();
+
+        private void ShowAllCheckbox_Unchecked(object sender, RoutedEventArgs e) => RefreshDataGrid();
     }
 }

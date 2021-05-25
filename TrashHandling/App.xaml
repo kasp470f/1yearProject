@@ -24,6 +24,10 @@
 				</Style.Resources>
 			</Style>
 
+            <Style TargetType="Image">
+                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+            </Style>
+
 
 			<Style x:Key="HeaderTextBlock" TargetType="TextBlock">
 				<Setter Property="FontSize" Value="24"/>

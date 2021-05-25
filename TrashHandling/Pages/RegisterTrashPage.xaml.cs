@@ -36,7 +36,7 @@ namespace TrashHandling.Pages
 			};
 
 			//Call the method to add to the db
-			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
+			SqlQueries.InsertTrashToDb(trash);
 
 			// Refresh page
 			DisplayDataPage.DisplayWindow.RefreshDataGrid();
@@ -52,7 +52,7 @@ namespace TrashHandling.Pages
 		private void ResetFields()
         {
 			Amount.Text = string.Empty;
-			UnitPicker.SelectedItem = string.Empty;
+			UnitPicker.SelectedItem = null;
 			TrashPicker.SelectedIndex = 0;
 			Description.Text = string.Empty;
 			Responsible.Text = string.Empty;

@@ -31,6 +31,7 @@ namespace TrashHandling.Pages
                         Console.Log($"User logged in: {UserName.Text}, {UserCompany.Text}");
                         MainWindow.Main.Topbar.IsEnabled = true;
                         MainWindow.Main.viewingWindow.Navigate(new HomePage());
+                        Filewatcher.watcher.EnableRaisingEvents = true;
                     }
                 }
             }

@@ -34,7 +34,7 @@ namespace TrashHandling.Pages
 
 
         /// <summary>
-        /// Loads a chart
+        /// Loads the chart with information
         /// <para>Created by Kasper</para>
         /// </summary>
         private void LoadBarChartData()

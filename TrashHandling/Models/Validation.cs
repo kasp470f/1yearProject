@@ -19,7 +19,7 @@ namespace TrashHandling.Models
                 JObject json;
                 using (var webClient = new WebClient())
                 {
-                    webClient.Headers["User-Agent"] = "Uddannelses Projekt";
+                    webClient.Headers["User-Agent"] = "EA Dania Uddannelses Projekt";
                     string content = webClient.DownloadString(string.Format("http://cvrapi.dk/api?search={0}&country=dk", id));
                     json = JObject.Parse(content);
                 }
