@@ -52,7 +52,7 @@ namespace TrashHandling.Pages
 		private void ResetFields()
         {
 			Amount.Text = string.Empty;
-			UnitPicker.SelectedItem = string.Empty;
+			UnitPicker.SelectedItem = null;
 			TrashPicker.SelectedIndex = 0;
 			Description.Text = string.Empty;
 			Responsible.Text = string.Empty;
