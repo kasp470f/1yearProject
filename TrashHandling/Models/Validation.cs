@@ -6,24 +6,6 @@ namespace TrashHandling.Models
 {
 	public class Validation
     {
-
-        /// <summary>
-        /// Validates if the inputted string can be converted to decimal
-        /// </summary>
-        /// <param name="amount">the string amount</param>
-        /// <returns>true if string can be converted to decimal</returns>
-        public static bool ValidAmount(string amount)
-        {
-            try
-            {
-                return decimal.TryParse(amount, out _);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
         /// <summary>
         /// Checks the company id against an API and returns if it is real.
         /// <para>Created by Kasper</para>
