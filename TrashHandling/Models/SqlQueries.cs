@@ -14,7 +14,7 @@ namespace TrashHandling.Models
 	public class SqlQueries
 	{		
 		//Connectionstring to database is fetched from App.config which is ignored by GitHub
-		private static SqlConnection connectionString = 
+		private static readonly SqlConnection connectionString = 
 			new(ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
 
 		/// <summary>
@@ -22,9 +22,8 @@ namespace TrashHandling.Models
 		/// <para>Created by Martin</para>
 		/// </summary>
 		/// <param name="trash">The trash element that will be put into the database</param>
-		public static int InsertTrashToDb(Trash trash)
+		public static void InsertTrashToDb(Trash trash)
 		{
-			int rows = 0;
 			try
 			{
 				SqlCommand insert = new(
@@ -49,14 +48,12 @@ namespace TrashHandling.Models
 			{
 				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
 			}
-			return rows;
 		}
 
 		/// <summary>
 		/// Logic to pull the data from our db.
 		/// <para>Created by Martin</para>
 		/// </summary>
-		/// <param name="trash">The trash element that will be shown as a row in our datagrid</param>
 		public static List<Trash> GetTrashFromDb()
 		{
 			List<Trash> trash = new();
@@ -95,7 +92,6 @@ namespace TrashHandling.Models
 			{
 				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
 			}
-
 		}
 
 		/// <summary>
