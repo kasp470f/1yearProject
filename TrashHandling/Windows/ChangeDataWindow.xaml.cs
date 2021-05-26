@@ -35,7 +35,7 @@ namespace TrashHandling.Windows
 			{
 				Id = OpenedObject.Id,
 				Amount = decimal.Parse(Amount.Text),
-				Unit = UnitPicker.SelectedIndex + 1,
+				Unit = (int)Enum.Parse(typeof(ComboBoxSources.Units), UnitPicker.Text),
 				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,

@@ -116,34 +116,16 @@ namespace TrashHandling.Pages
 			List<Trash> insertList = new();
 			foreach (Trash item in importList)
 			{
-				if (item.Unit != 4)
-				{
-					switch (item.Unit)
-					{
-						// Ton
-						case 3:
-							item.Unit = 4;
-							item.Amount = Math.Round(item.Amount * 1000, 3);
-							break;
-						// Gram
-						case 5:
-							item.Unit = 4;
-							item.Amount = Math.Round(item.Amount / 1000, 3);
-							break;
-						// Everything else
-						default:
-							continue;
-					}
-				}
-				insertList.Add(item);
+				if (item.Unit >= 3 && item.Unit <= 5) insertList.Add(item);
+				else continue;
 			}
-            
-			// Add to database
-			foreach (Trash element in insertList)
+
+            // Add to database
+            foreach (Trash element in insertList)
             {
-				SqlQueries.InsertTrashToDb(element);
+                SqlQueries.InsertTrashToDb(element);
             }
-			MessageBox.Show($"{insertList.Count} has been added to the database");
+            MessageBox.Show($"{insertList.Count} has been added to the database");
 			
 		}
 	}

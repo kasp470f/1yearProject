@@ -33,7 +33,9 @@ namespace TrashHandling.Pages
                         MainWindow.Main.viewingWindow.Navigate(new HomePage());
                         Filewatcher.watcher.EnableRaisingEvents = true;
                     }
+                    else MessageBox.Show("CompanyID kunne ikke findes!");
                 }
+                else MessageBox.Show("Navn eller CompanyID er ikke indtastet!");
             }
             catch (Exception ex)
             {
