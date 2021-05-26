@@ -66,7 +66,23 @@ namespace TrashHandling.Pages
             // Sort the insertedList
             List<Trash> query = trashlist.Where(x => DateTime.ParseExact(x.RegisterTimeStamp, format, dk).Year == year && x.Category == category).ToList();
             // Sum up the amounts for each month
-            foreach (Trash element in query) tempDictionary[DateTime.ParseExact(element.RegisterTimeStamp, format, dk).Month] += element.Amount;
+            foreach (Trash element in query)
+            {
+                decimal amount = 0;
+                switch (element.Unit)
+                {
+                    case 3:
+                        amount = element.Amount * 1000;
+                        break;
+                    case 4:
+                        amount = element.Amount;
+                        break;
+                    case 5:
+                        amount = element.Amount / 1000;
+                        break;
+                }
+                tempDictionary[DateTime.ParseExact(element.RegisterTimeStamp, format, dk).Month] += Math.Round(amount, 3);
+            }
 
             // Change it to string keys
             string[] monthNames = CultureInfo.CurrentCulture.DateTimeFormat.MonthGenitiveNames.Where(x => !string.IsNullOrEmpty(x)).ToArray();

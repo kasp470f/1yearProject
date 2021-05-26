@@ -1,16 +1,16 @@
 ﻿namespace TrashHandling.Models
 {
-	/// <summary>
-	/// A class that holds the account information from the login page.
-	/// <para>Created by Kasper</para>
-	/// </summary>
-	public class Company
-	{ 
-		public string Name { get => name; }
-		private string name;
+    /// <summary>
+    /// A class that holds the account information from the login page.
+    /// <para>Created by Kasper</para>
+    /// </summary>
+    public class Company
+    {
+        public string Name { get => name; }
+        private string name;
 
-		public int Id { get => id; }
-		private int id;
+        public int Id { get => id; }
+        private int id;
 
         public Company(string name, int id)
         {
