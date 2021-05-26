@@ -1,11 +1,11 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.IO;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 using TrashHandling.Models;
-using System.ComponentModel;
 
 namespace TrashHandling.Pages
 {
@@ -16,7 +16,7 @@ namespace TrashHandling.Pages
 	public partial class ImportPage : Page
 	{
         public static string dirPath = @"C:\Dropzone";
-		private List<Trash> localFiles = new();
+		private List<Trash> localFiles;
 
 		public ImportPage()
 		{
@@ -55,7 +55,6 @@ namespace TrashHandling.Pages
 				string[] pathsNames = selector.SafeFileNames;
 				FileNameField.Text = string.Join(", ", paths);
 				FormatLocalFiles(paths, pathsNames);
-
 			}
 		}
 
@@ -73,15 +72,17 @@ namespace TrashHandling.Pages
 				for (int i = 0; i < paths.Length; i++)
 				{
 					string[] content = File.ReadAllLines(paths[i]);
+					
 					foreach (string line in content)
 					{
                         try
                         {
-							string[] element = line.Split("\",\"");
+							string[] element = line.Split("\",\"");							
+							
 							localFiles.Add(new Trash()
 							{
 								IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
-								Amount = Math.Round(decimal.Parse(element[1].Replace(',', '.')), 3),
+								Amount = Math.Round(CultureChange(element[1].Replace(',', '.')), 3),
 								Unit = int.Parse(element[2]),
 								Category = int.Parse(element[3]),
 								Description = element[4],
@@ -103,6 +104,18 @@ namespace TrashHandling.Pages
 			ImportDisplay.ItemsSource = null;
 			ImportDisplay.Items.Clear();
 			ImportDisplay.ItemsSource = localFiles; 
+		}
+
+		/// <summary>
+		/// If computer is in Danish, we won't get correct English decimal numbers with "." so this method changes it to English format.
+		/// <para>Created by Martin</para>
+		/// </summary>
+		public static decimal CultureChange(string input)
+		{
+			decimal output = 0;
+			if (decimal.TryParse(input, NumberStyles.Number, CultureInfo.CreateSpecificCulture("en-GB"), out decimal converted))
+				output = converted;
+			return output;
 		}
 
 		/// <summary>
