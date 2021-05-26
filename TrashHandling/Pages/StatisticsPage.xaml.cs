@@ -64,7 +64,8 @@ namespace TrashHandling.Pages
             for (int i = 1; i <= 12; i++) tempDictionary.Add(i, 0);
 
             // Sort the insertedList
-            List<Trash> query = trashlist.Where(x => DateTime.ParseExact(x.RegisterTimeStamp, format, dk).Year == year && x.Category == category).ToList();
+            List<Trash> yourCompany = trashlist.Where(x => x.CompanyId == Company.Instance.Id).ToList();
+            List<Trash> query = yourCompany.Where(x => DateTime.ParseExact(x.RegisterTimeStamp, format, dk).Year == year && x.Category == category).ToList();
             // Sum up the amounts for each month
             foreach (Trash element in query)
             {
