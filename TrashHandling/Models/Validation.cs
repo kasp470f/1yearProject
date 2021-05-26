@@ -23,7 +23,7 @@ namespace TrashHandling.Models
                     string content = webClient.DownloadString(string.Format("http://cvrapi.dk/api?search={0}&country=dk", id));
                     json = JObject.Parse(content);
                 }
-                return !json.ContainsKey("error");
+                return !json.ContainsKey("error") && json["vat"].ToString() == id.ToString();
             }
             catch (Exception)
             {
