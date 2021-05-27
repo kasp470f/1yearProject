@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using TrashHandling.Models;
 
 namespace TrashHandling.Models
 {
