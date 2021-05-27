@@ -24,12 +24,12 @@ namespace TrashHandling.Pages
         }
 
         /// <summary>
-        /// When the user switches between the trash categories
+        /// When the user switches between the categories and year
         /// <para>Created by Kasper</para>
         /// </summary>
-        private void TrashPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LoadBarChartData();
+            if(this.IsLoaded) LoadBarChartData();
         }
 
 
@@ -40,8 +40,8 @@ namespace TrashHandling.Pages
         private void LoadBarChartData()
         {
             ((ColumnSeries)TrashChart.Series[0]).ItemsSource = null;
-            ((ColumnSeries)TrashChart.Series[0]).ItemsSource = AccumulatedAmount(SqlQueries.GetTrashFromDb(), DateTime.Now.Year, TrashPicker.SelectedIndex + 1);
-            Console.Log($"Graph was created");
+                // fix year 
+            ((ColumnSeries)TrashChart.Series[0]).ItemsSource = AccumulatedAmount(SqlQueries.GetTrashFromDb(), int.Parse(yearPicked.SelectedItem.ToString()), TrashPicker.SelectedIndex + 1);
         }
 
 
