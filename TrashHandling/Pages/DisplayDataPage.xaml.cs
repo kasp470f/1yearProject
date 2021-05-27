@@ -1,9 +1,11 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using TrashHandling.Models;
 using TrashHandling.Windows;
 
@@ -36,14 +38,17 @@ namespace TrashHandling.Pages
         /// Allows to open the selected row
         /// <para>Created by Martin</para>
         /// </summary>
-        private void OpenEditableData_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void OpenEditableData_Click(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
 			{
 			    DataGridRow row = sender as DataGridRow;
 				Trash trash = (Trash)row.Item;
-				ChangeDataWindow changeData = new(trash);
-				changeData.Show();
+				if(trash.CompanyId == Company.Instance.Id)
+                {
+                    ChangeDataWindow changeData = new(trash);
+                    changeData.Show();
+                }
             }
 		}
 
@@ -51,22 +56,24 @@ namespace TrashHandling.Pages
         /// The logic behind the button that allows for export of CSV
         /// <para>Created by Kasper</para>
         /// </summary>
-        private void ExportDB_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ExportDB_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog selector = new() {
                 Title = "Choose the location of the Database Content",
                 Filter = "CSV (Comma Delimited) (*.csv)|*.csv|Text file (*.txt)|*.txt",
                 InitialDirectory = @"C:\Dropzone",
             };
+            Filewatcher.watcher.EnableRaisingEvents = false;
             if (selector.ShowDialog() == true)
             {
                 string databaseText = string.Empty;
-                foreach (Trash element in Database)
+                foreach (Trash element in DbDisplayer.ItemsSource)
                 {
                     databaseText += $"{element.ToString()}\n";
                 }
                 File.WriteAllText(selector.FileName, databaseText);
             }
+            Filewatcher.watcher.EnableRaisingEvents = true;
         }
 
         #region Background Worker
@@ -80,13 +87,17 @@ namespace TrashHandling.Pages
         /// The workers final task after finishing the first
         /// <para>Created by Kasper</para>
         /// </summary>
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) => DbDisplayer.ItemsSource = Database;
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (ShowAllCheckbox.IsChecked == false) DbDisplayer.ItemsSource = Database.Where(x => x.CompanyId == Company.Instance.Id);
+            else DbDisplayer.ItemsSource = Database;
+        }
 
         /// <summary>
         /// The worker being started and run async.
         /// <para>Created by Kasper</para>
         /// </summary>
-        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e) => worker.RunWorkerAsync();
+        private void Page_Loaded(object sender, RoutedEventArgs e) => worker.RunWorkerAsync();
         #endregion
 
         /// <summary>
@@ -100,5 +111,9 @@ namespace TrashHandling.Pages
             DbDisplayer.Items.Refresh();
             worker.RunWorkerAsync();
         }
+
+        private void ShowAllCheckbox_Checked(object sender, RoutedEventArgs e) => RefreshDataGrid();
+
+        private void ShowAllCheckbox_Unchecked(object sender, RoutedEventArgs e) => RefreshDataGrid();
     }
 }

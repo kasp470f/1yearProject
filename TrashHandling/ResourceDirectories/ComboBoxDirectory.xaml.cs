@@ -5,7 +5,7 @@ using TrashHandling.Models;
 
 namespace TrashHandling.ResourceDirectories
 {
-    public partial class ComboBoxDirectory : ResourceDictionary
+	public partial class ComboBoxDirectory : ResourceDictionary
     {
         /// <summary>
         /// Loads the comboboxes with the correct itemsource.
@@ -23,7 +23,8 @@ namespace TrashHandling.ResourceDirectories
                         box.SelectedItem = ComboBoxSources.Categories[1];
                         break;
                     case "UnitPicker":
-                        box.ItemsSource = Enum.GetValues(typeof(ComboBoxSources.Units));
+                        ComboBoxSources.Units[] units = (ComboBoxSources.Units[])Enum.GetValues(typeof(ComboBoxSources.Units));
+                        box.ItemsSource = units[2..5];
                         break;
                 }
             }

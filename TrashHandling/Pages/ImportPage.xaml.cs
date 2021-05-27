@@ -5,6 +5,9 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using TrashHandling.Models;
+using System.ComponentModel;
+using System.Globalization;
+using Validation = TrashHandling.Models.Validation;
 
 namespace TrashHandling.Pages
 {
@@ -14,8 +17,8 @@ namespace TrashHandling.Pages
 	/// </summary>
 	public partial class ImportPage : Page
 	{
-		public static string dirPath = @"C:\Dropzone";
-		private List<Trash> localFiles = new();
+        public static string dirPath = @"C:\Dropzone";
+		private List<Trash> localFiles;
 
 		public ImportPage()
 		{
@@ -26,15 +29,17 @@ namespace TrashHandling.Pages
 			{
 				Directory.CreateDirectory(dirPath);
 			}
+
+            Filewatcher.Monitor(dirPath);
 		}
 
-		///<Summary>
-		///Opens a window to pick a .csv file from a specific directory: C:\Dropzone which is defined in the project assignment as our predefined folder
-		///Window shows .csv-files only
-		///After file is accepted, a preview of the data in it will be shown
-		///<para>Created by Martin</para>
-		///</Summary>
-		private void PickFile_Click(object sender, RoutedEventArgs e)
+        ///<Summary>
+        ///Opens a window to pick a .csv file from a specific directory: C:\Dropzone which is defined in the project assignment as our predefined folder
+        ///Window shows .csv-files only
+        ///After file is accepted, a preview of the data in it will be shown
+        ///<para>Created by Martin</para>
+        ///</Summary>
+        private void PickFile_Click(object sender, RoutedEventArgs e)
 		{
 			FileNameField.Text = "";
 			OpenFileDialog selector = new()
@@ -72,18 +77,22 @@ namespace TrashHandling.Pages
 					string[] content = File.ReadAllLines(paths[i]);
 					foreach (string line in content)
 					{
-						string[] element = line.Split("\",\"");
-						localFiles.Add(new Trash()
-						{
-							IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
-							Amount = Math.Round(decimal.Parse(element[1]),3),
-							Unit = int.Parse(element[2]),
-							Category = int.Parse(element[3]),
-							Description = element[4],
-							ResponsiblePerson = element[5],
-							CompanyId = int.Parse(element[6]),
-							RegisterTimeStamp = element[7].Trim('\"'),
-						});
+                        try
+                        {
+							string[] element = line.Split("\",\"");
+							localFiles.Add(new Trash()
+							{
+								IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
+								Amount = Math.Round(CultureChange(element[1].Replace(',', '.')), 3),
+								Unit = int.Parse(element[2]),
+								Category = int.Parse(element[3]),
+								Description = element[4],
+								ResponsiblePerson = element[5],
+								CompanyId = int.Parse(element[6]),
+								RegisterTimeStamp = element[7].Trim('\"'),
+							});
+						}
+                        catch { }
 					}
 					Console.Log($"A file has been added to import: {fileNames[i]}");
 				}
@@ -95,7 +104,42 @@ namespace TrashHandling.Pages
 
 			ImportDisplay.ItemsSource = null;
 			ImportDisplay.Items.Clear();
-			ImportDisplay.ItemsSource = localFiles; 
+			ImportDisplay.ItemsSource = localFiles;
 		}
-    }
+
+		/// <summary>
+		/// If computer is in Danish, we won't get correct English decimal numbers with "." so this method changes it to English format.
+		/// <para>Created by Martin</para>
+		/// </summary>
+		public static decimal CultureChange(string input)
+		{
+			decimal.TryParse(input, NumberStyles.Number, CultureInfo.CreateSpecificCulture("en-GB"), out decimal converted);
+			return converted;
+		}
+
+
+		/// <summary>
+		/// When button pressed will add to database.
+		/// <para>Created by Kasper</para>
+		/// </summary>
+		private void SaveImported_Click(object sender, RoutedEventArgs e)
+		{
+			List<Trash> importList = new((List<Trash>)ImportDisplay.ItemsSource);
+
+			List<Trash> insertList = new();
+			foreach (Trash item in importList)
+			{
+				if (item.Unit >= 3 && item.Unit <= 5 && Validation.ValidCompanyInfo(item.CompanyId)) insertList.Add(item);
+				else continue;
+			}
+
+            //Add to database
+            foreach (Trash element in insertList)
+            {
+                SqlQueries.InsertTrashToDb(element);
+            }
+            MessageBox.Show($"{insertList.Count} has been added to the database");
+			
+		}
+	}
 }

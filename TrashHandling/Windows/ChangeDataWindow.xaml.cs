@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using TrashHandling.Models;
 using TrashHandling.Pages;
 using Console = TrashHandling.Pages.Console;
@@ -37,7 +35,7 @@ namespace TrashHandling.Windows
 			{
 				Id = OpenedObject.Id,
 				Amount = decimal.Parse(Amount.Text),
-				Unit = UnitPicker.SelectedIndex + 1,
+				Unit = (int)Enum.Parse(typeof(ComboBoxSources.Units), UnitPicker.Text),
 				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
 				ResponsiblePerson = Registrator.Text,

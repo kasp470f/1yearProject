@@ -14,7 +14,7 @@ namespace TrashHandling.Models
 	public class SqlQueries
 	{		
 		//Connectionstring to database is fetched from App.config which is ignored by GitHub
-		private static SqlConnection connectionString = 
+		private static readonly SqlConnection connectionString = 
 			new(ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
 
 		/// <summary>
@@ -22,7 +22,7 @@ namespace TrashHandling.Models
 		/// <para>Created by Martin</para>
 		/// </summary>
 		/// <param name="trash">The trash element that will be put into the database</param>
-		public static void InsertTrashToDb(Trash trash, DateTime dateTimePickerValue)
+		public static void InsertTrashToDb(Trash trash)
 		{
 			try
 			{
@@ -35,7 +35,7 @@ namespace TrashHandling.Models
 				insert.Parameters.Add("@Description", SqlDbType.NVarChar).Value = trash.Description;
 				insert.Parameters.Add("@ResponsiblePerson", SqlDbType.NVarChar).Value = trash.ResponsiblePerson;
 				insert.Parameters.Add("@CompanyId", SqlDbType.Int).Value = trash.CompanyId;
-				insert.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = dateTimePickerValue;
+				insert.Parameters.Add("@Timestamp", SqlDbType.DateTime).Value = trash.DateTimePickerValue;
 
 				connectionString.Open();
 				insert.ExecuteNonQuery();
@@ -54,7 +54,6 @@ namespace TrashHandling.Models
 		/// Logic to pull the data from our db.
 		/// <para>Created by Martin</para>
 		/// </summary>
-		/// <param name="trash">The trash element that will be shown as a row in our datagrid</param>
 		public static List<Trash> GetTrashFromDb()
 		{
 			List<Trash> trash = new();
@@ -93,7 +92,6 @@ namespace TrashHandling.Models
 			{
 				if (connectionString != null && connectionString.State == ConnectionState.Open) connectionString.Close();
 			}
-
 		}
 
 		/// <summary>

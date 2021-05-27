@@ -1,7 +1,6 @@
 ﻿<Application x:Class="TrashHandling.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TrashHandling"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -24,6 +23,10 @@
 					</Style>
 				</Style.Resources>
 			</Style>
+
+            <Style TargetType="Image">
+                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+            </Style>
 
 
 			<Style x:Key="HeaderTextBlock" TargetType="TextBlock">

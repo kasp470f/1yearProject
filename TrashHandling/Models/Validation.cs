@@ -1,15 +1,10 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace TrashHandling.Models
 {
-    public class Validation
+	public class Validation
     {
         /// <summary>
         /// Checks the company id against an API and returns if it is real.
@@ -24,11 +19,11 @@ namespace TrashHandling.Models
                 JObject json;
                 using (var webClient = new WebClient())
                 {
-                    webClient.Headers["User-Agent"] = "Uddannelses Projekt";
+                    webClient.Headers["User-Agent"] = "EA Dania Uddannelses Projekt";
                     string content = webClient.DownloadString(string.Format("http://cvrapi.dk/api?search={0}&country=dk", id));
                     json = JObject.Parse(content);
                 }
-                return !json.ContainsKey("error");
+                return !json.ContainsKey("error") && json["vat"].ToString() == id.ToString();
             }
             catch (Exception)
             {

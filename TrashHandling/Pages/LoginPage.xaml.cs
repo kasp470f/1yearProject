@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using TrashHandling.Models;
 
 namespace TrashHandling.Pages
 {
-    /// <summary>
-    /// Interaction logic for LoginPage.xaml
-    /// </summary>
-    public partial class LoginPage : Page
+	/// <summary>
+	/// Interaction logic for LoginPage.xaml
+	/// </summary>
+	public partial class LoginPage : Page
 	{
 		public LoginPage()
 		{
@@ -33,8 +31,11 @@ namespace TrashHandling.Pages
                         Console.Log($"User logged in: {UserName.Text}, {UserCompany.Text}");
                         MainWindow.Main.Topbar.IsEnabled = true;
                         MainWindow.Main.viewingWindow.Navigate(new HomePage());
+                        Filewatcher.watcher.EnableRaisingEvents = true;
                     }
+                    else MessageBox.Show("CompanyID kunne ikke findes!");
                 }
+                else MessageBox.Show("Navn eller CompanyID er ikke indtastet!");
             }
             catch (Exception ex)
             {

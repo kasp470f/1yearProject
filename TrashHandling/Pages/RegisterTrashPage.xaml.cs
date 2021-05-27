@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using TrashHandling.Models;
@@ -29,7 +27,7 @@ namespace TrashHandling.Pages
 			{
 				//Id autogenerates in database...
 				Amount = decimal.Parse(Amount.Text),
-				Unit = UnitPicker.SelectedIndex + 1,
+				Unit = (int)Enum.Parse(typeof(ComboBoxSources.Units), UnitPicker.Text),
 				Category = TrashPicker.SelectedIndex + 1,
 				Description = Description.Text,
 				ResponsiblePerson = Responsible.Text,
@@ -38,7 +36,7 @@ namespace TrashHandling.Pages
 			};
 
 			//Call the method to add to the db
-			SqlQueries.InsertTrashToDb(trash, (DateTime)DateTimePickField.Value);
+			SqlQueries.InsertTrashToDb(trash);
 
 			// Refresh page
 			DisplayDataPage.DisplayWindow.RefreshDataGrid();
@@ -54,7 +52,7 @@ namespace TrashHandling.Pages
 		private void ResetFields()
         {
 			Amount.Text = string.Empty;
-			UnitPicker.SelectedItem = string.Empty;
+			UnitPicker.SelectedItem = null;
 			TrashPicker.SelectedIndex = 0;
 			Description.Text = string.Empty;
 			Responsible.Text = string.Empty;
