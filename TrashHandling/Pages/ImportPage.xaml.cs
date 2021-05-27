@@ -1,11 +1,13 @@
-﻿using Microsoft.Win32;
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.IO;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
 using TrashHandling.Models;
+using System.ComponentModel;
+using System.Globalization;
+using Validation = TrashHandling.Models.Validation;
 
 namespace TrashHandling.Pages
 {
@@ -55,6 +57,7 @@ namespace TrashHandling.Pages
 				string[] pathsNames = selector.SafeFileNames;
 				FileNameField.Text = string.Join(", ", paths);
 				FormatLocalFiles(paths, pathsNames);
+
 			}
 		}
 
@@ -72,13 +75,11 @@ namespace TrashHandling.Pages
 				for (int i = 0; i < paths.Length; i++)
 				{
 					string[] content = File.ReadAllLines(paths[i]);
-					
 					foreach (string line in content)
 					{
                         try
                         {
-							string[] element = line.Split("\",\"");							
-							
+							string[] element = line.Split("\",\"");
 							localFiles.Add(new Trash()
 							{
 								IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
@@ -103,7 +104,7 @@ namespace TrashHandling.Pages
 
 			ImportDisplay.ItemsSource = null;
 			ImportDisplay.Items.Clear();
-			ImportDisplay.ItemsSource = localFiles; 
+			ImportDisplay.ItemsSource = localFiles;
 		}
 
 		/// <summary>
@@ -112,11 +113,10 @@ namespace TrashHandling.Pages
 		/// </summary>
 		public static decimal CultureChange(string input)
 		{
-			decimal output = 0;
-			if (decimal.TryParse(input, NumberStyles.Number, CultureInfo.CreateSpecificCulture("en-GB"), out decimal converted))
-				output = converted;
-			return output;
+			decimal.TryParse(input, NumberStyles.Number, CultureInfo.CreateSpecificCulture("en-GB"), out decimal converted);
+			return converted;
 		}
+
 
 		/// <summary>
 		/// When button pressed will add to database.
@@ -129,11 +129,11 @@ namespace TrashHandling.Pages
 			List<Trash> insertList = new();
 			foreach (Trash item in importList)
 			{
-				if (item.Unit >= 3 && item.Unit <= 5) insertList.Add(item);
+				if (item.Unit >= 3 && item.Unit <= 5 && Validation.ValidCompanyInfo(item.CompanyId)) insertList.Add(item);
 				else continue;
 			}
 
-            // Add to database
+            //Add to database
             foreach (Trash element in insertList)
             {
                 SqlQueries.InsertTrashToDb(element);
