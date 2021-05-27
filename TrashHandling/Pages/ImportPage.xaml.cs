@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using TrashHandling.Models;
 using System.ComponentModel;
+using System.Globalization;
+using Validation = TrashHandling.Models.Validation;
 
 namespace TrashHandling.Pages
 {
@@ -16,7 +18,7 @@ namespace TrashHandling.Pages
 	public partial class ImportPage : Page
 	{
         public static string dirPath = @"C:\Dropzone";
-		private List<Trash> localFiles = new();
+		private List<Trash> localFiles;
 
 		public ImportPage()
 		{
@@ -81,7 +83,7 @@ namespace TrashHandling.Pages
 							localFiles.Add(new Trash()
 							{
 								IdText = $"{fileNames[i]} / {element[0].Trim('\"')}",
-								Amount = Math.Round(decimal.Parse(element[1].Replace(',', '.')), 3),
+								Amount = Math.Round(CultureChange(element[1].Replace(',', '.')), 3),
 								Unit = int.Parse(element[2]),
 								Category = int.Parse(element[3]),
 								Description = element[4],
@@ -102,8 +104,19 @@ namespace TrashHandling.Pages
 
 			ImportDisplay.ItemsSource = null;
 			ImportDisplay.Items.Clear();
-			ImportDisplay.ItemsSource = localFiles; 
+			ImportDisplay.ItemsSource = localFiles;
 		}
+
+		/// <summary>
+		/// If computer is in Danish, we won't get correct English decimal numbers with "." so this method changes it to English format.
+		/// <para>Created by Martin</para>
+		/// </summary>
+		public static decimal CultureChange(string input)
+		{
+			decimal.TryParse(input, NumberStyles.Number, CultureInfo.CreateSpecificCulture("en-GB"), out decimal converted);
+			return converted;
+		}
+
 
 		/// <summary>
 		/// When button pressed will add to database.
@@ -116,11 +129,11 @@ namespace TrashHandling.Pages
 			List<Trash> insertList = new();
 			foreach (Trash item in importList)
 			{
-				if (item.Unit >= 3 && item.Unit <= 5) insertList.Add(item);
+				if (item.Unit >= 3 && item.Unit <= 5 && Validation.ValidCompanyInfo(item.CompanyId)) insertList.Add(item);
 				else continue;
 			}
 
-            // Add to database
+            //Add to database
             foreach (Trash element in insertList)
             {
                 SqlQueries.InsertTrashToDb(element);
