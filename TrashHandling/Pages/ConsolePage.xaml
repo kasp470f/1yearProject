@@ -19,7 +19,7 @@
 				<RowDefinition Height="40"/>
 			</Grid.RowDefinitions>
 			<TextBox x:Name="consoleBox" IsReadOnly="true" Margin="10,55,10,5" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="ScrollToEnd_Changed"/>
-			<Button Content="Export til txt" Click="ExportLog_Click" Height="20" Width="100" Grid.Row="1" Background="#DDDDDD"/>
+			<Button Content="Export til txt" Click="ExportLog_Click" Height="20" Width="100" Grid.Row="1" Style="{StaticResource Btn}"/>
 		</Grid>
 
 	</Grid>
