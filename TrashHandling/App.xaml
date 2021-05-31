@@ -93,7 +93,10 @@
                     </Style>					
                 </Style.Resources>
             </Style>
-			
+
+			<Style x:Key="Btn" TargetType="Button">
+				<Setter Property="Background" Value="#DDDDDD"/>
+			</Style>
 
             <!--Directories-->
             <ResourceDictionary.MergedDictionaries>

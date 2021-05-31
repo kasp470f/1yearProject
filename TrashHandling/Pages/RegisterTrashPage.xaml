@@ -56,7 +56,7 @@
 									 TextBoxBase.SelectionChanged="DateTimePickField_Click"/>
 
                 <!--Button to submit the form-->
-                <Button Name="AddTrash" Content="Registrér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Background="#FAFAFA" Click="AddData_Click"/>
+				<Button Name="AddTrash" Content="Registrér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Style="{StaticResource Btn}" Click="AddData_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

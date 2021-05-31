@@ -15,7 +15,7 @@
 				<TextBox Name="FileNameField" Width="205" Margin="0,5" Background="#FAFAFA" IsReadOnly="True"/>
 				
 				<!--Opens a file dialog to choose a .csv-file-->
-				<Button Name="FileChoser" Content="Vælg fil" Margin="10,5,0,5" Width="50" Background="#FAFAFA" Click="PickFile_Click"/>
+				<Button Name="FileChoser" Content="Vælg fil" Margin="10,5,0,5" Width="50" Style="{StaticResource Btn}" Click="PickFile_Click"/>
 			</StackPanel>
         </StackPanel>
         <!--DataGrid shows a preview of the data from the selected file-->
@@ -31,6 +31,6 @@
                 <DataGridTextColumn Width="100" Header="Dato" Binding="{Binding RegisterTimeStamp}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add to Database" Width="100" Height="20" VerticalAlignment="Bottom" Margin="0,10" Click="SaveImported_Click"/>
+		<Button Content="Add to Database" Width="100" Height="20" VerticalAlignment="Bottom" Margin="0,10" Click="SaveImported_Click" Style="{StaticResource Btn}"/>
     </Grid>
 </Page>
