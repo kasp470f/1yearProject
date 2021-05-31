@@ -1,12 +1,11 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.IO;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using TrashHandling.Models;
-using System.ComponentModel;
 using System.Globalization;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
+using TrashHandling.Models;
 using Validation = TrashHandling.Models.Validation;
 
 namespace TrashHandling.Pages
@@ -124,22 +123,25 @@ namespace TrashHandling.Pages
 		/// </summary>
 		private void SaveImported_Click(object sender, RoutedEventArgs e)
 		{
+			//All elements from datagrid
 			List<Trash> importList = new((List<Trash>)ImportDisplay.ItemsSource);
 
+			//List of the items allowed into database
 			List<Trash> insertList = new();
+
+			//Take out elements with wrong Unit and CompanyId
 			foreach (Trash item in importList)
 			{
 				if (item.Unit >= 3 && item.Unit <= 5 && Validation.ValidCompanyInfo(item.CompanyId)) insertList.Add(item);
 				else continue;
 			}
-
-            //Add to database
+            
+			//Add to database
             foreach (Trash element in insertList)
             {
                 SqlQueries.InsertTrashToDb(element);
             }
-            MessageBox.Show($"{insertList.Count} has been added to the database");
-			
+            MessageBox.Show($"{insertList.Count} poster er tilføjet til databasen");			
 		}
 	}
 }
