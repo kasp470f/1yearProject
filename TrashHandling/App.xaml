@@ -95,7 +95,7 @@
             </Style>
 
 			<Style TargetType="Button">
-				<Setter Property="Background" Value="#f1f1f1"/>
+				<Setter Property="Background" Value="#dddddd"/>
 			</Style>
 
             <!--Directories-->
