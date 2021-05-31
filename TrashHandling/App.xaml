@@ -94,8 +94,8 @@
                 </Style.Resources>
             </Style>
 
-			<Style x:Key="Btn" TargetType="Button">
-				<Setter Property="Background" Value="#DDDDDD"/>
+			<Style TargetType="Button">
+				<Setter Property="Background" Value="#dddddd"/>
 			</Style>
 
             <!--Directories-->

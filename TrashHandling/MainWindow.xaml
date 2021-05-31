@@ -46,7 +46,7 @@
                             <Image Source="./Assets/logo-graph.png" Width="14" Height="13"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Console">
+                    <MenuItem Header="Log">
                         <MenuItem.Icon>
                             <Image Source="./Assets/logo-console.png" Width="12" Height="12"/>
                         </MenuItem.Icon>

@@ -14,6 +14,8 @@ namespace TrashHandling.Pages
 	/// </summary>
 	public partial class StatisticsPage : Page
     {
+
+
         public StatisticsPage()
         {
             InitializeComponent();
@@ -40,7 +42,6 @@ namespace TrashHandling.Pages
         private void LoadBarChartData()
         {
             ((ColumnSeries)TrashChart.Series[0]).ItemsSource = null;
-                // fix year 
             ((ColumnSeries)TrashChart.Series[0]).ItemsSource = AccumulatedAmount(SqlQueries.GetTrashFromDb(), int.Parse(yearPicked.SelectedItem.ToString()), TrashPicker.SelectedIndex + 1);
         }
 

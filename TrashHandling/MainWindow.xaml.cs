@@ -83,6 +83,12 @@ namespace TrashHandling
             }
         }
 
-
+        public void SwitchPage(Page page)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                viewingWindow.Navigate(page);
+            });
+        }
     }
 }

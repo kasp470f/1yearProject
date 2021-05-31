@@ -28,7 +28,7 @@
                 <TextBox x:Name="UserCompany" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Background="#FAFAFA" Text="Skriv CVR ID"  GotFocus="UserCompany_GotFocus"/>
 
 
-				<Button Content="Login" Width="100" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource Btn}" Click="Login_Click"/>
+				<Button Content="Login" Width="100" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Login_Click"/>
 			</Grid>
         </StackPanel>
     </Grid>
