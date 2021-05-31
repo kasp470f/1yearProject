@@ -14,7 +14,7 @@
                 <TextBlock x:Name="UserName"/>
             </StackPanel>
             <TextBlock Text="Vælg hvad du ønsker at gøre i top-menuen."/>
-			<Button Content="Logout" Width="150" Click="Logout_Click" Style="{StaticResource Btn}"/>
+			<Button Content="Logout" Width="150" Click="Logout_Click" />
         </StackPanel>
 		
 	</Grid>
