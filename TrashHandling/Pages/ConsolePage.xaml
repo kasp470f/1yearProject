@@ -11,7 +11,7 @@
     <Grid>
 		
 		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
-			<TextBlock Text="Log (Console)"/>			
+			<TextBlock Text="Log"/>			
 		</StackPanel>
 		<Grid>
 			<Grid.RowDefinitions>
