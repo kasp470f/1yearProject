@@ -1,9 +1,8 @@
 ﻿<Window x:Class="TrashHandling.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TrashHandling"
         mc:Ignorable="d"
         Title="Home" Height="600" Width="1200" WindowStartupLocation="CenterScreen">
 
@@ -16,7 +15,7 @@
         <Border BorderBrush="#999999" BorderThickness="0,0,0,1">
             <DockPanel Background="Gray" Height="20" VerticalAlignment="Top" Grid.Row="0">
                 <Menu x:Name="Topbar" IsEnabled="false">
-                    <MenuItem Header="Home">
+                    <MenuItem Header="Hjem">
                         <MenuItem.Icon>
                             <Image Source="./Assets/logo-home.png" Width="12" Height="12"/>
                         </MenuItem.Icon>
@@ -30,12 +29,12 @@
                                 <Image Source="./Assets/logo-register.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Display Data">
+                        <MenuItem Header="Vis data">
                             <MenuItem.Icon>
                                 <Image Source="./Assets/logo-display.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Import fra .csv">
+                        <MenuItem Header="Importér fra csv">
                             <MenuItem.Icon>
                                 <Image Source="./Assets/logo-import.png"/>
                             </MenuItem.Icon>

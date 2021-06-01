@@ -24,10 +24,10 @@ namespace TrashHandling
         /// The Directory itself
         private readonly Dictionary<string, Page> PageDirectory = new()
         {
-            { "Home", HomePage},
+            { "Hjem", HomePage},
             { "Registrér affald", RegisterPage },
-            { "Display Data", DisplayDataPage },
-            { "Import fra .csv", ImportPage},
+            { "Vis data", DisplayDataPage },
+            { "Importér fra csv", ImportPage},
             { "Statistik", StatisticsPage },
             { "Console",  ConsolePage }
 
