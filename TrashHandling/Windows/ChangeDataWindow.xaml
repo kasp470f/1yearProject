@@ -52,10 +52,10 @@
 				<xctk:DateTimePicker Name="DateTimePickField" Grid.Column="1" Grid.Row="5" AllowTextInput="False" ShowButtonSpinner="False" Format="Custom" FormatString="yyyy:MM:dd HH:mm" TextBoxBase.SelectionChanged="DateTimePickField_Click"/>
 
 				<!--Button to submit the form-->
-				<Button Name="UpdateTrash" Content="Opdatér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Width="100" Margin="5" Style="{StaticResource Btn}" Click="ChangeData_Click"/>
+				<Button Name="UpdateTrash" Content="Opdatér" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Width="100" Margin="5" Click="ChangeData_Click"/>
 				
 				<!--Button to delete the selected element-->
-				<Button Name="DeleteTrash" Content="Slet posten" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Style="{StaticResource Btn}" Click="DeleteData_Click"/>
+				<Button Name="DeleteTrash" Content="Slet posten" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="100" Margin="5" Click="DeleteData_Click"/>
 			</Grid>
 		</StackPanel>
 	</Grid>
