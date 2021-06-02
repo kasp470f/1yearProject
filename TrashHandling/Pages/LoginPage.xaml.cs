@@ -7,6 +7,7 @@ namespace TrashHandling.Pages
 {
 	/// <summary>
 	/// Interaction logic for LoginPage.xaml
+    /// <para>Created by Kasper</para>
 	/// </summary>
 	public partial class LoginPage : Page
 	{
@@ -29,13 +30,14 @@ namespace TrashHandling.Pages
                     {
                         new Company(UserName.Text, id);
                         Console.Log($"User logged in: {UserName.Text}, {UserCompany.Text}");
-                        MainWindow.Main.Topbar.IsEnabled = true;
-                        MainWindow.Main.viewingWindow.Navigate(new HomePage());
+                        MainWindow.App.Topbar.IsEnabled = true;
+                        MainWindow.App.SwitchPage(new HomePage());
                         Filewatcher.watcher.EnableRaisingEvents = true;
+                        MainWindow.App.Title = "Hjem";
                     }
-                    else MessageBox.Show("CompanyID kunne ikke findes!");
+                    else MessageBox.Show("Virksomheds id kunne ikke findes!");
                 }
-                else MessageBox.Show("Navn eller CompanyID er ikke indtastet!");
+                else MessageBox.Show("Navn eller Virksomheds id er ikke indtastet!");
             }
             catch (Exception ex)
             {
@@ -49,7 +51,7 @@ namespace TrashHandling.Pages
         /// </summary>
         private void UserCompany_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (UserCompany.Text == "Skriv CVR ID") UserCompany.Text = string.Empty;
+            if (UserCompany.Text != string.Empty) UserCompany.Text = string.Empty;
         }
     }
 }

@@ -1,26 +1,24 @@
 ﻿<Page x:Class="TrashHandling.Pages.DisplayDataPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TrashHandling.Pages"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
       Style="{StaticResource PageStyle}"
       d:DesignHeight="450" d:DesignWidth="1000" Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
-            <TextBlock Text="Display Data"/>
+            <TextBlock Text="Vis data:"/>
         </StackPanel>
 
         <DockPanel Margin="50,60,50,40">
             <Grid DockPanel.Dock="Top" Margin="4">
                 <CheckBox Content="Vis alle poster" x:Name="ShowAllCheckbox" Checked="ShowAllCheckbox_Checked" Unchecked="ShowAllCheckbox_Unchecked"/>
-				<Button x:Name="ExportDB" Content="Export Database" HorizontalAlignment="Right" Click="ExportDB_Click"/>
+				<Button x:Name="ExportDB" Content="Exportér database" HorizontalAlignment="Right" Click="ExportDB_Click"/>
             </Grid>
             <DataGrid x:Name="DbDisplayer" Style="{StaticResource StandardDataGrid}" HeadersVisibility="Column" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True" AutoGenerateColumns="False" CanUserResizeColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Width="*" Header="Mængde" Binding="{Binding Amount}"/>
                     <DataGridTextColumn Width="*" Header="Måleenhed" Binding="{Binding UnitsText}" MaxWidth="100"/>
                     <DataGridTextColumn Width="*" Header="Affaldskategori" Binding="{Binding CategoryText}" MaxWidth="125"/>

@@ -25,6 +25,10 @@ namespace TrashHandling.Pages
         // List with the data that will be shown through the datagrid
         private List<Trash> Database;
 
+        /// <summary>
+        /// Constructor for the DisplayData page
+        /// <para>Created by Kasper</para>
+        /// </summary>
         public DisplayDataPage()
         {
             InitializeComponent();
@@ -69,7 +73,7 @@ namespace TrashHandling.Pages
                 string databaseText = string.Empty;
                 foreach (Trash element in DbDisplayer.ItemsSource)
                 {
-                    databaseText += $"{element.ToString()}\n";
+                    databaseText += $"{element}\n";
                 }
                 File.WriteAllText(selector.FileName, databaseText);
             }
@@ -112,8 +116,16 @@ namespace TrashHandling.Pages
             worker.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Refreshes the datagrid and displays all elements
+        /// <para>Created by Kasper</para>
+        /// </summary>
         private void ShowAllCheckbox_Checked(object sender, RoutedEventArgs e) => RefreshDataGrid();
 
+        /// <summary>
+        /// Refreshes the datagrid and displays only certain elements
+        /// <para>Created by Kasper</para>
+        /// </summary>
         private void ShowAllCheckbox_Unchecked(object sender, RoutedEventArgs e) => RefreshDataGrid();
     }
 }

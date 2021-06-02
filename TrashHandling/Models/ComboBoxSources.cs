@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace TrashHandling.Models
 {
+    /// <summary>
+    /// <para>Created by Martin</para>
+    /// </summary>
     public static class ComboBoxSources
 	{
         /// <summary>

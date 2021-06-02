@@ -36,7 +36,7 @@ namespace TrashHandling.Models
             {
                 case MessageBoxResult.Yes:
                     ImportPage.App.FormatLocalFiles(e.FullPath, e.Name);
-                    MainWindow.Main.SwitchPage(ImportPage.App);
+                    MainWindow.App.SwitchPage(ImportPage.App);
                     break;
                 default:
                     break;

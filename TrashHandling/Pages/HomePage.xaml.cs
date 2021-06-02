@@ -6,10 +6,14 @@ namespace TrashHandling.Pages
 {
     /// <summary>
     /// Interaction logic for HomePage.xaml
-    /// <para>Created by Martin</para>
+    /// <para>Created by Kasper</para>
     /// </summary>
     public partial class HomePage : Page
 	{
+        /// <summary>
+        /// Constructor for the Home page
+        /// <para>Created by Kasper</para>
+        /// </summary>
 		public HomePage()
 		{
 			InitializeComponent();
@@ -22,9 +26,10 @@ namespace TrashHandling.Pages
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             Company.RemoveInstance = null;
-            MainWindow.Main.Topbar.IsEnabled = false;
-            MainWindow.Main.viewingWindow.Navigate(new LoginPage());
+            MainWindow.App.Topbar.IsEnabled = false;
+            MainWindow.App.SwitchPage(new LoginPage());
             Filewatcher.watcher.EnableRaisingEvents = false;
+            MainWindow.App.Title = "Log ind";
         }
 
         /// <summary>
