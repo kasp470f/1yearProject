@@ -47,7 +47,7 @@
                 <TextBox Name="Responsible" Grid.Row="3" IsReadOnly="True" Focusable="False" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
 
                 <!--Area to input the company-->
-                <TextBlock Text="VirksomhedsID:" Grid.Row="4"/>
+				<TextBlock Text="Virksomhed:" Grid.Row="4"/>
                 <TextBox Name="CompanyID" Grid.Row="4" IsReadOnly="True" Focusable="False" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
 
                 <!--Area to select a date of registry-->

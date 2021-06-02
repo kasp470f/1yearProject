@@ -10,11 +10,11 @@
     <Grid>
 		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Velkommen til Trashhandling "/>
+                <TextBlock Text="Velkommen til Trashhandling"/>
                 <TextBlock x:Name="UserName"/>
             </StackPanel>
             <TextBlock Text="Vælg hvad du ønsker at gøre i top-menuen."/>
-			<Button Content="Logout" Width="150" Click="Logout_Click" />
+			<Button Content="Log ud" Width="150" Click="Logout_Click" />
         </StackPanel>
 		
 	</Grid>
