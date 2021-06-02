@@ -75,12 +75,15 @@ namespace TrashHandling.Pages
                 decimal amount = 0;
                 switch (element.Unit)
                 {
+                    // Ton
                     case 3:
                         amount = element.Amount * 1000;
                         break;
+                    // Kilogram
                     case 4:
                         amount = element.Amount;
                         break;
+                    // Gram
                     case 5:
                         amount = element.Amount / 1000;
                         break;
