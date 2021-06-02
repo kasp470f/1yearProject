@@ -11,12 +11,12 @@ namespace TrashHandling
 	/// </summary>
 	public partial class MainWindow : Window
     {
-        public static MainWindow Main;
+        public static MainWindow App;
 
         /// Pages under the Directory 
         static HomePage HomePage = new();
         static RegisterTrashPage RegisterPage = new();
-        static DisplayDataPage DisplayDataPage = new();
+        static DisplayDataPage DisplayPage = new();
         static ImportPage ImportPage = new();
         static StatisticsPage StatisticsPage = new();
         static ConsolePage ConsolePage = new();
@@ -26,10 +26,10 @@ namespace TrashHandling
         {
             { "Hjem", HomePage},
             { "Registrér affald", RegisterPage },
-            { "Vis data", DisplayDataPage },
+            { "Vis data", DisplayPage },
             { "Importér fra csv", ImportPage},
             { "Statistik", StatisticsPage },
-            { "Console",  ConsolePage }
+            { "Log",  ConsolePage }
 
         };
 
@@ -40,7 +40,7 @@ namespace TrashHandling
         public MainWindow()
         {
             InitializeComponent();
-            Main = this;
+            App = this;
             viewingWindow.Navigate(new LoginPage());
 
 
@@ -75,7 +75,7 @@ namespace TrashHandling
             this.Title = header;
             try
             {
-                viewingWindow.Navigate(PageDirectory[header]);
+                SwitchPage(PageDirectory[header]);
             }
             catch (System.Exception err)
             {
