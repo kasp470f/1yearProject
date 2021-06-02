@@ -36,12 +36,12 @@
         
         <!--Chart-->
         <Grid Margin="100, 120, 100, 40">
-            <chartingToolKit:Chart x:Name="TrashChart" Width="auto" Height="auto" Background="LightSteelBlue" FontWeight="DemiBold">
+            <chartingToolKit:Chart x:Name="TrashChart" Width="auto" Height="auto" Background="#dbdbdb"  FontWeight="DemiBold">
                 <!--Axes-->
                 <chartingToolKit:Chart.Axes>
-                    <chartingToolKit:CategoryAxis Orientation="X" Title="Months"/>
+                    <chartingToolKit:CategoryAxis Orientation="X" Title="Måneder"/>
 
-                    <chartingToolKit:CategoryAxis Orientation="Y" Title="Amount" />
+                    <chartingToolKit:CategoryAxis Orientation="Y" Title="Antal (kg)" Margin="0,0,5,0"/>
                 </chartingToolKit:Chart.Axes>
 
                 <!--The Chart itself-->
