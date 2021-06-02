@@ -14,8 +14,10 @@ namespace TrashHandling.Pages
 	/// </summary>
 	public partial class StatisticsPage : Page
     {
-
-
+        /// <summary>
+        /// Constructor for the Statistics page
+        /// <para>Created by Kasper</para>
+        /// </summary>
         public StatisticsPage()
         {
             InitializeComponent();

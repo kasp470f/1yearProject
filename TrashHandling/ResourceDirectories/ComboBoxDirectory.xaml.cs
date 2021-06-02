@@ -5,7 +5,10 @@ using TrashHandling.Models;
 
 namespace TrashHandling.ResourceDirectories
 {
-	public partial class ComboBoxDirectory : ResourceDictionary
+    /// <summary>
+    /// <para>Created by Kasper</para>
+    /// </summary>
+    public partial class ComboBoxDirectory : ResourceDictionary
     {
         /// <summary>
         /// Loads the comboboxes with the correct itemsource.

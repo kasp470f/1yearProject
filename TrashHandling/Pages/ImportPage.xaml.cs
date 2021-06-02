@@ -12,7 +12,7 @@ namespace TrashHandling.Pages
 {
     /// <summary>
     /// Interaction logic for ImportPage.xaml
-    /// <para>Created by Martin</para>
+    /// <para>Created by Kasper</para>
     /// </summary>
     public partial class ImportPage : Page
     {
@@ -20,6 +20,10 @@ namespace TrashHandling.Pages
         public static string dirPath = @"C:\Dropzone";
         private List<Trash> localFiles;
 
+        /// <summary>
+        /// Constructor for the Import page
+        /// <para>Created by Kasper</para>
+        /// </summary>
         public ImportPage()
         {
             InitializeComponent();

@@ -25,6 +25,10 @@ namespace TrashHandling.Pages
         // List with the data that will be shown through the datagrid
         private List<Trash> Database;
 
+        /// <summary>
+        /// Constructor for the DisplayData page
+        /// <para>Created by Kasper</para>
+        /// </summary>
         public DisplayDataPage()
         {
             InitializeComponent();

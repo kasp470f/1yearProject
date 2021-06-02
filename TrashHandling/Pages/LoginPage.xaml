@@ -5,8 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d" 
       Style="{StaticResource PageStyle}"
-      d:DesignHeight="450" d:DesignWidth="1000" 
-      Title="LoginPage">
+      d:DesignHeight="450" d:DesignWidth="1000">
 
     <Grid>
 		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
