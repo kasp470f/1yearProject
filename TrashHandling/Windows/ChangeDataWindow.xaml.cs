@@ -8,11 +8,18 @@ namespace TrashHandling.Windows
 {
 	/// <summary>
 	/// Interaction logic for ChangeDataWindow.xaml
+	/// <para>Created by Martin</para>
 	/// </summary>
-	/// <param name="openedObject">The Trash object selected in the DataGrid on DisplayDataPage</param>
 	public partial class ChangeDataWindow : Window
 	{
+		// The Trash object selected in the DataGrid on DisplayDataPage
 		private Trash OpenedObject { get; set; }
+
+		/// <summary>
+		/// Constructor for the ChangeDataWindow
+		/// <para>Created by Martin</para>
+		/// </summary>
+		/// <param name="openedObject">The object from the datagrid that was clicked.</param>
 		public ChangeDataWindow(Trash openedObject)
 		{
 			InitializeComponent();

@@ -10,6 +10,11 @@ namespace TrashHandling.Pages
     public partial class ConsolePage : Page
     {
         public static ConsolePage App;
+
+        /// <summary>
+        /// Constructor for the Console page
+        /// <para>Created by Kasper</para>
+        /// </summary>
         public ConsolePage()
         {
             InitializeComponent();

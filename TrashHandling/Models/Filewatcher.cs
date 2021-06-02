@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Threading;
+using TrashHandling.Pages;
 
 namespace TrashHandling.Models
 {
@@ -36,7 +31,16 @@ namespace TrashHandling.Models
         /// </summary>
         private static void OnCreated(object sender, FileSystemEventArgs e)
         {
-            MessageBox.Show($"En ny fil er blevet tilføjet til Dropzone: {e.Name}.\nDu kan gå til Import siden for at åbne den", "Notifikation om ny fil");
+            MessageBoxResult boxResult = MessageBox.Show($"En ny fil er blevet tilføjet til Dropzone: {e.Name}.\nDu kan gå til Import siden for at se den, vil du?", "Notifikation om ny fil", MessageBoxButton.YesNo);
+            switch (boxResult)
+            {
+                case MessageBoxResult.Yes:
+                    ImportPage.App.FormatLocalFiles(e.FullPath, e.Name);
+                    MainWindow.App.SwitchPage(ImportPage.App);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

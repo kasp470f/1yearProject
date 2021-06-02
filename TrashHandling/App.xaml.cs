@@ -4,6 +4,9 @@ using System.Windows.Input;
 
 namespace TrashHandling
 {
+    /// <summary>
+    /// <para>Created by Kasper</para>
+    /// </summary>
 	public partial class App : Application
     {
         /// <summary>

@@ -4,6 +4,9 @@ using System.Net;
 
 namespace TrashHandling.Models
 {
+    /// <summary>
+    /// <para>Created by Kasper</para>
+    /// </summary>
 	public class Validation
     {
         /// <summary>

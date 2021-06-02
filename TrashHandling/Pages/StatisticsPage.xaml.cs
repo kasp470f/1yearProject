@@ -14,6 +14,10 @@ namespace TrashHandling.Pages
 	/// </summary>
 	public partial class StatisticsPage : Page
     {
+        /// <summary>
+        /// Constructor for the Statistics page
+        /// <para>Created by Kasper</para>
+        /// </summary>
         public StatisticsPage()
         {
             InitializeComponent();
@@ -24,12 +28,12 @@ namespace TrashHandling.Pages
         }
 
         /// <summary>
-        /// When the user switches between the trash categories
+        /// When the user switches between the categories and year
         /// <para>Created by Kasper</para>
         /// </summary>
-        private void TrashPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LoadBarChartData();
+            if(this.IsLoaded) LoadBarChartData();
         }
 
 
@@ -40,8 +44,7 @@ namespace TrashHandling.Pages
         private void LoadBarChartData()
         {
             ((ColumnSeries)TrashChart.Series[0]).ItemsSource = null;
-            ((ColumnSeries)TrashChart.Series[0]).ItemsSource = AccumulatedAmount(SqlQueries.GetTrashFromDb(), DateTime.Now.Year, TrashPicker.SelectedIndex + 1);
-            Console.Log($"Graph was created");
+            ((ColumnSeries)TrashChart.Series[0]).ItemsSource = AccumulatedAmount(SqlQueries.GetTrashFromDb(), int.Parse(yearPicked.SelectedItem.ToString()), TrashPicker.SelectedIndex + 1);
         }
 
 
@@ -72,12 +75,15 @@ namespace TrashHandling.Pages
                 decimal amount = 0;
                 switch (element.Unit)
                 {
+                    // Ton
                     case 3:
                         amount = element.Amount * 1000;
                         break;
+                    // Kilogram
                     case 4:
                         amount = element.Amount;
                         break;
+                    // Gram
                     case 5:
                         amount = element.Amount / 1000;
                         break;

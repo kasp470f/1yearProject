@@ -11,6 +11,10 @@ namespace TrashHandling.Pages
 	/// </summary>
 	public partial class RegisterTrashPage : Page
 	{
+		/// <summary>
+		/// Constructor for the RegisterTrash page
+		/// <para>Created by Martin</para>
+		/// </summary>
 		public RegisterTrashPage()
 		{
 			InitializeComponent();
