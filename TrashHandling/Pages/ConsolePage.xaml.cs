@@ -1,5 +1,9 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
+using System;
+using Microsoft.Win32;
+using TrashHandling.Models;
+using System.IO;
 
 namespace TrashHandling.Pages
 {
@@ -28,7 +32,7 @@ namespace TrashHandling.Pages
         /// <param name="messsage">The string to be writen in the textbox</param>
         public void Write(string messsage)
         {
-            consoleBox.Text += $"{messsage}\n";
+            consoleBox.Text += $"{DateTime.Now} : {messsage}\n";
         }
 
 
@@ -38,7 +42,19 @@ namespace TrashHandling.Pages
         /// </summary>
         private void ExportLog_Click(object sender, RoutedEventArgs e)
         {
-            Console.Log("User has exported the logs to txt file format");
+            SaveFileDialog selector = new()
+            {
+                Title = "Choose the location of the log",
+                Filter = "Text file (*.txt)|*.txt",
+                InitialDirectory = @"C:\Dropzone",
+            };
+            Filewatcher.watcher.EnableRaisingEvents = false;
+            if (selector.ShowDialog() == true)
+            {
+                File.WriteAllText(selector.FileName, consoleBox.Text);
+                Console.Log("User has exported the logs to txt file format");
+            }
+            Filewatcher.watcher.EnableRaisingEvents = true;
         }
 
         /// <summary>
