@@ -19,7 +19,6 @@ namespace TrashHandling.Windows
 		/// Constructor for the ChangeDataWindow
 		/// <para>Created by Martin</para>
 		/// </summary>
-		/// <param name="openedObject">The object from the datagrid that was clicked.</param>
 		public ChangeDataWindow(Trash openedObject)
 		{
 			InitializeComponent();
@@ -49,12 +48,14 @@ namespace TrashHandling.Windows
 				CompanyId = int.Parse(CompanyID.Text),
 				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
 			};
-			SqlQueries.EditTrashInDb(OpenedObject);
 
-			Console.Log($"A trash element has been edited: {OpenedObject}");
-			DisplayDataPage.DisplayWindow.RefreshDataGrid();
-			this.Close();
-
+			if (MessageBox.Show("Du er ved at ændre denne post. Er det korrekt?", "Advarsel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+			{
+				SqlQueries.EditTrashInDb(OpenedObject);
+				Console.Log($"A trash element has been edited: {OpenedObject}");
+				DisplayDataPage.DisplayWindow.RefreshDataGrid();
+				this.Close();
+			}
 		}
 
 		/// <summary>
@@ -64,7 +65,7 @@ namespace TrashHandling.Windows
 		private void DataRendered(object sender, EventArgs e)
         {
 			TrashPicker.SelectedIndex = OpenedObject.Category - 1;
-			UnitPicker.SelectedIndex = OpenedObject.Unit - 1;
+			UnitPicker.Text = OpenedObject.UnitsText;
 
 			Amount.Text = OpenedObject.Amount.ToString();
 			Description.Text = OpenedObject.Description;
