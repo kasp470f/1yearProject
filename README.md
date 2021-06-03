@@ -3,5 +3,5 @@
 
 Dette her er vores første års projekt. Vi skal lave en opgave der handler om at indrapportere en virksomheds affald.
 
-## Brug af applikation
+### Brug af applikation
 Du kan gøre brug af denne applikation ved at ændre i app.config's connection string. Dette vil lade dig ændre i hvad database som du bliver tilknyttet.
