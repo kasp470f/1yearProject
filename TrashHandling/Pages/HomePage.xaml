@@ -10,7 +10,7 @@
     <Grid>
 		<StackPanel Style="{StaticResource HorizontalCenteredVerticalStack}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Velkommen til Trashhandling"/>
+				<TextBlock Text="Velkommen til Trashhandling," Margin="0,10,5,20"/>
                 <TextBlock x:Name="UserName"/>
             </StackPanel>
             <TextBlock Text="Vælg hvad du ønsker at gøre i top-menuen."/>
