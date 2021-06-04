@@ -188,7 +188,7 @@ namespace TrashHandling.Pages
             //Take out elements with wrong Unit and CompanyId
             foreach (Trash item in importList)
             {
-                if (item.Unit >= 3 && item.Unit <= 5 && Validation.ValidCompanyInfo(item.CompanyId)) insertList.Add(item);
+                if (item.Unit >= 3 && item.Unit <= 5 && item.CompanyId.ToString().Length == 8) insertList.Add(item);
                 else continue;
             }
 
