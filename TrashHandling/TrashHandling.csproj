@@ -13,6 +13,7 @@
     <None Remove="Assets\logo-graph.png" />
     <None Remove="Assets\logo-home.png" />
     <None Remove="Assets\logo-import.png" />
+    <None Remove="Assets\logo-logout.png" />
     <None Remove="Assets\logo-register.png" />
     <None Remove="Assets\logo-trash.ico" />
     <None Remove="Assets\logo-trash.png" />
@@ -41,6 +42,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\logo-import.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\logo-logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\logo-register.png">

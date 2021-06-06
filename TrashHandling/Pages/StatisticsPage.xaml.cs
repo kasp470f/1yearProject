@@ -23,7 +23,7 @@ namespace TrashHandling.Pages
             InitializeComponent();
 
             int year = DateTime.Now.Year;
-            for (int i = year; i >= year - 100; i--) yearPicked.Items.Add(i);
+            for (int i = year; i >= 1980; i--) yearPicked.Items.Add(i);
             yearPicked.SelectedItem = year;
         }
 
