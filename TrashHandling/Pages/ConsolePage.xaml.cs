@@ -52,7 +52,7 @@ namespace TrashHandling.Pages
             if (selector.ShowDialog() == true)
             {
                 File.WriteAllText(selector.FileName, consoleBox.Text);
-                Console.Log("User has exported the logs to txt file format");
+                Console.Log("Bruger har exportert logs til txt file format");
             }
             Filewatcher.watcher.EnableRaisingEvents = true;
         }
