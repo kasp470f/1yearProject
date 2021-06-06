@@ -27,26 +27,34 @@ namespace TrashHandling.Pages
 		private void AddData_Click(object sender, RoutedEventArgs e)
 		{
 			//Makes a new Trash object and adds the content from the textboxes and comboboxes on RegisterTrashPage.
-			Trash trash = new()
-			{
-				//Id autogenerates in database...
-				Amount = decimal.Parse(Amount.Text),
-				Unit = (int)Enum.Parse(typeof(ComboBoxSources.Units), UnitPicker.Text),
-				Category = TrashPicker.SelectedIndex + 1,
-				Description = Description.Text,
-				ResponsiblePerson = Responsible.Text,
-				CompanyId = int.Parse(CompanyID.Text),
-				RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
-			};
+            try
+            {
+				Trash trash = new()
+				{
+					//Id autogenerates in database...
+					Amount = decimal.Parse(Amount.Text),
+					Unit = (int)Enum.Parse(typeof(ComboBoxSources.Units), UnitPicker.Text),
+					Category = TrashPicker.SelectedIndex + 1,
+					Description = Description.Text,
+					ResponsiblePerson = Responsible.Text,
+					CompanyId = int.Parse(CompanyID.Text),
+					RegisterTimeStamp = $"{DateTimePickField.Value:yyyy:MM:dd HH:mm}"
+				};
+				//Call the method to add to the db
+				SqlQueries.InsertTrashToDb(trash);
+				MessageBox.Show("Posten er blevet tilføjet");
 
-			//Call the method to add to the db
-			SqlQueries.InsertTrashToDb(trash);
+				// Refresh page
+				DisplayDataPage.DisplayWindow.RefreshDataGrid();
+				ResetFields();
 
-			// Refresh page
-			DisplayDataPage.DisplayWindow.RefreshDataGrid();
-			ResetFields();
-
-			Console.Log($"A trash element has been added: {trash}");		
+				Console.Log($"Et affalds element er blevet tilføjet: {trash}");
+			}
+            catch (Exception ex)
+            {
+				MessageBox.Show($"Det ser ud til at der er sket en fejl. Prøv igen!\n {ex.Message}");
+				Console.Log($"Error - {ex.Message}");
+			}	
 		}
 
 		/// <summary>

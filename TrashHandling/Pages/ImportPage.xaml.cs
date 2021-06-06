@@ -197,7 +197,8 @@ namespace TrashHandling.Pages
             {
                 SqlQueries.InsertTrashToDb(element);
             }
-            MessageBox.Show($"{insertList.Count} poster er tilføjet til databasen");
+            if(insertList.Count == 0) MessageBox.Show("Der blev ikke tilføjet noget. Data'en er ikke valid!");
+            else MessageBox.Show($"{insertList.Count} poster er tilføjet til databasen");
         }
     }
 }
