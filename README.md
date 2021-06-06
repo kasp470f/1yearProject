@@ -6,6 +6,8 @@ Dette her er vores første års projekt. Vi skal lave en opgave der handler om a
 ### Brug af applikation
 Du kan gøre brug af denne applikation ved at ændre i app.config's connection string. Dette vil lade dig ændre i hvad database som du bliver tilknyttet.
 
+Derudover har vi i applikationen brugt en API der tjekker om man har indtastet et gyldigt CVR nr, som en form for login. I testperioden har vi primært brugt 30773047, som en af os kunne huske fra et tidligere arbejde. Yderligere gyldige numre kan findes på https://datacvr.virk.dk/data/ som indeholder alle CVR numre i Danmark.
+
 #### Lokal database
 ``` xaml
 <connectionStrings>
