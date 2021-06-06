@@ -5,6 +5,8 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Assets\logo-trash.ico</ApplicationIcon>
+    <AssemblyName>TrashHandling</AssemblyName>
+    <RootNamespace>TrashHandling</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
