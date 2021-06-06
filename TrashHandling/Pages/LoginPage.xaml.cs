@@ -29,7 +29,7 @@ namespace TrashHandling.Pages
                     if (Models.Validation.ValidCompanyInfo(id) == true)
                     {
                         new Company(UserName.Text, id);
-                        Console.Log($"User logged in: {UserName.Text}, {UserCompany.Text}");
+                        Console.Log($"Bruger loggede ind: {UserName.Text}, {UserCompany.Text}");
                         MainWindow.App.Topbar.IsEnabled = true;
                         MainWindow.App.SwitchPage(new HomePage());
                         Filewatcher.watcher.EnableRaisingEvents = true;

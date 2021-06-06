@@ -52,7 +52,7 @@ namespace TrashHandling.Windows
 			if (MessageBox.Show("Du er ved at ændre denne post. Er det korrekt?", "Advarsel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
 			{
 				SqlQueries.EditTrashInDb(OpenedObject);
-				Console.Log($"A trash element has been edited: {OpenedObject}");
+				Console.Log($"En affalds post er blevet ændret: {OpenedObject}");
 				DisplayDataPage.DisplayWindow.RefreshDataGrid();
 				this.Close();
 			}
