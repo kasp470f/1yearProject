@@ -84,12 +84,13 @@ namespace TrashHandling.Windows
 			MessageBoxResult result = MessageBox.Show("Denne post vil blive slettet.\nEr det korrekt?","Advarsel!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 			if (result == MessageBoxResult.Yes)
 			{
+				Trash obj = OpenedObject;
 				OpenedObject = new()
 				{
 					Id = OpenedObject.Id
 				};
 				SqlQueries.DeleteTrashFromDb(OpenedObject);
-
+				Console.Log($"{obj} er blevet slettet");
 				DisplayDataPage.DisplayWindow.RefreshDataGrid();
 				this.Close();
 			}			
