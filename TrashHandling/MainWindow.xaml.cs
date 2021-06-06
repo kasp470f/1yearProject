@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using TrashHandling.Models;
 using TrashHandling.Pages;
 
 namespace TrashHandling
@@ -47,16 +48,19 @@ namespace TrashHandling
             // Add event to all menu items (including children)
             foreach (MenuItem item in Topbar.Items)
             {
-                if(item.HasItems)
+                if(item.Header.ToString() != "Log ud")
                 {
-                    foreach (MenuItem childItem in item.Items)
+                    if (item.HasItems)
+                    {
+                        foreach (MenuItem childItem in item.Items)
+                        {
+                            item.AddHandler(MenuItem.ClickEvent, new RoutedEventHandler(MenuItem_Click));
+                        }
+                    }
+                    else
                     {
                         item.AddHandler(MenuItem.ClickEvent, new RoutedEventHandler(MenuItem_Click));
                     }
-                }
-                else
-                {
-                    item.AddHandler(MenuItem.ClickEvent, new RoutedEventHandler(MenuItem_Click));
                 }
             }
 
@@ -89,6 +93,19 @@ namespace TrashHandling
             {
                 viewingWindow.Navigate(page);
             });
+        }
+
+        /// <summary>
+        /// The logout button that will remove the current instnce of the company selected.
+        /// <para>Created by Kasper</para>
+        /// </summary>
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            Company.RemoveInstance = null;
+            App.Topbar.IsEnabled = false;
+            App.SwitchPage(new LoginPage());
+            Filewatcher.watcher.EnableRaisingEvents = false;
+            App.Title = "Log ind";
         }
     }
 }

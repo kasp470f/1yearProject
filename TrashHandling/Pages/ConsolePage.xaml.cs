@@ -71,8 +71,7 @@ namespace TrashHandling.Pages
     /// Class that just helps reach the ConsoleApp View
     /// <para> Created by Kasper</para>
     /// </summary>
-    public static class Console
-    {
+    public static class Console    {
         /// <summary>
         /// Allows to write in the ConsolePage App's Console Box
         /// <para> Created by Kasper</para>

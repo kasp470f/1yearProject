@@ -3,11 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using TrashHandling.Models;
-using Validation = TrashHandling.Models.Validation;
 
 namespace TrashHandling.Pages
 {
@@ -197,7 +195,8 @@ namespace TrashHandling.Pages
             {
                 SqlQueries.InsertTrashToDb(element);
             }
-            MessageBox.Show($"{insertList.Count} poster er tilføjet til databasen");
+            if(insertList.Count == 0) MessageBox.Show("Der blev ikke tilføjet noget. Data'en er ikke valid!");
+            else MessageBox.Show($"{insertList.Count} poster er tilføjet til databasen");
         }
     }
 }

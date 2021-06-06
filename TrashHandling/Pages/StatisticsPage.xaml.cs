@@ -23,7 +23,7 @@ namespace TrashHandling.Pages
             InitializeComponent();
 
             int year = DateTime.Now.Year;
-            for (int i = year; i >= year - 100; i--) yearPicked.Items.Add(i);
+            for (int i = year; i >= 1980; i--) yearPicked.Items.Add(i);
             yearPicked.SelectedItem = year;
         }
 
@@ -83,7 +83,7 @@ namespace TrashHandling.Pages
                     case 4:
                         amount = element.Amount;
                         break;
-                    // Gram
+                    // Gram 
                     case 5:
                         amount = element.Amount / 1000;
                         break;

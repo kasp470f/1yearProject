@@ -20,19 +20,6 @@ namespace TrashHandling.Pages
 		}
 
         /// <summary>
-        /// The logout button that will remove the current instnce of the company selected.
-        /// <para>Created by Kasper</para>
-        /// </summary>
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-            Company.RemoveInstance = null;
-            MainWindow.App.Topbar.IsEnabled = false;
-            MainWindow.App.SwitchPage(new LoginPage());
-            Filewatcher.watcher.EnableRaisingEvents = false;
-            MainWindow.App.Title = "Log ind";
-        }
-
-        /// <summary>
         /// User name will be displayed on home page.
         /// <para>Created by Kasper</para>
         /// </summary>
