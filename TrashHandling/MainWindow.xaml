@@ -15,6 +15,11 @@
         <Border BorderBrush="#999999" BorderThickness="0,0,0,1">
             <DockPanel Background="Gray" Height="20" VerticalAlignment="Top" Grid.Row="0">
                 <Menu x:Name="Topbar" IsEnabled="false">
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <DockPanel HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
                     <MenuItem Header="Hjem">
                         <MenuItem.Icon>
                             <Image Source="./Assets/logo-home.png" Width="12" Height="12"/>
@@ -50,6 +55,7 @@
                             <Image Source="./Assets/logo-console.png" Width="12" Height="12"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="Log ud" HorizontalAlignment="Right" Click="Logout_Click"/>
                 </Menu>
             </DockPanel>
         </Border>
