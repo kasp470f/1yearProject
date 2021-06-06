@@ -67,8 +67,6 @@ namespace TrashHandling.Pages
 			UnitPicker.SelectedItem = null;
 			TrashPicker.SelectedIndex = 0;
 			Description.Text = string.Empty;
-			Responsible.Text = string.Empty;
-			CompanyID.Text = string.Empty;
 			DateTimePickField.Text = string.Empty;
 		}
 
